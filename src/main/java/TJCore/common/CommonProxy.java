@@ -2,10 +2,11 @@ package TJCore.common;
 
 import TJCore.TJValues;
 import TJCore.api.TJOreDictionaryLoader;
+import TJCore.api.rotationnet.BlockRotationPipe;
+import TJCore.api.rotationnet.ItemBlockRotationPipe;
 import TJCore.common.recipes.*;
 import TJCore.common.recipes.polymers.TJPolymers;
 import gregtech.api.block.VariantItemBlock;
-import gregtech.loaders.recipe.chemistry.PolymerRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -20,7 +21,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 import java.util.function.Function;
 
 import static TJCore.common.blocks.TJMetaBlocks.*;
-import static gregtech.common.blocks.MetaBlocks.BOILER_CASING;
 
 @Mod.EventBusSubscriber(modid = TJValues.MODID)
 public class CommonProxy {
@@ -29,9 +29,13 @@ public class CommonProxy {
         TJOreDictionaryLoader.init();
     }
 
+
+
     @SubscribeEvent
     public static void RegisterBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
+        registry.register(AXLE_PIPE);
+
         registry.register(DRACONIC_CASING);
         registry.register(TURBINE_BLADES);
         registry.register(BLOCK_BEARING);
@@ -40,6 +44,9 @@ public class CommonProxy {
     @SubscribeEvent
     public static void RegisterItemBlocks(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
+
+        registry.register(createItemBlock(AXLE_PIPE, ItemBlockRotationPipe::new));
+
         registry.register(createItemBlock(TURBINE_BLADES, VariantItemBlock::new));
         registry.register(createItemBlock(BLOCK_BEARING, VariantItemBlock::new));
         registry.register(createItemBlock(DRACONIC_CASING, VariantItemBlock::new));

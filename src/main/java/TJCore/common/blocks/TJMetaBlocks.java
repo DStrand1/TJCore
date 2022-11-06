@@ -1,5 +1,6 @@
 package TJCore.common.blocks;
 
+import TJCore.api.rotationnet.BlockRotationPipe;
 import gregtech.common.blocks.BlockBoilerCasing;
 import TJCore.common.blocks.BlockTurbineBlades;
 import TJCore.common.blocks.BlockBearing;
@@ -18,8 +19,12 @@ public class TJMetaBlocks {
     public static DraconicCasings DRACONIC_CASING;
     public static BlockBearing BLOCK_BEARING;
     public static BlockTurbineBlades TURBINE_BLADES;
+
+    public static BlockRotationPipe AXLE_PIPE;
     
     public static void init() {
+        AXLE_PIPE = new BlockRotationPipe();
+
         DRACONIC_CASING = new DraconicCasings();
         DRACONIC_CASING.setRegistryName("draconic_casing");
         TURBINE_BLADES = new BlockTurbineBlades();

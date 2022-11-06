@@ -1,8 +1,10 @@
 package TJCore.client;
 
+import TJCore.api.rotationnet.RotationPipeRenderer;
 import TJCore.common.CommonProxy;
 import TJCore.common.TJTextures;
 import TJCore.common.blocks.TJMetaBlocks;
+import net.minecraft.util.Rotation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -13,6 +15,9 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit() {
         super.preInit();
+
+        RotationPipeRenderer.INSTANCE.preInit();
+
         TJTextures.preInit();
     }
     @SubscribeEvent

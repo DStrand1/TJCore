@@ -6,6 +6,8 @@ import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import gregtech.client.renderer.texture.cube.SimpleCubeRenderer;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 import static gregtech.client.renderer.texture.Textures.*;
+
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -17,6 +19,8 @@ public class TJTextures {
     
     // Casings
     public static SimpleOverlayRenderer DRACONIC_CASING;
+
+    public static TextureAtlasSprite RotationPipe;
     
     public static void preInit() {
         Brick = new SimpleCubeRenderer("minecraft:blocks/brick");
@@ -25,5 +29,7 @@ public class TJTextures {
         
         // Casings
         DRACONIC_CASING = new SimpleOverlayRenderer("casings/draconic_casing/draconic_casing_normal");
+
+
     }
 }

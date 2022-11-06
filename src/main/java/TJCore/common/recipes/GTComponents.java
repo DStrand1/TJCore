@@ -2,10 +2,7 @@ package TJCore.common.recipes;
 
 import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.recipes.GTRecipeHandler;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.RecipeBuilder;
-import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.*;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.Elements;
 import gregtech.api.unification.OreDictUnifier;
@@ -422,6 +419,7 @@ public class GTComponents {
         Material[] superCons = new Material[]{ManganesePhosphide, MagnesiumDiboride, MercuryBariumCalciumCuprate, UraniumTriplatinum, SamariumIronArsenicOxide};
         Material[] emitterRod = new Material[]{Brass, Electrum, Chrome, Platinum, Iridium};
         ItemStack[] emitterGem = new ItemStack[]{OreDictUnifier.get(gem, Quartzite), OreDictUnifier.get(gemFlawless, Emerald), OreDictUnifier.get(gem, EnderEye), QUANTUM_EYE.getStackForm(), QUANTUM_STAR.getStackForm()};
+
 
 
         ///*
