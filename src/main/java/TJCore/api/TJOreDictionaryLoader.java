@@ -9,6 +9,7 @@ import gregtech.api.items.materialitem.MetaPrefixItem;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.material.info.MaterialFlag;
+import gregtech.api.unification.material.info.MaterialIconType;
 import gregtech.api.unification.material.properties.FluidProperty;
 import gregtech.api.unification.material.properties.IngotProperty;
 import gregtech.api.unification.material.properties.PropertyKey;
@@ -26,6 +27,8 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.Flags.ENABLE_UNIFICATION;
 
 public class TJOreDictionaryLoader {
+
+    public static final OrePrefix pipeNormalRotation = new OrePrefix("normalRotationPipe", GTValues.M, null, MaterialIconType.pipeTiny, ENABLE_UNIFICATION, null);
 
     public static final OrePrefix nanoWire = new OrePrefix("nanowire", (long)GTValues.M / 144, null, TJMaterialIconTypes.nanoWireIcon, ENABLE_UNIFICATION, null);
     public static final OrePrefix nanoFoil = new OrePrefix("nanofoil", (long)GTValues.M / 144, null, TJMaterialIconTypes.nanoFoilIcon, ENABLE_UNIFICATION, null);

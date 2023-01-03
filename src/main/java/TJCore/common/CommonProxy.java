@@ -2,11 +2,15 @@ package TJCore.common;
 
 import TJCore.TJValues;
 import TJCore.api.TJOreDictionaryLoader;
+import TJCore.api.material.materials.properties.TJPropertyKey;
 import TJCore.api.rotationnet.BlockRotationPipe;
 import TJCore.api.rotationnet.ItemBlockRotationPipe;
+import TJCore.common.blocks.TJMetaBlocks;
 import TJCore.common.recipes.*;
 import TJCore.common.recipes.polymers.TJPolymers;
+import gregtech.api.GregTechAPI;
 import gregtech.api.block.VariantItemBlock;
+import gregtech.api.unification.material.Material;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -27,6 +31,7 @@ public class CommonProxy {
 
     public void preInit() {
         TJOreDictionaryLoader.init();
+        TJMetaBlocks.registerTileEntity();
     }
 
 
@@ -34,18 +39,29 @@ public class CommonProxy {
     @SubscribeEvent
     public static void RegisterBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
-        registry.register(AXLE_PIPE);
+
+        for(Material material : GregTechAPI.MATERIAL_REGISTRY) {
+            if(material.hasProperty(TJPropertyKey.ROTATION_PIPE)) {
+                if(!AXLE_PIPES.getItemPipeType(AXLE_PIPES.getItem(material)).getOrePrefix().isIgnored(material)) {
+                    AXLE_PIPES.addPipeMaterial(material, material.getProperty(TJPropertyKey.ROTATION_PIPE));
+                }
+            }
+        }
+
+        registry.register(AXLE_PIPES);
 
         registry.register(DRACONIC_CASING);
         registry.register(TURBINE_BLADES);
         registry.register(BLOCK_BEARING);
+
+
     }
     
     @SubscribeEvent
     public static void RegisterItemBlocks(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
 
-        registry.register(createItemBlock(AXLE_PIPE, ItemBlockRotationPipe::new));
+        registry.register(createItemBlock(AXLE_PIPES, ItemBlockRotationPipe::new));
 
         registry.register(createItemBlock(TURBINE_BLADES, VariantItemBlock::new));
         registry.register(createItemBlock(BLOCK_BEARING, VariantItemBlock::new));
@@ -74,6 +90,8 @@ public class CommonProxy {
         MultiblockHatches.registerIOHatches();
         Ores.RegisterOres();
         MaterialRecipes.register();
+
+        TJMetaBlocks.registerOreDict();
 
     }
 }

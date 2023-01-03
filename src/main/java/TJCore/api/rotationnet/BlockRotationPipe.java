@@ -1,38 +1,85 @@
 package TJCore.api.rotationnet;
 
+import TJCore.api.material.materials.properties.RotationPipeProperties;
+import TJCore.api.rotationnet.net.WorldRotationPipeNet;
+import TJCore.api.rotationnet.tile.TileEntityRotationPipe;
+import TJCore.api.rotationnet.tile.TileEntityRotationPipeTickable;
 import gregtech.api.GregTechAPI;
-import gregtech.api.block.BuiltInRenderBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
+import gregtech.api.pipenet.block.material.BlockMaterialPipe;
+import gregtech.api.pipenet.tile.IPipeTile;
+import gregtech.api.pipenet.tile.TileEntityPipeBase;
+import gregtech.api.unification.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
+import com.google.common.base.Preconditions;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
-public class BlockRotationPipe extends BuiltInRenderBlock {
+public class BlockRotationPipe extends BlockMaterialPipe<RotationPipeType, RotationPipeProperties, WorldRotationPipeNet> {
+
+    private final SortedMap<Material, RotationPipeProperties> enabledMaterials = new TreeMap<>();
 
 
 
 
-    public BlockRotationPipe() {
-        super(Material.IRON);
-        setRegistryName("axle_pipe");
-        setCreativeTab(GregTechAPI.TAB_GREGTECH);
-        setSoundType(SoundType.METAL);
-        setHardness(1.5f);
-        setResistance(3.0f);
-        setLightOpacity(0);
-        disableStats();
-
+    public BlockRotationPipe(RotationPipeType rotationPipeType) {
+        super(rotationPipeType);
         setHarvestLevel("wrench", 1);
     }
+
+    public void addPipeMaterial(Material material, RotationPipeProperties properties) {
+        Preconditions.checkNotNull(material, "material");
+        Preconditions.checkNotNull(properties, "material %s itemPipeProperties was null", material);
+        Preconditions.checkArgument(GregTechAPI.MATERIAL_REGISTRY.getNameForObject(material) != null, "material %s is not registered", material);
+        this.enabledMaterials.put(material, properties);
+    }
+
+    public Collection<Material> getEnabledMaterials() { return Collections.unmodifiableSet(enabledMaterials.keySet()); }
+
+    @Override
+    public Class<RotationPipeType> getPipeTypeClass() {
+        return RotationPipeType.class;
+    }
+
+    @Override
+    public WorldRotationPipeNet getWorldPipeNet(World world) {
+        return WorldRotationPipeNet.getWorldPipeNet(world);
+    }
+
+    @Override
+    protected RotationPipeProperties createProperties(RotationPipeType rotationPipeType, Material material) {
+        return rotationPipeType.modifyProperties(enabledMaterials.getOrDefault(material, getFallbackType()));
+    }
+
+    @Override
+    protected RotationPipeProperties getFallbackType() {
+        return enabledMaterials.values().iterator().next();
+    }
+
+    @Override
+    public void getSubBlocks(@NotNull CreativeTabs creativeTabs, @NotNull NonNullList<ItemStack> items) {
+        for(Material mat : enabledMaterials.keySet())
+            items.add(getItem(mat));
+    }
+
 
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
@@ -40,8 +87,35 @@ public class BlockRotationPipe extends BuiltInRenderBlock {
     }
 
     @Override
-    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+    public boolean canPipesConnect(IPipeTile<RotationPipeType, RotationPipeProperties> selfTile, EnumFacing enumFacing, IPipeTile<RotationPipeType, RotationPipeProperties> otherTile) {
+        boolean canConnect = selfTile instanceof TileEntityRotationPipe && otherTile instanceof TileEntityRotationPipe;
 
+        return canConnect;
+    }
+
+    @Override
+    public boolean canPipeConnectToBlock(IPipeTile<RotationPipeType, RotationPipeProperties> iPipeTile, EnumFacing enumFacing, TileEntity tile) {
+        return tile != null;
+    }
+
+    @Override
+    public boolean isHoldingPipe(EntityPlayer player) {
+        if(player == null)
+            return false;
+
+        ItemStack stack = player.getHeldItemMainhand();
+        return stack != ItemStack.EMPTY && stack.getItem() instanceof ItemBlockRotationPipe;
+    }
+
+    @Override
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+        // loomle
+    }
+
+    @Override
+    public TileEntityPipeBase<RotationPipeType, RotationPipeProperties> createNewTileEntity(boolean ticking) {
+        return new TileEntityRotationPipe();
+        //return new TileEntityRotationPipe();
     }
 
     @Override
@@ -52,7 +126,8 @@ public class BlockRotationPipe extends BuiltInRenderBlock {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     protected Pair<TextureAtlasSprite, Integer> getParticleTexture(World world, BlockPos blockPos) {
-        return RotationPipeRenderer.INSTANCE.getParticleTexture((TileEntityRotationPipe)world.getTileEntity(blockPos));
+        return RotationPipeRenderer.INSTANCE.getParticleTexture((IPipeTile<?, ?>) world.getTileEntity(blockPos));
     }
 }

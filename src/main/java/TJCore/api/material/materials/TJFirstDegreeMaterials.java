@@ -4,6 +4,8 @@ import static TJCore.api.TJOreDictionaryLoader.GENERATE_NANOFOIL;
 import static TJCore.api.TJOreDictionaryLoader.GENERATE_NANOWIRE;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 
+import TJCore.api.material.materials.properties.RotationPipeProperties;
+import TJCore.api.material.materials.properties.TJPropertyKey;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.unification.material.properties.*;
@@ -844,6 +846,9 @@ public class TJFirstDegreeMaterials {
         HDCS_3.setProperty(PropertyKey.FLUID_PIPE, HDCS3PipeProps);
         // becuase of techs foolishness and thinking graphenes are a foile
         Graphene.addFlags(GENERATE_FOIL);
+
+        Steel.setProperty(TJPropertyKey.ROTATION_PIPE, new RotationPipeProperties(100.0f));
+
     }
 
 }

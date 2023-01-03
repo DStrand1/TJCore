@@ -39,6 +39,7 @@ public class TJMetaTileEntities {
     public static ExposureChamber EXPOSURE_CHAMBER;
     public static MetaTileEntityModularSteamTurbine MODULAR_TURBINE;
     public static PrimitiveTreeFarmer PRIMITIVE_TREE_FARMER;
+    public static LargeAlloySmelter LARGE_ALLOY_SMELTER;
 
     public static Loom LOOM;
 
@@ -57,6 +58,7 @@ public class TJMetaTileEntities {
         STEAM_DRYER_STEEL = registerMetaTileEntity(12042, new SteamDryer(tjcoreID("steam_dryer_steel"), true));
         MODULAR_TURBINE = registerMetaTileEntity(12043, new MetaTileEntityModularSteamTurbine(tjcoreID("modular_steam_turbine")));
         PRIMITIVE_TREE_FARMER = registerMetaTileEntity(12044, new PrimitiveTreeFarmer(tjcoreID("primitive_tree_farmer")));
+        LARGE_ALLOY_SMELTER = registerMetaTileEntity(12050, new LargeAlloySmelter(tjcoreID("large_alloy_smelter")));
         registerSimpleMetaTileEntity(LAMINATOR, 12070, "laminator", TJRecipeMaps.LAMINATOR_RECIPES, Textures.BENDER_OVERLAY, true);
         registerSimpleMetaTileEntity(PRINTER, 12090, "printer", TJRecipeMaps.PRINTER_RECIPES, Textures.LASER_ENGRAVER_OVERLAY, true);
     }
