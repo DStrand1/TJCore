@@ -9,6 +9,7 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
+import gregtech.api.unification.material.info.MaterialIconType;
 import gregtech.api.unification.material.properties.DustProperty;
 import gregtech.api.unification.material.properties.IngotProperty;
 import gregtech.api.unification.material.properties.PropertyKey;
@@ -29,6 +30,8 @@ import static gregtech.api.unification.ore.OrePrefix.Flags.ENABLE_UNIFICATION;
 import static gregtech.api.unification.ore.OrePrefix.*;
 
 public class TJOreDictionaryLoader {
+
+    public static final OrePrefix pipeNormalRotation = new OrePrefix("normalRotationPipe", GTValues.M, null, MaterialIconType.pipeTiny, ENABLE_UNIFICATION, null);
 
     public static final MaterialFlag GENERATE_NANOWIRE = new MaterialFlag.Builder("generate_nanowire")
             .requireProps(PropertyKey.FLUID)

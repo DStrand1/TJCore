@@ -21,7 +21,7 @@ public class TJTextures {
     public static SimpleOverlayRenderer DRACONIC_CASING;
 
 
-    public static TextureAtlasSprite RotationPipe;
+    //public static TextureAtlasSprite RotationPipe;
     
     public static void preInit() {
         Brick = new SimpleCubeRenderer("minecraft:blocks/brick");

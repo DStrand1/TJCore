@@ -8,7 +8,7 @@ import gregtech.api.unification.ore.OrePrefix;
 
 import static TJCore.common.metaitem.TJMetaItems.*;
 
-public class    TJMetaItem extends StandardMetaItem {
+public class TJMetaItem extends StandardMetaItem {
 
     public TJMetaItem() { super(); }
 
