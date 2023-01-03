@@ -35,6 +35,7 @@ import scala.Int;
 import java.util.Arrays;
 import java.util.List;
 
+import static TJCore.common.recipes.recipemaps.TJRecipeMaps.*;
 import static gregtech.api.GTValues.V;
 
 public class MetaTileEntityModularSteamTurbine extends FuelMultiblockController {
@@ -43,7 +44,7 @@ public class MetaTileEntityModularSteamTurbine extends FuelMultiblockController 
     private int bearingTier;
 
     public MetaTileEntityModularSteamTurbine(ResourceLocation metaTileEntityId) {
-        super(metaTileEntityId, RecipeMaps.STEAM_TURBINE_FUELS, 0);
+        super(metaTileEntityId, MODULAR_STEAM_TURBINE_RECIPES, 0);
         //this.recipeMapWorkable.setMaximumOverclockVoltage(V[turbineTier + 2]);
     }
 
@@ -79,24 +80,24 @@ public class MetaTileEntityModularSteamTurbine extends FuelMultiblockController 
         return FactoryBlockPattern.start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.DOWN)
                 .aisle(
                         "  EEE   ",
-                        " CCCCC  ",
-                        "  CCC   ")
+                        " EEEEE  ",
+                        "  EEE   ")
                 .aisle(
                         " EE EE  ",
-                        "OPBBBC  ",
-                        " CC CC  ")
+                        "OPBBBE  ",
+                        " EE EE  ")
                 .aisle(
                         " E   E S",
                         " CBRBC S",
-                        " C   C S")
+                        " E   E S")
                 .aisle(
                         " EE EE S",
                         " CBBBPPP",
-                        " CC CC T")
+                        " EE EE T")
                 .aisle(
                         "  EEE  S",
-                        " CCCCC P",
-                        "  CCC  S")
+                        " EEEEE P",
+                        "  EEE  S")
                 .where(' ', TraceabilityPredicate.ANY)
                 .where('~', TraceabilityPredicate.AIR)
                 .where('E', states(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getState(BlockLargeMultiblockCasing.CasingType.STEAM_CASING))

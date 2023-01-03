@@ -27,11 +27,12 @@ public class TJMetaTileEntities {
     public static SimpleMachineMetaTileEntity[] COMPONENT_ASSEMBLER = new SimpleMachineMetaTileEntity[GTValues.LuV];
     public static SimpleMachineMetaTileEntity[] PRINTER = new SimpleMachineMetaTileEntity[6];
     public static SimpleMachineMetaTileEntity[] LAMINATOR = new SimpleMachineMetaTileEntity[GTValues.MAX];
+    public static SimpleMachineMetaTileEntity[] SPINNING_MACHINE = new SimpleMachineMetaTileEntity[GTValues.LuV];
     public static SteamDryer STEAM_DRYER_BRONZE;
     public static SteamDryer STEAM_DRYER_STEEL;
     public static SteamMixer STEAM_MIXER_BRONZE;
     public static SteamMixer STEAM_MIXER_STEEL;
-    public static SteamAssembler STEAM_ASSEMBLER;
+    public static SteamAssembler STEAM_COMPONENT_ASSEMBLER;
     public static ArmorInfuser ARMOR_INFUSER;
     public static TreeFarmer TREE_FARMER;
     public static MegaFusion MEGA_FUSION;
@@ -44,8 +45,8 @@ public class TJMetaTileEntities {
     public static Loom LOOM;
 
     public static void init() {
-        registerSimpleMetaTileEntity(COMPONENT_ASSEMBLER, 12001, "component_assembler", TJRecipeMaps.COMPONENT_ASSEMBLER_RECIPES, Textures.ASSEMBLER_OVERLAY, true);
-        STEAM_ASSEMBLER = registerMetaTileEntity(12030, new SteamAssembler(tjcoreID("steam_assembler")));
+        registerSimpleMetaTileEntity(COMPONENT_ASSEMBLER, 12001, "component_assembler", TJRecipeMaps.COMPONENT_ASSEMBLER_RECIPES, Textures.ASSEMBLER_OVERLAY, true, GTUtility.hvCappedTankSizeFunction);
+        STEAM_COMPONENT_ASSEMBLER = registerMetaTileEntity(12030, new SteamAssembler(tjcoreID("steam_assembler")));
         ARMOR_INFUSER = registerMetaTileEntity(12033, new ArmorInfuser(tjcoreID("armor_infuser")));
         TREE_FARMER = registerMetaTileEntity(12034, new TreeFarmer(tjcoreID("tree_farmer")));
         MEGA_FUSION = registerMetaTileEntity(12035, new MegaFusion(tjcoreID("mega_fusion")));
@@ -61,6 +62,7 @@ public class TJMetaTileEntities {
         LARGE_ALLOY_SMELTER = registerMetaTileEntity(12050, new LargeAlloySmelter(tjcoreID("large_alloy_smelter")));
         registerSimpleMetaTileEntity(LAMINATOR, 12070, "laminator", TJRecipeMaps.LAMINATOR_RECIPES, Textures.BENDER_OVERLAY, true);
         registerSimpleMetaTileEntity(PRINTER, 12090, "printer", TJRecipeMaps.PRINTER_RECIPES, Textures.LASER_ENGRAVER_OVERLAY, true);
+        registerSimpleMetaTileEntity(SPINNING_MACHINE, 12100, "spinning_machine", TJRecipeMaps.SPINNING_RECIPES, Textures.CENTRIFUGE_OVERLAY, true, GTUtility.hvCappedTankSizeFunction);
     }
 
     private static void registerSimpleMetaTileEntity(SimpleMachineMetaTileEntity[] machines, int startID, String name, RecipeMap<?> map, ICubeRenderer texture, boolean frontfacing, Function<Integer, Integer> tankScalingFunction) {
@@ -70,7 +72,6 @@ public class TJMetaTileEntities {
     private static void registerSimpleMetaTileEntity(SimpleMachineMetaTileEntity[] machines, int startID, String name, RecipeMap<?> map, ICubeRenderer texture, boolean frontfacing) {
         registerSimpleMetaTileEntity(machines, startID, name, map, texture, frontfacing, GTUtility.defaultTankSizeFunction);
     }
-
     private static ResourceLocation tjcoreID(String name) {
         return new ResourceLocation(TJValues.MODID, name);
     }

@@ -4,12 +4,15 @@ import gregtech.api.unification.Elements;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
 
+import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 
 import java.util.*;
 
 
 public class TJMaterials {
+    public static Material[] doNotGenerate = new Material[]{Carbon};
+    public static Material[] longDistanceWireMaterials = new Material[]{Manganese, Bismuth, Antimony, Gallium, Vanadium};
 
     public static List<MaterialFlag> STANDARDPLATE = new ArrayList<MaterialFlag>(Arrays.asList(GENERATE_PLATE, GENERATE_DENSE, EXCLUDE_BLOCK_CRAFTING_BY_HAND_RECIPES));
     public static List<MaterialFlag> STANDARDWIREFINE = new ArrayList<MaterialFlag>(Arrays.asList(GENERATE_FINE_WIRE));
@@ -36,6 +39,7 @@ public class TJMaterials {
     //Isotopes
     public static final Element Co60 = Elements.add(27L, 33L, -1L, (String)null, "Cobalt-60", "Co-60", true);
     public static Material Cobalt60;
+    public static Material SuperfluidHelium3;
 
     //Alloys
     public static Material BT6;
@@ -85,6 +89,9 @@ public class TJMaterials {
 
 
     //Chemicals
+    public static Material Methyltrichlorosilane;
+    public static Material Methyltrimethoxysilane;
+    public static Material Polymethylsilesquioxane;
     public static Material Silane;
     public static Material TriphenylPhosphine;
     public static Material PhenylmagnesiumBromide;
@@ -113,6 +120,15 @@ public class TJMaterials {
     public static Material ExcitedNeonFluoride;
     public static Material ArgonFluorine;
     public static Material SilverGalliumSelenide;
+    public static Material IridiumOnCubicZirconia;
+    public static Material OnePropanol;
+    public static Material ZSM_5_ZEOLITE;
+    public static Material SodiumHydroxideSilica;
+    public static Material SodiumAluminate;
+    public static Material SodiumAluminumSilicaSolution;
+    public static Material AluminoSilicateGlass;
+    public static Material DimethylCarbonate;
+    public static Material TetramethylammoniumBromide;
 
     // Cermaics + Glass
     public static Material SodiumPotassiumNiobate;
@@ -125,6 +141,7 @@ public class TJMaterials {
     public static Material Acrylonitrile;
     public static Material SodiumThiocyanate;
     public static Material SodiumThiocyanatePolymerizationSolution;
+    public static Material Cellulose;
 
     // Metals
 
@@ -139,13 +156,11 @@ public class TJMaterials {
     // Mixtures
     public static Material SuspendedPGQD;
     public static Material ArgonSilane;
-    public static Material DiamondCVDSolution;
+    public static Material DiamondSonicationSolution;
     public static Material XenonFluorideSupercondiveMix;
     public static Material P1Solution;
     public static Material TetrakisPDCatalyst;
     public static Material CFCoatingSolution;
-
-
 
     // Magic materials, unknown composition
     public static Material Draconium;

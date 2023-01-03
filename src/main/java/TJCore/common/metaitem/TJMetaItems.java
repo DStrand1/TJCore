@@ -1,9 +1,7 @@
 package TJCore.common.metaitem;
 
 
-import TJCore.common.tools.TJToolMetaItem;
 import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.items.toolitem.ToolMetaItem;
 
 import java.util.*;
 
@@ -14,9 +12,6 @@ public class TJMetaItems {
     public static void init() {
         TJMetaItem items = new TJMetaItem();
         items.setRegistryName("TJMetaItem");
-
-        TJToolMetaItem tools = new TJToolMetaItem();
-        tools.setRegistryName("TJMetaTool");
     }
 
     //public static MetaItem<?>.MetaValueItem RESISTOR;
@@ -30,8 +25,9 @@ public class TJMetaItems {
     public static MetaItem<?>.MetaValueItem STEAM_MOTOR;
     public static MetaItem<?>.MetaValueItem STEAM_PISTON;
     public static MetaItem<?>.MetaValueItem STEAM_PUMP;
-    //CIRCUITFRAMEWORK
+    public static MetaItem<?>.MetaValueItem CLEANROOM_FILTER;
 
+    //CIRCUITFRAMEWORK
     public static MetaItem<?>.MetaValueItem WETPHENOLICPULP;
     public static MetaItem<?>.MetaValueItem WETPRESSEDPHENOLICSUBSTRATE;
 
@@ -59,6 +55,7 @@ public class TJMetaItems {
     public static MetaItem<?>.MetaValueItem SMD_DIODE_2;
     public static MetaItem<?>.MetaValueItem SMD_DIODE_3;
     public static MetaItem<?>.MetaValueItem SMD_DIODE_4;
+    public static MetaItem<?>.MetaValueItem SMD_DIODE_5;
 
     public static MetaItem<?>.MetaValueItem SMD_CAPACITOR_1;
     public static MetaItem<?>.MetaValueItem SMD_CAPACITOR_2;
@@ -230,20 +227,20 @@ public class TJMetaItems {
     public static MetaItem<?>.MetaValueItem CRYSTAL_COMPUTER_UV;
     public static MetaItem<?>.MetaValueItem CRYSTAL_MAINFRAME_UHV;
 
-    public static MetaItem<?>.MetaValueItem WETWARE_PROCESSOR_ZPM;
-    public static MetaItem<?>.MetaValueItem WETWARE_ASSEMBLY_UV;
-    public static MetaItem<?>.MetaValueItem WETWARE_COMPUTER_UHV;
-    public static MetaItem<?>.MetaValueItem WETWARE_MAINFRAME_UEV;
+    public static MetaItem<?>.MetaValueItem QUANTUM_PROCESSOR_ZPM;
+    public static MetaItem<?>.MetaValueItem QUANTUM_ASSEMBLY_UV;
+    public static MetaItem<?>.MetaValueItem QUANTUM_COMPUTER_UHV;
+    public static MetaItem<?>.MetaValueItem QUANTUM_MAINFRAME_UEV;
 
-    public static MetaItem<?>.MetaValueItem BIOWARE_PROCESSOR_UV;
-    public static MetaItem<?>.MetaValueItem BIOWARE_ASSEMBLY_UHV;
-    public static MetaItem<?>.MetaValueItem BIOWARE_COMPUTER_UEV;
-    public static MetaItem<?>.MetaValueItem BIOWARE_MAINFRAME_UIV;
+    public static MetaItem<?>.MetaValueItem WETWARE_PROCESSOR_UV;
+    public static MetaItem<?>.MetaValueItem WETWARE_ASSEMBLY_UHV;
+    public static MetaItem<?>.MetaValueItem WETWARE_COMPUTER_UEV;
+    public static MetaItem<?>.MetaValueItem WETWARE_MAINFRAME_UIV;
 
-    public static MetaItem<?>.MetaValueItem QUANTUM_PROCESSOR_UHV;
-    public static MetaItem<?>.MetaValueItem QUANTUM_ASSEMBLY_UEV;
-    public static MetaItem<?>.MetaValueItem QUANTUM_COMPUTER_UIV;
-    public static MetaItem<?>.MetaValueItem QUANTUM_MAINFRAME_UXV;
+    public static MetaItem<?>.MetaValueItem BIOWARE_PROCESSOR_UHV;
+    public static MetaItem<?>.MetaValueItem BIOWARE_ASSEMBLY_UEV;
+    public static MetaItem<?>.MetaValueItem BIOWARE_COMPUTER_UIV;
+    public static MetaItem<?>.MetaValueItem BIOWARE_MAINFRAME_UXV;
 
     public static MetaItem<?>.MetaValueItem EXOTIC_PROCESSOR_UEV;
     public static MetaItem<?>.MetaValueItem EXOTIC_ASSEMBLY_UIV;
@@ -260,24 +257,14 @@ public class TJMetaItems {
     public static MetaItem<?>.MetaValueItem SUPRA_COMPUTER_MAX;
     public static MetaItem<?>.MetaValueItem SUPRA_MAINFRAME_ALL;
 
-
-    public static ToolMetaItem<?>.MetaToolValueItem LITHOGRAPHY_MASK;
-
     public static MetaItem<?>.MetaValueItem STENCILING_CUTHEAD;
-
-
-    //Micro-Nano PCB ITEMS
     public static MetaItem<?>.MetaValueItem COPPER_LAMINATED_EPOXID;
     public static MetaItem<?>.MetaValueItem ELECTRUM_LAMINATED_EPOXID;
     public static MetaItem<?>.MetaValueItem GERMANIUM_LAMINATED_EPOXID;
     public static MetaItem<?>.MetaValueItem FIBERGLASS_MESH;
-
-    //Optical PCB ITEMS
     public static MetaItem<?>.MetaValueItem ZBLANMATRIX;
     public static MetaItem<?>.MetaValueItem OPTICAL_BASE;
     public static MetaItem<?>.MetaValueItem LAMINATED_OPTICAL_BASE;
-
-    //Cystal Chip ITEMS
     public static MetaItem<?>.MetaValueItem SAPPHIRE_WAFER;
     public static MetaItem<?>.MetaValueItem COATED_SAPPHIRE_WAFER;
     public static MetaItem<?>.MetaValueItem DIRTY_COATED_SAPPHIRE_WAFER;
@@ -292,9 +279,6 @@ public class TJMetaItems {
     public static MetaItem<?>.MetaValueItem WIRED_SAPPHIRE_WAFER;
     public static MetaItem<?>.MetaValueItem RAW_SAPPHIRE_CHIP;
     public static MetaItem<?>.MetaValueItem SAPPHIRE_CHIP;
-
-    // Crystal PCB Items
-
     public static MetaItem<?>.MetaValueItem PROCESSED_CRYSTAL_WAFER;
     public static MetaItem<?>.MetaValueItem CRYSTAL_SFET_BUNDLE;
     public static MetaItem<?>.MetaValueItem CRYSTAL_SFET_WAFER;
@@ -302,16 +286,9 @@ public class TJMetaItems {
     public static MetaItem<?>.MetaValueItem REFLECTING_SHEET;
     public static MetaItem<?>.MetaValueItem LAMINATED_CRYSTAL_PCB_SHEET;
     public static MetaItem<?>.MetaValueItem GAMMA_EMITTING_DIODE;
-
-    // Electronic Chip Items
-
     public static MetaItem<?>.MetaValueItem SIMPLE_SILICON_WAFER;
     public static MetaItem<?>.MetaValueItem SIMPLE_CPU_WAFER;
     public static MetaItem<?>.MetaValueItem SIMPLE_CPU;
-
-    // Wetware PCB Items
-
-    // Misc. SMD ITEMS
     public static MetaItem<?>.MetaValueItem FERROUS_INDUCTOR_CORE;
     public static MetaItem<?>.MetaValueItem TUNGSTEN_INDUCTOR_CORE;
     public static MetaItem<?>.MetaValueItem LANGMUIR_HOUSING;
@@ -345,4 +322,39 @@ public class TJMetaItems {
     public static MetaItem<?>.MetaValueItem CARBON_FIBER_PLATE;
     public static MetaItem<?>.MetaValueItem CARBON_FIBER_FOIL;
 
+    public static MetaItem<?>.MetaValueItem EVACUATED_SYNTHETIC_DIAMOND;
+    public static MetaItem<?>.MetaValueItem ANNEALED_NVC_PREPARATION;
+    public static MetaItem<?>.MetaValueItem STRESSED_NVC_SHEET;
+    public static MetaItem<?>.MetaValueItem NVC_CHIP;
+    public static MetaItem<?>.MetaValueItem RABI_SENSOR;
+    public static MetaItem<?>.MetaValueItem NVC_SENSOR;
+    public static MetaItem<?>.MetaValueItem NVC_STORAGE_MODULE;
+    public static MetaItem<?>.MetaValueItem MICROTUBE_INVERSE_FORM;
+    public static MetaItem<?>.MetaValueItem COPPER_MICROTUBE_MATRIX;
+    public static MetaItem<?>.MetaValueItem SUPERCOOLING_RADIATOR;
+    public static MetaItem<?>.MetaValueItem SUPERCOOLING_ASSEMBLY;
+    public static MetaItem<?>.MetaValueItem SUPERCOOLING_PORT;
+    public static MetaItem<?>.MetaValueItem LAYERED_DATA_TRANSFER_PCB;
+    public static MetaItem<?>.MetaValueItem DATA_TRANSFER_MASK;
+    public static MetaItem<?>.MetaValueItem MASKED_DATA_TRANSFER_PCB;
+    public static MetaItem<?>.MetaValueItem ETCHED_MASKED_DATA_TRANSFER_PCB;
+    public static MetaItem<?>.MetaValueItem ETCHED_DATA_TRANSFER_PCB;
+    public static MetaItem<?>.MetaValueItem UNITARY_MAPPING_SHEET;
+    public static MetaItem<?>.MetaValueItem UNITARY_MEASUREMENT_MODULE;
+    public static MetaItem<?>.MetaValueItem ANYON_BIT_REGISTER;
+    public static MetaItem<?>.MetaValueItem WAVEFORM_LOGISTICS_BRIDGE;
+    public static MetaItem<?>.MetaValueItem SMALL_GAAS_WAFER;
+    public static MetaItem<?>.MetaValueItem FRACTIONAL_HALL_WAFER;
+    public static MetaItem<?>.MetaValueItem FRACTIONAL_HALL_CHIP;
+    public static MetaItem<?>.MetaValueItem FRACTIONAL_HALL_COMPLEX;
+    public static MetaItem<?>.MetaValueItem NON_ABELIAN_ANYON_STRANDPLATE;
+    public static MetaItem<?>.MetaValueItem MAGNETIC_STRANDPLATE_FORM;
+    public static MetaItem<?>.MetaValueItem PRECISION_MAG_STIMULATION_SHEET;
+    public static MetaItem<?>.MetaValueItem ANYON_BRAIDING_STRUCTURE;
+
+    // Material Items
+
+    public static MetaItem<?>.MetaValueItem ALUMINA_MOLD;
+    public static MetaItem<?>.MetaValueItem FULL_ALUMINA_MOLD;
+    public static MetaItem<?>.MetaValueItem HOT_ALUMINA_MOLD;
 }

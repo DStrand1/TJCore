@@ -1,13 +1,9 @@
 package TJCore.common.metaitem;
 
-import TJCore.common.tools.ToolLithographyMask;
 import gregtech.api.items.metaitem.*;
 import static gregtech.api.unification.material.MarkerMaterials.*;
 
 
-import gregtech.api.items.toolitem.ToolMetaItem;
-import gregtech.api.unification.material.Material;
-import static gregtech.api.unification.material.Materials.*;
 import gregtech.api.unification.ore.OrePrefix;
 
 import static TJCore.common.metaitem.TJMetaItems.*;
@@ -47,18 +43,18 @@ public class    TJMetaItem extends StandardMetaItem {
         SMD_TRANSISTOR_5 = addItem(22, "component.smd_transistor_5").setUnificationData(OrePrefix.component, Component.Transistor);
         SMD_CAPACITOR_5 = addItem(24, "component.smd_capacitor_5").setUnificationData(OrePrefix.component, Component.Capacitor);
         SMD_INDUCTOR_5 = addItem(25, "component.smd_inductor_5").setUnificationData(OrePrefix.component, Component.Inductor);
+        SMD_DIODE_5 = addItem(26, "component.smd_diode_5").setUnificationData(OrePrefix.component, Component.Diode);
+        // Misc. SMD ITEMS (27-49)
 
-        // Misc. SMD ITEMS (26-49)
-
-        FERROUS_INDUCTOR_CORE = addItem(26, "ferrous_inductor_core");
-        TUNGSTEN_INDUCTOR_CORE = addItem(27,"tungsten_inductor_core");
-        LANGMUIR_OSCILATOR = addItem(28, "langmuir_wave_oscilator");
-        LANGMUIR_HOUSING = addItem(29, "langmuir_qbit_housing");
-        SQUID_BASE = addItem(30, "squid_base");
-        TRANSMON_SUPPORT = addItem(31, "transmon_support_system");
-        GRAPHENE_ALUMINOSILICATE_AEROGEL = addItem(32, "graphene_aluminosilicate_aerogel");
-        LAYERED_POLYMER_FOIL = addItem(33, "layered_polyer_foil");
-        STERILE_POLYMER_FOIL = addItem(34, "sterile_polymer_foil");
+        FERROUS_INDUCTOR_CORE = addItem(27, "ferrous_inductor_core");
+        TUNGSTEN_INDUCTOR_CORE = addItem(28,"tungsten_inductor_core");
+        LANGMUIR_OSCILATOR = addItem(29, "langmuir_wave_oscilator");
+        LANGMUIR_HOUSING = addItem(30, "langmuir_qbit_housing");
+        SQUID_BASE = addItem(31, "squid_base");
+        TRANSMON_SUPPORT = addItem(32, "transmon_support_system");
+        GRAPHENE_ALUMINOSILICATE_AEROGEL = addItem(33, "graphene_aluminosilicate_aerogel");
+        LAYERED_POLYMER_FOIL = addItem(34, "layered_polyer_foil");
+        STERILE_POLYMER_FOIL = addItem(35, "sterile_polymer_foil");
 
         //Boards & Preboards (50-99)
         PRIMITIVE_PREBOARD = addItem(50, "primitive_preboard");
@@ -131,20 +127,20 @@ public class    TJMetaItem extends StandardMetaItem {
         CRYSTAL_COMPUTER_UV = addItem(129, "circuit.crystal_uv").setUnificationData(OrePrefix.circuit, Tier.UV);
         CRYSTAL_MAINFRAME_UHV = addItem(130, "circuit.crystal_uhv").setUnificationData(OrePrefix.circuit, Tier.UHV);
 
-        WETWARE_PROCESSOR_ZPM = addItem(131, "circuit.wetware_zpm").setUnificationData(OrePrefix.circuit, Tier.UV);
-        WETWARE_ASSEMBLY_UV = addItem(132, "circuit.wetware_uv").setUnificationData(OrePrefix.circuit, Tier.UHV);
-        WETWARE_COMPUTER_UHV = addItem(133, "circuit.wetware_uhv").setUnificationData(OrePrefix.circuit, Tier.UEV);
-        WETWARE_MAINFRAME_UEV = addItem(134, "circuit.wetware_uev").setUnificationData(OrePrefix.circuit, Tier.UIV);
+        QUANTUM_PROCESSOR_ZPM = addItem(131,"circuit.quantum_zpm").setUnificationData(OrePrefix.circuit, Tier.ZPM);
+        QUANTUM_ASSEMBLY_UV = addItem(132,"circuit.quantum_uv").setUnificationData(OrePrefix.circuit, Tier.UV);
+        QUANTUM_COMPUTER_UHV = addItem(133,"circuit.quantum_uhv").setUnificationData(OrePrefix.circuit, Tier.UHV);
+        QUANTUM_MAINFRAME_UEV = addItem(134,"circuit.quantum_uev").setUnificationData(OrePrefix.circuit, Tier.UEV);
 
-        BIOWARE_PROCESSOR_UV = addItem(135, "circuit.bioware_uv").setUnificationData(OrePrefix.circuit, Tier.ZPM);
-        BIOWARE_ASSEMBLY_UHV = addItem(136, "circuit.bioware_uhv").setUnificationData(OrePrefix.circuit, Tier.UV);
-        BIOWARE_COMPUTER_UEV = addItem(137, "circuit.bioware_uev").setUnificationData(OrePrefix.circuit, Tier.UHV);
-        BIOWARE_MAINFRAME_UIV = addItem(138,"circuit.bioware_uiv");
+        WETWARE_PROCESSOR_UV = addItem(135, "circuit.wetware_uv").setUnificationData(OrePrefix.circuit, Tier.UV);
+        WETWARE_ASSEMBLY_UHV = addItem(136, "circuit.wetware_uhv").setUnificationData(OrePrefix.circuit, Tier.UHV);
+        WETWARE_COMPUTER_UEV = addItem(137, "circuit.wetware_uev").setUnificationData(OrePrefix.circuit, Tier.UEV);
+        WETWARE_MAINFRAME_UIV = addItem(138, "circuit.wetware_uiv").setUnificationData(OrePrefix.circuit, Tier.UIV);
 
-        QUANTUM_PROCESSOR_UHV = addItem(139,"circuit.quantum_uhv").setUnificationData(OrePrefix.circuit, Tier.UHV);
-        QUANTUM_ASSEMBLY_UEV = addItem(140,"circuit.quantum_uev").setUnificationData(OrePrefix.circuit, Tier.UEV);
-        QUANTUM_COMPUTER_UIV = addItem(141,"circuit.quantum_uiv").setUnificationData(OrePrefix.circuit, Tier.UIV);
-        QUANTUM_MAINFRAME_UXV = addItem(142,"circuit.quantum_uxv").setUnificationData(OrePrefix.circuit, Tier.UXV);
+        BIOWARE_PROCESSOR_UHV = addItem(139, "circuit.bioware_uhv").setUnificationData(OrePrefix.circuit, Tier.UHV);
+        BIOWARE_ASSEMBLY_UEV = addItem(140, "circuit.bioware_uev").setUnificationData(OrePrefix.circuit, Tier.UEV);
+        BIOWARE_COMPUTER_UIV = addItem(141, "circuit.bioware_uiv").setUnificationData(OrePrefix.circuit, Tier.UIV);
+        BIOWARE_MAINFRAME_UXV = addItem(142,"circuit.bioware_uxv").setUnificationData(OrePrefix.circuit, Tier.UXV);
 
         EXOTIC_PROCESSOR_UEV = addItem(143,"circuit.exotic_uev").setUnificationData(OrePrefix.circuit, Tier.UEV);
         EXOTIC_ASSEMBLY_UIV = addItem(144,"circuit.exotic_uiv").setUnificationData(OrePrefix.circuit, Tier.UIV);
@@ -195,7 +191,6 @@ public class    TJMetaItem extends StandardMetaItem {
         LAMINATED_CRYSTAL_PCB_SHEET = addItem(313,"laminated_crystal_pcb_sheet");
         GAMMA_EMITTING_DIODE = addItem(314,"gamma_emitting_diode");
         REFLECTING_SHEET = addItem(315, "reflecting_sheet");
-
 
         //Lithography Metaitems (500-599)
         SILICON_BOULE = addItem(500, "silicon_boule");
@@ -311,28 +306,53 @@ public class    TJMetaItem extends StandardMetaItem {
         RAW_SAPPHIRE_CHIP = addItem(615, "raw_crystal_chip");
         SAPPHIRE_CHIP = addItem(616,"sapphire_chip");
 
+        //Quantum CPU
+        EVACUATED_SYNTHETIC_DIAMOND = addItem(617, "evacuated_synthetic_diamond");
+        ANNEALED_NVC_PREPARATION = addItem(618, "annealed_nvc_prep");
+        STRESSED_NVC_SHEET = addItem(619, "stressed_nvc_sheet");
+        NVC_CHIP = addItem(620, "nvc_chip");
+        RABI_SENSOR = addItem(621,"rabi_sensor");
+        NVC_SENSOR = addItem(622, "nvc_sensor");
+        NVC_STORAGE_MODULE = addItem(623, "nvc_storage_module");
+        LAYERED_DATA_TRANSFER_PCB = addItem(624, "layered_data_pcb");
+        DATA_TRANSFER_MASK = addItem(625, "data_mask");
+        MASKED_DATA_TRANSFER_PCB = addItem(626, "masked_data_pcb");
+        ETCHED_MASKED_DATA_TRANSFER_PCB = addItem(627, "etched_masked_data_pcb");
+        ETCHED_DATA_TRANSFER_PCB = addItem(628, "etched_data_pcb");
+        UNITARY_MAPPING_SHEET = addItem(629, "unitary_mapping_sheet");
+        UNITARY_MEASUREMENT_MODULE = addItem(630, "unitary_measurement_module");
+        ANYON_BIT_REGISTER = addItem(631, "anyon_bit_register");
+        WAVEFORM_LOGISTICS_BRIDGE = addItem(632, "waveform_logistics_bridge");
+        SMALL_GAAS_WAFER = addItem(633, "small_gallium_arsenide_wafer");
+        FRACTIONAL_HALL_WAFER = addItem(634, "fractional_hall_wafer");
+        FRACTIONAL_HALL_CHIP = addItem(635, "fractional_hall_chip");
+        FRACTIONAL_HALL_COMPLEX = addItem(636, "fractional_hall_complex");
+        NON_ABELIAN_ANYON_STRANDPLATE = addItem(637, "anyon_strandplate");
+        MAGNETIC_STRANDPLATE_FORM = addItem(638, "magnetic_strandplate_form");
+        PRECISION_MAG_STIMULATION_SHEET = addItem(639, "magnetic_stimulation_sheet");
+        ANYON_BRAIDING_STRUCTURE = addItem(640, "anyon_braiding_structure");
+        QUANTUM_CPU = addItem(641, "quantum_cpu");
 
-        WETWARE_CPU = addItem(620, "wetware_cpu");
 
-        BIOWARE_CPU = addItem(621, "bioware_cpu");
+        WETWARE_CPU = addItem(995, "wetware_cpu");
 
-        QUANTUM_CPU = addItem(622, "quantum_cpu");
+        BIOWARE_CPU = addItem(996, "bioware_cpu");
 
-        EXOTIC_CPU = addItem(623, "exotic_cpu");
+        EXOTIC_CPU = addItem(997, "exotic_cpu");
 
-        COSMIC_CPU = addItem(624, "cosmic_cpu");
+        COSMIC_CPU = addItem(998, "cosmic_cpu");
 
-        SUPRA_CPU = addItem(625, "supra_cpu");
+        SUPRA_CPU = addItem(999, "supra_cpu");
 
-        // Chemistry Intermediates (1051-1250)
-        SPUN_POLYACRYLONITRILE = addItem(1051,"spun_polyacrylonitrile");
-        WASHED_POLYACRLONITRILE = addItem(1052,"washed_polyacrylonitrile");
-        BAKED_POLYACRLONITRILE = addItem(1053,"baked_polyacrylonitrile");
-        OXIDIZED_CARBON_THREAD = addItem(1054,"oxidized_carbon_thread");
-        ETCHED_CARBON_THREAD = addItem(1055,"etched_carbon_thread");
-        COATED_CARBON_THREAD = addItem(1056,"coated_carbon_thread");
-        WOVEN_CARBON_FIBER = addItem(1057,"woven_carbon_fiber");
-        THIN_WOVEN_CARBON_FIBER = addItem(1058,"thin_woven_carbon_fiber");
+        // Chemistry Intermediates (1000-1249)
+        SPUN_POLYACRYLONITRILE = addItem(1000,"spun_polyacrylonitrile");
+        WASHED_POLYACRLONITRILE = addItem(1001,"washed_polyacrylonitrile");
+        BAKED_POLYACRLONITRILE = addItem(1002,"baked_polyacrylonitrile");
+        OXIDIZED_CARBON_THREAD = addItem(1003,"oxidized_carbon_thread");
+        ETCHED_CARBON_THREAD = addItem(1004,"etched_carbon_thread");
+        COATED_CARBON_THREAD = addItem(1005,"coated_carbon_thread");
+        WOVEN_CARBON_FIBER = addItem(1006,"woven_carbon_fiber");
+        THIN_WOVEN_CARBON_FIBER = addItem(1007,"thin_woven_carbon_fiber");
 
         // Chemistry End Products (1250-1299)
         CNT_SHORT = addItem(1250, "short_carbon_nanotube_strand");
@@ -341,8 +361,19 @@ public class    TJMetaItem extends StandardMetaItem {
         CARBON_FIBER_FOIL = addItem(1253,"carbon_fiber_foil");
 
         // Microcrafting + Components (1300-1499)
-        STEAM_MOTOR = addItem(1254, "steam_motor");
-        STEAM_PISTON = addItem(1255, "steam_piston");
-        STEAM_PUMP = addItem(1256, "steam_pump");
+        STEAM_MOTOR = addItem(1300, "steam_motor");
+        STEAM_PISTON = addItem(1301, "steam_piston");
+        STEAM_PUMP = addItem(1302, "steam_pump");
+        CLEANROOM_FILTER = addItem(1303, "cleanroom_filter");
+        MICROTUBE_INVERSE_FORM = addItem(1304, "microtube_inverse_form");
+        COPPER_MICROTUBE_MATRIX = addItem(1305, "copper_microtube_matrix");
+        SUPERCOOLING_RADIATOR = addItem(1305, "supercooling_radiator");
+        SUPERCOOLING_ASSEMBLY = addItem(1307, "supercooling_assembly");
+        SUPERCOOLING_PORT = addItem(1308, "supercooling_port");
+
+        // Material Processing Intermediates (1500-)
+        ALUMINA_MOLD = addItem(1500, "alumina_mold");
+        FULL_ALUMINA_MOLD = addItem(1501, "full_alumina_mold");
+        HOT_ALUMINA_MOLD = addItem(1502, "hot_alumina_mold");
     }
 }

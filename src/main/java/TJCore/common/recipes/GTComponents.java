@@ -1,41 +1,28 @@
 package TJCore.common.recipes;
 
-import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.recipes.*;
+import gregtech.api.recipes.GTRecipeHandler;
+import gregtech.api.recipes.ModHandler;
+import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-import gregtech.api.unification.Elements;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.common.metatileentities.MetaTileEntities;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
+import gregtech.api.unification.stack.ItemMaterialInfo;
+import gregtech.api.unification.stack.MaterialStack;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-import org.omg.CORBA.PUBLIC_MEMBER;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static TJCore.api.TJOreDictionaryLoader.*;
 import static TJCore.api.material.TJMaterials.*;
 import static TJCore.common.metaitem.TJMetaItems.*;
-import static TJCore.common.metatileentities.TJMetaTileEntities.MODULAR_TURBINE;
-import static TJCore.common.metatileentities.TJMetaTileEntities.PRIMITIVE_TREE_FARMER;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static TJCore.common.recipes.recipemaps.TJRecipeMaps.*;
-import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.ModHandler.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
-import static gregtech.common.metatileentities.MetaTileEntities.WOODEN_CRATE;
 
 //import static gregtech.loaders.recipe.CraftingComponent.*;
 
@@ -61,8 +48,8 @@ public class GTComponents {
     private static final Material[] lube = new Material[]{Lubricant, Lubricant, Lubricant, Lubricant, Lubricant, TriphenylPhosphine, TriphenylPhosphine, TriphenylPhosphine, TriphenylPhosphine, SuspendedPGQD, SuspendedPGQD, SuspendedPGQD, SuspendedPGQD, Leptons};
     private static final Material[] rubbers = new Material[]{Rubber, SiliconeRubber, StyreneButadieneRubber};
     public static final Material[] fluidPipes = new Material[]{SilicaCeramic, Potin, Polyethylene, Chrome, Polytetrafluoroethylene, Iridium, Polybenzimidazole, NiobiumTitanium, Duranium, HDCS_1, HDCS_2, HDCS_3, TantalumHafniumSeaborgiumCarboNitride};
-    public static final ItemStack[] emitterGem = new ItemStack[]{OreDictUnifier.get(gem, Quartzite),OreDictUnifier.get(gem, NetherQuartz),OreDictUnifier.get(gemFlawless, CertusQuartz),OreDictUnifier.get(gemFlawless, Diamond),OreDictUnifier.get(gemExquisite, Diamond),OreDictUnifier.get(foil, Platinum,64),OreDictUnifier.get(foil, Osmiridium, 64),OreDictUnifier.get(foil, Phosphorene, 64),OreDictUnifier.get(foil, Graphene, 64),OreDictUnifier.get(nanoFoil, Chrome, 64),OreDictUnifier.get(nanoFoil, Palladium, 64),OreDictUnifier.get(nanoFoil, NaquadahEnriched, 64),OreDictUnifier.get(nanoFoil, Trinium, 64)};
-    public static final ItemStack[] sensorGem = new ItemStack[]{OreDictUnifier.get(gem, Olivine),OreDictUnifier.get(gem, Emerald),OreDictUnifier.get(gem, Ruby),OreDictUnifier.get(gem, Sapphire),OreDictUnifier.get(gem, Opal),OreDictUnifier.get(foil, Electrum, 64),OreDictUnifier.get(foil, Ruthenium, 64),OreDictUnifier.get(foil, Naquadah, 64),OreDictUnifier.get(foil, Rutherfordium, 64),OreDictUnifier.get(nanoFoil, Germanium, 64),OreDictUnifier.get(nanoFoil, Americium, 64),OreDictUnifier.get(nanoFoil, Seaborgium, 64),OreDictUnifier.get(nanoFoil, Vibranium, 64)};
+    public static final ItemStack[] emitterGem = new ItemStack[]{OreDictUnifier.get(gem, Quartzite),OreDictUnifier.get(gem, NetherQuartz),OreDictUnifier.get(gemFlawless, CertusQuartz),OreDictUnifier.get(gemFlawless, Diamond),OreDictUnifier.get(gemExquisite, Diamond),OreDictUnifier.get(foil, Platinum,64),OreDictUnifier.get(foil, Osmiridium, 64),OreDictUnifier.get(foil, Phosphorene, 64),OreDictUnifier.get(foil, Graphene, 64),OreDictUnifier.get(nanofoil, Chrome, 64),OreDictUnifier.get(nanofoil, Palladium, 64),OreDictUnifier.get(nanofoil, NaquadahEnriched, 64),OreDictUnifier.get(nanofoil, Trinium, 64)};
+    public static final ItemStack[] sensorGem = new ItemStack[]{OreDictUnifier.get(gem, Olivine),OreDictUnifier.get(gem, Emerald),OreDictUnifier.get(gem, Ruby),OreDictUnifier.get(gem, Sapphire),OreDictUnifier.get(gem, Opal),OreDictUnifier.get(foil, Electrum, 64),OreDictUnifier.get(foil, Ruthenium, 64),OreDictUnifier.get(foil, Naquadah, 64),OreDictUnifier.get(foil, Rutherfordium, 64),OreDictUnifier.get(nanofoil, Germanium, 64),OreDictUnifier.get(nanofoil, Americium, 64),OreDictUnifier.get(nanofoil, Seaborgium, 64),OreDictUnifier.get(nanofoil, Vibranium, 64)};
     public static final Material[] emitterMaterial = new Material[]{Brass, Electrum, Silicon, Chrome, Thulium, Palladium, Rhenium, Fermium, NaquadahEnriched, Tritanium, Trinium, Nihonium, Taranium};
     //public static final Material[] a = new Material[]{};
     //public static final Material[] a = new Material[]{};
@@ -80,22 +67,27 @@ public class GTComponents {
 
         // Steam Components
 
-        ModHandler.addShapedRecipe("steam_motor", STEAM_MOTOR.getStackForm(3),
-                " F ", "WDW", " F ",
-                'F', OreDictUnifier.get(foil, Copper),
-                'D', OreDictUnifier.get(dustTiny, Glass),
-                'W', OreDictUnifier.get(wireFine, Tin));
+        ModHandler.addShapedRecipe("steam_pump", STEAM_PUMP.getStackForm(),
+                "SPS", "GIG", "PMP",
+                'I', OreDictUnifier.get(pipeNormalFluid, Bronze),
+                'S', OreDictUnifier.get(plate, Bronze),
+                'M', STEAM_MOTOR.getStackForm(),
+                'P', OreDictUnifier.get(screw, Iron),
+                'G', OreDictUnifier.get(gearSmall, Iron));
 
-        ModHandler.addShapedRecipe("steam_piston", STEAM_PISTON.getStackForm(3),
-                " F ", "WDW", " F ",
-                'F', OreDictUnifier.get(foil, Copper),
-                'D', OreDictUnifier.get(dustTiny, Glass),
-                'W', OreDictUnifier.get(wireFine, Tin));
-        ModHandler.addShapedRecipe("steam_pump", STEAM_PUMP.getStackForm(3),
-                " F ", "WDW", " F ",
-                'F', OreDictUnifier.get(foil, Copper),
-                'D', OreDictUnifier.get(dustTiny, Glass),
-                'W', OreDictUnifier.get(wireFine, Tin));
+        ModHandler.addShapedRecipe("steam_piston", STEAM_PISTON.getStackForm(),
+                "DDD", "GSG", "PMP",
+                'D', OreDictUnifier.get(plate, Bronze),
+                'G', OreDictUnifier.get(gearSmall, Iron),
+                'S', OreDictUnifier.get(stick, Iron),
+                'P', OreDictUnifier.get(plate, Iron),
+                'M', STEAM_MOTOR.getStackForm());
+        ModHandler.addShapedRecipe("steam_motor", STEAM_MOTOR.getStackForm(),
+                "PSP", "IRI", "PSP",
+                'P', OreDictUnifier.get(plate, Bronze),
+                'S', OreDictUnifier.get(stick, Iron),
+                'I', OreDictUnifier.get(plate, Iron),
+                'R', OreDictUnifier.get(rotor, Bronze));
 
         // Specialized Motor Crafting Recipes
 
@@ -120,7 +112,7 @@ public class GTComponents {
                 .output(ELECTRIC_PISTON_LV)
                 .buildAndRegister();
 
-        COMPONENT_ASSEMBLER_RECIPES.recipeBuilder()
+        STEAM_COMPONENT_ASSEMBLER_RECIPES.recipeBuilder()
                 .EUt(VA[0])
                 .duration(80)
                 .input(cableGtSingle, Tin, 2)
@@ -160,6 +152,14 @@ public class GTComponents {
         for (int i = 0; i < 5; i++) {
             //Component Assembler Recipes -
             //Motor
+
+            OreDictUnifier.registerOre(motors[i].getStackForm(), new ItemMaterialInfo(
+                    new MaterialStack(motorWires[i], M*2),
+                    new MaterialStack(magneticRod[i], i > HV ? M : M/2),
+                    new MaterialStack(compMain[i], M),
+                    new MaterialStack(cableElectric[i], i > 2 ? 2 : 1)
+            ));
+
             COMPONENT_ASSEMBLER_RECIPES.recipeBuilder()
                     .EUt(VA[i])
                     .duration((i+1)*20)
@@ -171,18 +171,32 @@ public class GTComponents {
                     .output(motors[i])
                     .buildAndRegister();
 
+            OreDictUnifier.registerOre(pistons[i].getStackForm(), new ItemMaterialInfo(
+                    new MaterialStack(motorWires[i], M*2),
+                    new MaterialStack(magneticRod[i], i > HV ? M : M/2),
+                    new MaterialStack(compMain[i], M*4),
+                    new MaterialStack(cableElectric[i], i > 2 ? M*5/2 : M*3/2)
+            ));
+
             //Piston
             COMPONENT_ASSEMBLER_RECIPES.recipeBuilder()
                     .EUt(VA[i])
                     .duration((i+1)*20)
                     .input(stick, compMain[i], 2)
                     .input(plate, compMain[i], 2)
-                    .input(gear, compMain[i])
+                    .input(gearSmall, compMain[i])
                     .input(motors[i])
                     .input(cableGtSingle, cableElectric[i])
                     .fluidInputs(lube[i].getFluid(50*(i+1)))
                     .output(pistons[i])
                     .buildAndRegister();
+
+            OreDictUnifier.registerOre(roboArm[i].getStackForm(), new ItemMaterialInfo(
+                    new MaterialStack(motorWires[i], M*2),
+                    new MaterialStack(magneticRod[i], i > HV ? M : M/2),
+                    new MaterialStack(compMain[i], M*8),
+                    new MaterialStack(cableElectric[i], i > 2 ? 4 : 3)
+            ));
 
             //Robot Arm
             COMPONENT_ASSEMBLER_RECIPES.recipeBuilder()
@@ -198,6 +212,12 @@ public class GTComponents {
                     .output(roboArm[i])
                     .buildAndRegister();
 
+
+            OreDictUnifier.registerOre(sensor[i].getStackForm(), new ItemMaterialInfo(
+                    new MaterialStack(emitterMaterial[i], M*2),
+                    new MaterialStack(compMain[i], M*5)
+            ));
+
             //Sensor
             COMPONENT_ASSEMBLER_RECIPES.recipeBuilder()
                     .EUt(VA[i])
@@ -210,6 +230,11 @@ public class GTComponents {
                     .fluidInputs(SolderingAlloy.getFluid(144))
                     .output(emitter[i])
                     .buildAndRegister();
+
+            OreDictUnifier.registerOre(emitter[i].getStackForm(), new ItemMaterialInfo(
+                    new MaterialStack(emitterMaterial[i], M*2),
+                    new MaterialStack(compMain[i], M*4)
+            ));
 
             //Emitter
             COMPONENT_ASSEMBLER_RECIPES.recipeBuilder()
@@ -224,9 +249,19 @@ public class GTComponents {
                     .output(sensor[i])
                     .buildAndRegister();
 
+            OreDictUnifier.registerOre(pump[i].getStackForm(), new ItemMaterialInfo(
+                    new MaterialStack(Ash, M/2),
+                    new MaterialStack(compMain[i], M*5),
+                    new MaterialStack(fluidPipes[i], M*6),
+                    new MaterialStack(motorWires[i], M*2)
+            ));
 
-
-
+            OreDictUnifier.registerOre(conveyor[i].getStackForm(), new ItemMaterialInfo(
+                    new MaterialStack(Ash, M*4),
+                    new MaterialStack(compMain[i], M*4),
+                    new MaterialStack(cableElectric[i], M*3),
+                    new MaterialStack(motorWires[i], M*4)
+            ));
 
             for (Material rubber : rubbers) {
                 //Pump
@@ -268,7 +303,18 @@ public class GTComponents {
         }
 
         // LuV-UHV Loop
+
+
+
         for (int i = 5; i < 9; i++) {
+
+            OreDictUnifier.registerOre(motors[i].getStackForm(), new ItemMaterialInfo(
+                    new MaterialStack(magneticRod[i], i > 6 ? M*32 : M*16),
+                    new MaterialStack(compMain[i], i > 6 ? M*20 : M*6),
+                    new MaterialStack(cableElectric[i], i > 6 ? M*4 : M*2),
+                    new MaterialStack(motorWires[i], (i-4)*16*M)
+            ));
+
             //Motor
             RecipeBuilder builder = ASSEMBLY_LINE_RECIPES.recipeBuilder()
                     .EUt(VA[i+1])
@@ -294,8 +340,18 @@ public class GTComponents {
             //Field Generator
         }
 
+
+
         //UEV-OpV Loop
         for (int i = 9; i < OpV; i++) {
+
+            OreDictUnifier.registerOre(motors[i].getStackForm(), new ItemMaterialInfo(
+                    new MaterialStack(magneticRod[i], i > 10 ? i == 12 ? M * 64 : M*48 : M*32),
+                    new MaterialStack(compMain[i], i > 10 ? M*40 : M*20),
+                    new MaterialStack(cableElectric[i], M*16),
+                    new MaterialStack(motorWires[i], (4*M/9)*(i-8))
+            ));
+
             // Motor
             RecipeBuilder builder = ASSEMBLY_LINE_RECIPES.recipeBuilder()
                     .EUt(VA[i+1])
@@ -306,7 +362,6 @@ public class GTComponents {
 
             if (i > 10) {
                 builder.input(stick, magneticRod[i], i == 11 ? 32 : 64);
-                builder.input(stick, magneticRod[i], i == 11 ? 32 : 64);
             }
 
             builder.input(stick, compMain[i], i > 10 ? 64 : 32);
@@ -315,8 +370,8 @@ public class GTComponents {
             builder.input(cableGtQuadruple, cableElectric[i], 8);
 
             for (int j = i-8; j > 0; j--) {
-                builder.input(nanoWire, motorWires[i], 64);
-                builder.input(nanoWire, motorWires[i], 64);
+                builder.input(nanowire, motorWires[i], 64);
+                builder.input(nanowire, motorWires[i], 64);
             }
             builder.buildAndRegister();
 
@@ -419,7 +474,6 @@ public class GTComponents {
         Material[] superCons = new Material[]{ManganesePhosphide, MagnesiumDiboride, MercuryBariumCalciumCuprate, UraniumTriplatinum, SamariumIronArsenicOxide};
         Material[] emitterRod = new Material[]{Brass, Electrum, Chrome, Platinum, Iridium};
         ItemStack[] emitterGem = new ItemStack[]{OreDictUnifier.get(gem, Quartzite), OreDictUnifier.get(gemFlawless, Emerald), OreDictUnifier.get(gem, EnderEye), QUANTUM_EYE.getStackForm(), QUANTUM_STAR.getStackForm()};
-
 
 
         ///*
