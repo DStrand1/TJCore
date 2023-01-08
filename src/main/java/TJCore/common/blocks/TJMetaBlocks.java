@@ -1,11 +1,7 @@
 package TJCore.common.blocks;
 
-import TJCore.common.pipelike.rotation.BlockRotationPipe;
-import TJCore.client.renderer.pipe.RotationPipeRenderer;
-import TJCore.common.pipelike.rotation.RotationPipeType;
-import TJCore.common.pipelike.rotation.tile.TileEntityRotationPipe;
-import TJCore.common.pipelike.rotation.tile.TileEntityRotationPipeTESR;
-import TJCore.common.pipelike.rotation.tile.TileEntityRotationPipeTickable;
+import TJCore.common.pipelike.rotation.TileEntityRotationAxle;
+import TJCore.common.pipelike.rotation.TileEntityRotationAxleTESR;
 import TJCore.common.pipelike.longdist.BlockCableLongDistance;
 import TJCore.common.pipelike.longdist.tile.TileEntityLongDistanceCable;
 import TJCore.common.pipelike.longdist.tile.TileEntityLongDistanceCableTickable;
@@ -39,7 +35,7 @@ public class TJMetaBlocks {
     public static BlockBearing BLOCK_BEARING;
     public static BlockTurbineBlades TURBINE_BLADES;
 
-    public static BlockRotationPipe AXLE_PIPES;
+    //public static BlockRotationPipe AXLE_PIPES;
 
     public static final BlockCableLongDistance[] LONG_DIST_CABLES = new BlockCableLongDistance[10];
     
@@ -55,15 +51,15 @@ public class TJMetaBlocks {
             LONG_DIST_CABLES[ins.ordinal()].setRegistryName(ins.getName());
         }
 
-        AXLE_PIPES = new BlockRotationPipe(RotationPipeType.NORMAL);
-        AXLE_PIPES.setRegistryName(String.format("rotation_pipe_normal"));
+        //AXLE_PIPES = new BlockRotationPipe(RotationPipeType.NORMAL);
+        //AXLE_PIPES.setRegistryName(String.format("rotation_pipe_normal"));
     }
 
     public static void registerTileEntity() {
         GameRegistry.registerTileEntity(TileEntityLongDistanceCable.class, new ResourceLocation(MODID, "cable_long_distance"));
         GameRegistry.registerTileEntity(TileEntityLongDistanceCableTickable.class, new ResourceLocation(MODID, "cable_long_distance_tickable"));
-        GameRegistry.registerTileEntity(TileEntityRotationPipe.class, new ResourceLocation(MODID, "rotation_pipe_normal"));
-        GameRegistry.registerTileEntity(TileEntityRotationPipeTickable.class, new ResourceLocation(MODID, "rotation_pipe_normal_tickable"));
+        //GameRegistry.registerTileEntity(TileEntityRotationPipe.class, new ResourceLocation(MODID, "rotation_pipe_normal"));
+        //GameRegistry.registerTileEntity(TileEntityRotationPipeTickable.class, new ResourceLocation(MODID, "rotation_pipe_normal_tickable"));
     }
     
     @SideOnly(Side.CLIENT)
@@ -72,7 +68,7 @@ public class TJMetaBlocks {
         for (BlockCableLongDistance cable : LONG_DIST_CABLES)
             ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(cable), stack -> CableRenderer.INSTANCE.getModelLocation());
 
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(AXLE_PIPES), stack -> RotationPipeRenderer.INSTANCE.getModelLocation());
+        //ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(AXLE_PIPES), stack -> RotationPipeRenderer.INSTANCE.getModelLocation());
 
         registerItemModel(DRACONIC_CASING);
         registerItemModel(TURBINE_BLADES);
@@ -85,10 +81,10 @@ public class TJMetaBlocks {
         IStateMapper normalStateMapper = new SimpleStateMapper(CableRenderer.INSTANCE.getModelLocation());
         for (BlockCableLongDistance cable : LONG_DIST_CABLES) ModelLoader.setCustomStateMapper(cable, normalStateMapper);
 
-        normalStateMapper = new SimpleStateMapper(RotationPipeRenderer.INSTANCE.getModelLocation());
-        ModelLoader.setCustomStateMapper(AXLE_PIPES, normalStateMapper);
+        //normalStateMapper = new SimpleStateMapper(RotationPipeRenderer.INSTANCE.getModelLocation());
+        //ModelLoader.setCustomStateMapper(AXLE_PIPES, normalStateMapper);
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRotationPipe.class, new TileEntityRotationPipeTESR());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRotationAxle.class, new TileEntityRotationAxleTESR());
     }
     
     @SideOnly(Side.CLIENT)
@@ -110,10 +106,10 @@ public class TJMetaBlocks {
             }
         }
 
-        for(Material mat : AXLE_PIPES.getEnabledMaterials()) {
-            ItemStack itemStack = AXLE_PIPES.getItem(mat);
-            OreDictUnifier.registerOre(itemStack, AXLE_PIPES.getPrefix(), mat);
-        }
+        //for(Material mat : AXLE_PIPES.getEnabledMaterials()) {
+        //    ItemStack itemStack = AXLE_PIPES.getItem(mat);
+        //    OreDictUnifier.registerOre(itemStack, AXLE_PIPES.getPrefix(), mat);
+        //}
     }
     
     @SuppressWarnings("unchecked")

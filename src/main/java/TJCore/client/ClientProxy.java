@@ -1,6 +1,5 @@
 package TJCore.client;
 
-import TJCore.client.renderer.pipe.RotationPipeRenderer;
 import TJCore.common.CommonProxy;
 import TJCore.common.TJTextures;
 import TJCore.common.blocks.TJMetaBlocks;
@@ -14,8 +13,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit() {
         super.preInit();
-
-        RotationPipeRenderer.INSTANCE.preInit();
 
         TJTextures.preInit();
     }

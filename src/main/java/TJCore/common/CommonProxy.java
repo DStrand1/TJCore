@@ -4,7 +4,6 @@ import TJCore.TJValues;
 import TJCore.api.TJComponents;
 import TJCore.api.TJOreDictionaryLoader;
 import TJCore.api.material.materials.properties.TJPropertyKey;
-import TJCore.common.pipelike.rotation.ItemBlockRotationPipe;
 import TJCore.common.blocks.TJMetaBlocks;
 import TJCore.common.pipelike.longdist.BlockCableLongDistance;
 import TJCore.common.pipelike.longdist.ItemBlockLongDistanceCable;
@@ -54,15 +53,7 @@ public class CommonProxy {
             }
         }
 
-        for(Material material : GregTechAPI.MATERIAL_REGISTRY) {
-            if(material.hasProperty(TJPropertyKey.ROTATION_PIPE)) {
-                if(!AXLE_PIPES.getItemPipeType(AXLE_PIPES.getItem(material)).getOrePrefix().isIgnored(material)) {
-                    AXLE_PIPES.addPipeMaterial(material, material.getProperty(TJPropertyKey.ROTATION_PIPE));
-                }
-            }
-        }
 
-        registry.register(AXLE_PIPES);
     }
     
     @SubscribeEvent
@@ -73,7 +64,7 @@ public class CommonProxy {
         registry.register(createItemBlock(BLOCK_BEARING, VariantItemBlock::new));
         registry.register(createItemBlock(DRACONIC_CASING, VariantItemBlock::new));
 
-        registry.register(createItemBlock(AXLE_PIPES, ItemBlockRotationPipe::new));
+        //registry.register(createItemBlock(AXLE_PIPES, ItemBlockRotationPipe::new));
     }
 
     
