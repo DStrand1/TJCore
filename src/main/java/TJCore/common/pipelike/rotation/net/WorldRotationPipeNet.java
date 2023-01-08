@@ -1,11 +1,8 @@
-package TJCore.api.rotationnet.net;
+package TJCore.common.pipelike.rotation.net;
 
 import TJCore.api.material.materials.properties.RotationPipeProperties;
 import gregtech.api.pipenet.WorldPipeNet;
 import net.minecraft.world.World;
-
-
-import static gregtech.api.pipenet.WorldPipeNet.getDataID;
 
 public class WorldRotationPipeNet extends WorldPipeNet<RotationPipeProperties, RotationPipeNet> {
 

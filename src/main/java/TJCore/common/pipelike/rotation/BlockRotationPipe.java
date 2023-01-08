@@ -1,14 +1,20 @@
-package TJCore.api.rotationnet;
+package TJCore.common.pipelike.rotation;
 
 import TJCore.api.material.materials.properties.RotationPipeProperties;
-import TJCore.api.rotationnet.net.WorldRotationPipeNet;
-import TJCore.api.rotationnet.tile.TileEntityRotationPipe;
-import TJCore.api.rotationnet.tile.TileEntityRotationPipeTickable;
+import TJCore.client.renderer.pipe.RotationPipeRenderer;
+import TJCore.common.pipelike.rotation.net.WorldRotationPipeNet;
+import TJCore.common.pipelike.rotation.tile.TileEntityRotationPipe;
+import TJCore.common.pipelike.rotation.tile.TileEntityRotationPipeTickable;
 import gregtech.api.GregTechAPI;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.tool.IHammerItem;
+import gregtech.api.capability.tool.IWrenchItem;
+import gregtech.api.items.toolitem.IToolStats;
 import gregtech.api.pipenet.block.material.BlockMaterialPipe;
 import gregtech.api.pipenet.tile.IPipeTile;
 import gregtech.api.pipenet.tile.TileEntityPipeBase;
 import gregtech.api.unification.material.Material;
+import gregtech.common.tools.DamageValues;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,6 +22,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
@@ -80,6 +87,24 @@ public class BlockRotationPipe extends BlockMaterialPipe<RotationPipeType, Rotat
             items.add(getItem(mat));
     }
 
+    @Override
+    public EnumActionResult onPipeToolUsed(World world, BlockPos pos, ItemStack stack, EnumFacing side, IPipeTile<RotationPipeType, RotationPipeProperties> pipeTile, EntityPlayer entityPlayer) {
+        IWrenchItem wrenchItem = stack.getCapability(GregtechCapabilities.CAPABILITY_WRENCH, null);
+
+        if(wrenchItem != null) {
+            if(wrenchItem.damageItem(1, true)) {
+                if(!entityPlayer.world.isRemote) {
+                    boolean isOpen = pipeTile.isConnected(side);
+                    pipeTile.setConnection(side, !isOpen, false);
+                    wrenchItem.damageItem(1, false);
+                    IToolStats.onOtherUse(stack, world, pos);
+                }
+                return EnumActionResult.SUCCESS;
+            }
+            return EnumActionResult.FAIL;
+        }
+        return EnumActionResult.PASS;
+    }
 
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
@@ -115,7 +140,7 @@ public class BlockRotationPipe extends BlockMaterialPipe<RotationPipeType, Rotat
     @Override
     public TileEntityPipeBase<RotationPipeType, RotationPipeProperties> createNewTileEntity(boolean ticking) {
         return new TileEntityRotationPipe();
-        //return new TileEntityRotationPipe();
+        //return new TileEntityRotationPipeTickable();
     }
 
     @Override

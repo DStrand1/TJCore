@@ -1,8 +1,8 @@
-package TJCore.common.pipelike;
+package TJCore.common.pipelike.longdist;
 
-import TJCore.common.pipelike.net.WorldLongDistanceNet;
-import TJCore.common.pipelike.tile.TileEntityLongDistanceCable;
-import TJCore.common.pipelike.tile.TileEntityLongDistanceCableTickable;
+import TJCore.common.pipelike.longdist.net.WorldLongDistanceNet;
+import TJCore.common.pipelike.longdist.tile.TileEntityLongDistanceCable;
+import TJCore.common.pipelike.longdist.tile.TileEntityLongDistanceCableTickable;
 import com.google.common.base.Preconditions;
 import gregtech.api.GregTechAPI;
 import gregtech.api.capability.GregtechCapabilities;
@@ -17,12 +17,9 @@ import gregtech.api.unification.material.properties.WireProperties;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.pipe.CableRenderer;
 import gregtech.common.advancement.GTTriggers;
-import gregtech.common.pipelike.cable.BlockCable;
 import gregtech.common.pipelike.cable.Insulation;
 import gregtech.common.pipelike.cable.ItemBlockCable;
-import gregtech.common.pipelike.cable.net.WorldENet;
 import gregtech.common.pipelike.cable.tile.TileEntityCable;
-import gregtech.common.pipelike.cable.tile.TileEntityCableTickable;
 import gregtech.common.tools.DamageValues;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.state.IBlockState;

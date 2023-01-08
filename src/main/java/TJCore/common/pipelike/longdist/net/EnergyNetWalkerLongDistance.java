@@ -1,14 +1,10 @@
-package TJCore.common.pipelike.net;
+package TJCore.common.pipelike.longdist.net;
 
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.pipenet.PipeNetWalker;
 import gregtech.api.pipenet.tile.IPipeTile;
-import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.common.metatileentities.electric.MetaTileEntityTransformer;
-import gregtech.common.pipelike.cable.net.EnergyNetWalker;
 import gregtech.common.pipelike.cable.net.RoutePath;
 import gregtech.common.pipelike.cable.tile.TileEntityCable;
 import net.minecraft.tileentity.TileEntity;

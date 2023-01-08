@@ -1,11 +1,9 @@
-package TJCore.common.pipelike.net;
+package TJCore.common.pipelike.longdist.net;
 
-import TJCore.common.pipelike.tile.TileEntityLongDistanceCable;
+import TJCore.common.pipelike.longdist.tile.TileEntityLongDistanceCable;
 import gregtech.api.capability.IEnergyContainer;
-import gregtech.api.capability.impl.EnergyContainerHandler;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.GTUtility;
-import gregtech.common.pipelike.cable.net.EnergyNet;
 import gregtech.common.pipelike.cable.net.RoutePath;
 import gregtech.common.pipelike.cable.tile.TileEntityCable;
 import net.minecraft.init.Blocks;
@@ -14,7 +12,6 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import org.lwjgl.Sys;
 
 import java.util.List;
 import java.util.Objects;

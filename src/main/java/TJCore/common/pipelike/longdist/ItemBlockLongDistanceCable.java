@@ -1,4 +1,4 @@
-package TJCore.common.pipelike;
+package TJCore.common.pipelike.longdist;
 
 import gregtech.api.GTValues;
 import gregtech.api.pipenet.block.material.BlockMaterialPipe;
@@ -6,7 +6,6 @@ import gregtech.api.pipenet.block.material.ItemBlockMaterialPipe;
 import gregtech.api.unification.material.properties.WireProperties;
 import gregtech.api.util.GTUtility;
 import gregtech.common.pipelike.cable.Insulation;
-import gregtech.common.pipelike.cable.ItemBlockCable;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;

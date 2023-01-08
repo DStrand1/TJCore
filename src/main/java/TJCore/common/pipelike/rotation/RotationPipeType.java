@@ -1,4 +1,4 @@
-package TJCore.api.rotationnet;
+package TJCore.common.pipelike.rotation;
 
 import TJCore.api.TJOreDictionaryLoader;
 import TJCore.api.material.materials.properties.RotationPipeProperties;

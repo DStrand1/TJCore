@@ -1,4 +1,4 @@
-package TJCore.api.rotationnet.net;
+package TJCore.common.pipelike.rotation.net;
 
 import TJCore.api.material.materials.properties.RotationPipeProperties;
 import gregtech.api.pipenet.PipeNet;

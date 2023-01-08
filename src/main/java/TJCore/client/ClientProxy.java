@@ -1,10 +1,9 @@
 package TJCore.client;
 
-import TJCore.api.rotationnet.RotationPipeRenderer;
+import TJCore.client.renderer.pipe.RotationPipeRenderer;
 import TJCore.common.CommonProxy;
 import TJCore.common.TJTextures;
 import TJCore.common.blocks.TJMetaBlocks;
-import net.minecraft.util.Rotation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

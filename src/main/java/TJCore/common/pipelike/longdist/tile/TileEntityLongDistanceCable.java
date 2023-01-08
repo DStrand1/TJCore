@@ -1,14 +1,13 @@
-package TJCore.common.pipelike.tile;
+package TJCore.common.pipelike.longdist.tile;
 
-import TJCore.common.pipelike.net.EnergyNetLongDistance;
-import TJCore.common.pipelike.net.LongDistanceNetHandler;
-import TJCore.common.pipelike.net.WorldLongDistanceNet;
+import TJCore.common.pipelike.longdist.net.WorldLongDistanceNet;
+import TJCore.common.pipelike.longdist.net.EnergyNetLongDistance;
+import TJCore.common.pipelike.longdist.net.LongDistanceNetHandler;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.common.pipelike.cable.tile.TileEntityCable;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
-import scala.Long;
 
 import javax.annotation.Nullable;
 import java.lang.ref.WeakReference;

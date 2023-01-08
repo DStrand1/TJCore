@@ -1,4 +1,4 @@
-package TJCore.common.pipelike.net;
+package TJCore.common.pipelike.longdist.net;
 
 import gregtech.api.pipenet.WorldPipeNet;
 import gregtech.api.unification.material.properties.WireProperties;

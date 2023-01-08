@@ -1,10 +1,10 @@
-package TJCore.common.pipelike.net;
+package TJCore.common.pipelike.longdist.net;
 
+import TJCore.common.pipelike.longdist.tile.TileEntityLongDistanceCable;
 import gregtech.api.pipenet.Node;
 import gregtech.api.pipenet.PipeNet;
 import gregtech.api.pipenet.WorldPipeNet;
 import gregtech.api.unification.material.properties.WireProperties;
-import gregtech.common.pipelike.cable.net.EnergyNetWalker;
 import gregtech.common.pipelike.cable.net.RoutePath;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;

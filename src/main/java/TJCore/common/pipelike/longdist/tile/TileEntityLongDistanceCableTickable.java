@@ -1,8 +1,6 @@
-package TJCore.common.pipelike.tile;
+package TJCore.common.pipelike.longdist.tile;
 
 import net.minecraft.util.ITickable;
-
-import javax.imageio.ImageTranscoder;
 
 public class TileEntityLongDistanceCableTickable extends TileEntityLongDistanceCable implements ITickable {
     public TileEntityLongDistanceCableTickable() {

@@ -1,24 +1,19 @@
 package TJCore.common.blocks;
 
-import TJCore.api.rotationnet.BlockRotationPipe;
-import TJCore.api.rotationnet.RotationPipeRenderer;
-import TJCore.api.rotationnet.RotationPipeType;
-import TJCore.api.rotationnet.tile.TileEntityRotationPipe;
-import TJCore.api.rotationnet.tile.TileEntityRotationPipeTickable;
-import TJCore.common.pipelike.BlockCableLongDistance;
-import TJCore.common.pipelike.tile.TileEntityLongDistanceCable;
-import TJCore.common.pipelike.tile.TileEntityLongDistanceCableTickable;
-import com.sun.jna.platform.win32.WinDef;
-import gregtech.api.block.machines.BlockMachine;
+import TJCore.common.pipelike.rotation.BlockRotationPipe;
+import TJCore.client.renderer.pipe.RotationPipeRenderer;
+import TJCore.common.pipelike.rotation.RotationPipeType;
+import TJCore.common.pipelike.rotation.tile.TileEntityRotationPipe;
+import TJCore.common.pipelike.rotation.tile.TileEntityRotationPipeTESR;
+import TJCore.common.pipelike.rotation.tile.TileEntityRotationPipeTickable;
+import TJCore.common.pipelike.longdist.BlockCableLongDistance;
+import TJCore.common.pipelike.longdist.tile.TileEntityLongDistanceCable;
+import TJCore.common.pipelike.longdist.tile.TileEntityLongDistanceCableTickable;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.client.model.SimpleStateMapper;
 import gregtech.client.renderer.handler.MetaTileEntityRenderer;
 import gregtech.client.renderer.pipe.CableRenderer;
-import gregtech.common.blocks.BlockBoilerCasing;
-import TJCore.common.blocks.BlockTurbineBlades;
-import TJCore.common.blocks.BlockBearing;
-import gregtech.common.pipelike.cable.BlockCable;
 import gregtech.common.pipelike.cable.Insulation;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
@@ -29,6 +24,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -91,6 +87,8 @@ public class TJMetaBlocks {
 
         normalStateMapper = new SimpleStateMapper(RotationPipeRenderer.INSTANCE.getModelLocation());
         ModelLoader.setCustomStateMapper(AXLE_PIPES, normalStateMapper);
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRotationPipe.class, new TileEntityRotationPipeTESR());
     }
     
     @SideOnly(Side.CLIENT)
