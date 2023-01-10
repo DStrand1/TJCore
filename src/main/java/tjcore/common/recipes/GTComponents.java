@@ -514,8 +514,8 @@ public class GTComponents {
                 OreDictUnifier.get(gearSmall, materials[i], 1),
                 motors[i].getStackForm(1));
 
-            // Arms
-            //TODO CEu 2.5.0
+            // Robot Arms
+            //TODO these cannot be removed
 //            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
 //                OreDictUnifier.get(cableGtSingle, cables[i], 3),
 //                OreDictUnifier.get(stick, materials[i], 2),
@@ -534,7 +534,7 @@ public class GTComponents {
                          OreDictUnifier.get(ring, rubbers[j], 2),
                          motors[i].getStackForm());
 
-                    //TODO CEu 2.5.0
+                    //TODO these cannot be removed
 //                    GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
 //                         OreDictUnifier.get(cableGtSingle, cables[i]),
 //                         OreDictUnifier.get(plate, rubbers[j], 6),
@@ -545,14 +545,14 @@ public class GTComponents {
 
             // Field Gens
             if (i < 3) {
-                //TODO CEu 2.5.0
+                //TODO these cannot be removed
 //                GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
 //                     fgGem[i],
 //                     OreDictUnifier.get(plate, materials[i], 2),
 //                     OreDictUnifier.get(circuit, tierCircuitNames[i+1], 2),
 //                     OreDictUnifier.get(wireGtQuadruple, superCons[i], 4));
             } else {
-                //TODO CEu 2.5.0
+                //TODO these cannot be removed
 //                GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
 //                     fgGem[i],
 //                     OreDictUnifier.get(plateDouble, materials[i], 2),
@@ -561,7 +561,7 @@ public class GTComponents {
             }
 
             // Emitters
-            //TODO CEu 2.5.0
+            //TODO these cannot be removed
 //            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
 //                OreDictUnifier.get(stick, emitterRod[i], 4),
 //                OreDictUnifier.get(cableGtSingle, cables[i], 2),
@@ -570,7 +570,7 @@ public class GTComponents {
 //                emitterGem[i]);
 
             // Sensors
-            //TODO CEu 2.5.0
+            //TODO these cannot be removed
 //            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
 //                OreDictUnifier.get(stick, emitterRod[i]),
 //                OreDictUnifier.get(plate, materials[i], 4),
@@ -578,7 +578,7 @@ public class GTComponents {
 //                emitterGem[i]);
 
             // Fluid Regulators
-            //TODO CEu 2.5.0
+            //TODO these cannot be removed
 //            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
 //                IntCircuitIngredient.getIntegratedCircuit(1),
 //                OreDictUnifier.get(circuit, tierCircuitNames[i+1], 2),
@@ -586,5 +586,4 @@ public class GTComponents {
         }
         //*/
     }
-
 }

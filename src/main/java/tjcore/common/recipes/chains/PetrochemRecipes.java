@@ -31,7 +31,7 @@ public class PetrochemRecipes {
 
     public static void removeOvercostRecipes() {
         GTRecipeHandler.removeAllRecipes(COKE_OVEN_RECIPES);
-        //TODO GCYS
+        //TODO cannot remove this GCYS recipe
 //        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES, RareEarthChloridesSolution.getFluid(1000));
         GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES, CharcoalByproducts.getFluid(1000));
         GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES, WoodGas.getFluid(1000));

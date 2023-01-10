@@ -7,6 +7,7 @@ import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.material.info.MaterialFlags;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.unification.material.properties.BlastProperty;
+import gregtech.api.unification.material.properties.ToolProperty;
 
 import static gregicality.science.api.unification.material.info.GCYSMaterialFlags.DISABLE_CRYSTALLIZATION;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
@@ -445,6 +446,7 @@ public class GCYSFirstDegreeMaterials {
                 .iconSet(MaterialIconSet.DIAMOND)
                 .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION, CRYSTALLIZABLE, FLAMMABLE, EXPLOSIVE, DISABLE_CRYSTALLIZATION) // to disable implosion recipes
                 .components(Boron, 1, Nitrogen, 1)
+                .toolStats(ToolProperty.Builder.of(14.0F, 9.0F, 12400, 5).enchantability(15).build())
                 .build()
                 .setFormula("c-BN", true);
 

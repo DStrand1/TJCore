@@ -42,7 +42,7 @@ public class CircuitRecipes {
         GTRecipeHandler.removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Carbon, 4)}, new FluidStack[]{Epoxy.getFluid(9)});
         GTRecipeHandler.removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Carbon, 8)}, new FluidStack[]{Polybenzimidazole.getFluid(9)});
 
-        //TODO GCYS
+        //TODO this cannot be removed from GCYS
 //        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{
 //                        FLUID_CELL_LARGE_STAINLESS_STEEL.getStackForm(),
 //                        OreDictUnifier.get(plate, Naquadah, 4),

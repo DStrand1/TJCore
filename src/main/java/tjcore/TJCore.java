@@ -40,7 +40,9 @@ public class TJCore {
         TJMetaBlocks.init();
         proxy.preInit();
 
-        // TODO GCYS
+
+        // Initialize GCYS Dependencies until an updated release is functional
+        // TODO: Remove this when the time comes
         GCYSLog.init(event.getModLog());
 
         GCYSMetaItems.initMetaItems();

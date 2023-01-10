@@ -21,7 +21,7 @@ public class WetwareCircuits {
     public static void init() {
         // Harder Wetware
         if (GCYSConfigHolder.circuitOverrides.harderWetwareCircuits) {
-            //TODO CEu 2.5.0
+            //TODO TJCore removes this
 //            GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES, new ItemStack[]{
 //                            MULTILAYER_FIBER_BOARD.getStackForm(16),
 //                            PETRI_DISH.getStackForm(),

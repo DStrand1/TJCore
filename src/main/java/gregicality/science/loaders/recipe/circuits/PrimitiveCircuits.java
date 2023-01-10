@@ -87,7 +87,7 @@ public class PrimitiveCircuits {
         ModHandler.removeRecipeByName(new ResourceLocation("gregtech:vacuum_tube"));
 
         for (Material copper : new Material[]{Copper, AnnealedCopper}) {
-            //TODO CEu 2.5.0
+            //TODO TJCore removes this
 //            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
 //                    GLASS_TUBE.getStackForm(),
 //                    OreDictUnifier.get(OrePrefix.bolt, Steel, 2),

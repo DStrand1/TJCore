@@ -19,19 +19,18 @@ public class SeleniumTelluriumChain {
     }
 
     private static void mud() {
-        //TODO Ore Work
         // CuSO4 + H2O -> H2SO4 + Cu + O
-//        ELECTROLYZER_RECIPES.recipeBuilder()
-//                .fluidInputs(SulfuricCopperSolution.getFluid(1000)) //TODO BlueVitriol
-//                .fluidInputs(Water.getFluid(1000))
-//                .notConsumable(new IntCircuitIngredient(3))
-//                .output(dust, Copper)
-//                .chancedOutput(dust, ChalcogenAnodeMud, 500, 0)
-//                .fluidOutputs(SulfuricAcid.getFluid(1000))
-//                .fluidOutputs(Oxygen.getFluid(1000))
-//                .duration(100)
-//                .EUt(60)
-//                .buildAndRegister();
+        ELECTROLYZER_RECIPES.recipeBuilder()
+                .fluidInputs(SulfuricCopperSolution.getFluid(1000)) //TODO BlueVitriol
+//                .fluidInputs(Water.getFluid(1000)) //TODO Ore Work
+                .notConsumable(new IntCircuitIngredient(3))
+                .output(dust, Copper)
+                .chancedOutput(dust, ChalcogenAnodeMud, 500, 0)
+                .fluidOutputs(SulfuricAcid.getFluid(1000))
+                .fluidOutputs(Oxygen.getFluid(1000))
+                .duration(100)
+                .EUt(60)
+                .buildAndRegister();
 
         // optional recovery of metals to provide some nice bonus
         CENTRIFUGE_RECIPES.recipeBuilder()
