@@ -14,6 +14,7 @@ buildscript {
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'idea'
 
 version = project.mod_version
 group = project.maven_group
@@ -101,4 +102,12 @@ processResources {
         exclude 'mcmod.info'
     }
     rename '(.+_at.cfg)', 'META-INF/$1' // Access Transformers
+}
+
+idea {
+    module {
+        inheritOutputDirs = true
+        setDownloadSources(true)
+        setDownloadJavadoc(true)
+    }
 }
