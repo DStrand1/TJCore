@@ -21,7 +21,7 @@ import tjcore.common.metatileentities.TJMetaTileEntities;
         name = "tjcore",
         version = TJValues.VERSION,
         acceptedMinecraftVersions = "[1.12, 1.13)",
-        dependencies = "required:forge@[14.23.5.2847,);" + CodeChickenLib.MOD_VERSION_DEP + GTValues.MOD_VERSION_DEP + "after:gcys;after:forestry;after:jei@[4.15.0,);after:crafttweaker;before:ctm")
+        dependencies = "required:forge@[14.23.5.2847,);" + CodeChickenLib.MOD_VERSION_DEP + GTValues.MOD_VERSION_DEP + "after:gcys;after:forestry;after:jei@[4.15.0,);after:crafttweaker;before:ctm;after:draconicevolution")
 public class TJCore {
 
     @SidedProxy(modId = "tjcore", clientSide = "tjcore.client.ClientProxy", serverSide = "tjcore.common.CommonProxy")

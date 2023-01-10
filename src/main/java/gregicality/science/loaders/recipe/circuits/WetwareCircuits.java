@@ -4,7 +4,6 @@ import gregicality.science.api.unification.materials.GCYSMaterials;
 import gregicality.science.common.GCYSConfigHolder;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.GTRecipeHandler;
-import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -22,14 +21,15 @@ public class WetwareCircuits {
     public static void init() {
         // Harder Wetware
         if (GCYSConfigHolder.circuitOverrides.harderWetwareCircuits) {
-            GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES, new ItemStack[]{
-                            MULTILAYER_FIBER_BOARD.getStackForm(16),
-                            PETRI_DISH.getStackForm(),
-                            ELECTRIC_PUMP_LuV.getStackForm(),
-                            SENSOR_IV.getStackForm(),
-                            OreDictUnifier.get(circuit, MarkerMaterials.Tier.IV),
-                            OreDictUnifier.get(foil, NiobiumTitanium, 16)},
-                    new FluidStack[]{SterileGrowthMedium.getFluid(4000)});
+            //TODO CEu 2.5.0
+//            GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES, new ItemStack[]{
+//                            MULTILAYER_FIBER_BOARD.getStackForm(16),
+//                            PETRI_DISH.getStackForm(),
+//                            ELECTRIC_PUMP_LuV.getStackForm(),
+//                            SENSOR_IV.getStackForm(),
+//                            OreDictUnifier.get(circuit, MarkerMaterials.Tier.IV),
+//                            OreDictUnifier.get(foil, NiobiumTitanium, 16)},
+//                    new FluidStack[]{SterileGrowthMedium.getFluid(4000)});
         }
 
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()

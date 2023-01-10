@@ -31,7 +31,8 @@ public class PetrochemRecipes {
 
     public static void removeOvercostRecipes() {
         GTRecipeHandler.removeAllRecipes(COKE_OVEN_RECIPES);
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES, RareEarthChloridesSolution.getFluid(1000));
+        //TODO GCYS
+//        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES, RareEarthChloridesSolution.getFluid(1000));
         GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES, CharcoalByproducts.getFluid(1000));
         GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES, WoodGas.getFluid(1000));
         GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES, FermentedBiomass.getFluid(1000));
