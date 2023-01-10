@@ -16,14 +16,12 @@ import gregtech.api.util.BlockInfo;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.common.blocks.*;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockGlass;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.lang3.ArrayUtils;
-import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
-import java.util.function.Supplier;
 
 public class CarbonsShittyPredicateMulti extends RecipeMapMultiblockController {
 
@@ -65,7 +63,7 @@ public class CarbonsShittyPredicateMulti extends RecipeMapMultiblockController {
     }
 
     @Override
-    public boolean checkRecipe(@NotNull Recipe recipe, boolean consumeIfSuccess) {
+    public boolean checkRecipe(@Nonnull Recipe recipe, boolean consumeIfSuccess) {
         return true;
     }
 
