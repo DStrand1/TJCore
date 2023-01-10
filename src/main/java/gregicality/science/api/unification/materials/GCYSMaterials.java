@@ -144,6 +144,7 @@ public class GCYSMaterials {
     public static Material HRAMagnesium;
     public static Material LithiumFluoride;
     public static Material Alumina;
+    public static Material ChloroplatinicAcid;
 
 
     // Second Degree Materials

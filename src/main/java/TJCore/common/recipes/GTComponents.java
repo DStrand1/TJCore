@@ -4,7 +4,6 @@ import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.GTRecipeHandler;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeBuilder;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
@@ -516,12 +515,13 @@ public class GTComponents {
                 motors[i].getStackForm(1));
 
             // Arms
-            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-                OreDictUnifier.get(cableGtSingle, cables[i], 3),
-                OreDictUnifier.get(stick, materials[i], 2),
-                motors[i].getStackForm(2),
-                pistons[i].getStackForm(1),
-                OreDictUnifier.get(circuit, tierCircuitNames[i+1]));
+            //TODO CEu 2.5.0
+//            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+//                OreDictUnifier.get(cableGtSingle, cables[i], 3),
+//                OreDictUnifier.get(stick, materials[i], 2),
+//                motors[i].getStackForm(2),
+//                pistons[i].getStackForm(1),
+//                OreDictUnifier.get(circuit, tierCircuitNames[i+1]));
 
             // Pumps & Conveyors
             for (int j = 0; j < 3; j++) {
@@ -534,49 +534,55 @@ public class GTComponents {
                          OreDictUnifier.get(ring, rubbers[j], 2),
                          motors[i].getStackForm());
 
-                    GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-                         OreDictUnifier.get(cableGtSingle, cables[i]),
-                         OreDictUnifier.get(plate, rubbers[j], 6),
-                            IntCircuitIngredient.getIntegratedCircuit(1),
-                         motors[i].getStackForm(2));
+                    //TODO CEu 2.5.0
+//                    GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+//                         OreDictUnifier.get(cableGtSingle, cables[i]),
+//                         OreDictUnifier.get(plate, rubbers[j], 6),
+//                            IntCircuitIngredient.getIntegratedCircuit(1),
+//                         motors[i].getStackForm(2));
                 }
             }
 
             // Field Gens
             if (i < 3) {
-                GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-                     fgGem[i],
-                     OreDictUnifier.get(plate, materials[i], 2),
-                     OreDictUnifier.get(circuit, tierCircuitNames[i+1], 2),
-                     OreDictUnifier.get(wireGtQuadruple, superCons[i], 4));
+                //TODO CEu 2.5.0
+//                GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+//                     fgGem[i],
+//                     OreDictUnifier.get(plate, materials[i], 2),
+//                     OreDictUnifier.get(circuit, tierCircuitNames[i+1], 2),
+//                     OreDictUnifier.get(wireGtQuadruple, superCons[i], 4));
             } else {
-                GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-                     fgGem[i],
-                     OreDictUnifier.get(plateDouble, materials[i], 2),
-                     OreDictUnifier.get(circuit, tierCircuitNames[i+1], 2),
-                     OreDictUnifier.get(wireGtQuadruple, superCons[i], 4));
+                //TODO CEu 2.5.0
+//                GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+//                     fgGem[i],
+//                     OreDictUnifier.get(plateDouble, materials[i], 2),
+//                     OreDictUnifier.get(circuit, tierCircuitNames[i+1], 2),
+//                     OreDictUnifier.get(wireGtQuadruple, superCons[i], 4));
             }
 
             // Emitters
-            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-                OreDictUnifier.get(stick, emitterRod[i], 4),
-                OreDictUnifier.get(cableGtSingle, cables[i], 2),
-                OreDictUnifier.get(circuit, tierCircuitNames[i+1], 2),
-                IntCircuitIngredient.getIntegratedCircuit(1),
-                emitterGem[i]);
+            //TODO CEu 2.5.0
+//            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+//                OreDictUnifier.get(stick, emitterRod[i], 4),
+//                OreDictUnifier.get(cableGtSingle, cables[i], 2),
+//                OreDictUnifier.get(circuit, tierCircuitNames[i+1], 2),
+//                IntCircuitIngredient.getIntegratedCircuit(1),
+//                emitterGem[i]);
 
             // Sensors
-            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-                OreDictUnifier.get(stick, emitterRod[i]),
-                OreDictUnifier.get(plate, materials[i], 4),
-                OreDictUnifier.get(circuit, tierCircuitNames[i+1]),
-                emitterGem[i]);
+            //TODO CEu 2.5.0
+//            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+//                OreDictUnifier.get(stick, emitterRod[i]),
+//                OreDictUnifier.get(plate, materials[i], 4),
+//                OreDictUnifier.get(circuit, tierCircuitNames[i+1]),
+//                emitterGem[i]);
 
             // Fluid Regulators
-            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-                IntCircuitIngredient.getIntegratedCircuit(1),
-                OreDictUnifier.get(circuit, tierCircuitNames[i+1], 2),
-                pump[i].getStackForm());
+            //TODO CEu 2.5.0
+//            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+//                IntCircuitIngredient.getIntegratedCircuit(1),
+//                OreDictUnifier.get(circuit, tierCircuitNames[i+1], 2),
+//                pump[i].getStackForm());
         }
         //*/
     }

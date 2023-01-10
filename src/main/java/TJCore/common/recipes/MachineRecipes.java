@@ -6,7 +6,6 @@ import TJCore.common.blocks.TJMetaBlocks;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.recipes.GTRecipeHandler;
 import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.stack.ItemMaterialInfo;
@@ -93,7 +92,8 @@ public class MachineRecipes {
         for (int i = 0; i < MAX; i++) {
             if (i < UIV) {
                 ModHandler.removeRecipes(MACHINE_CASING.getItemVariant(machineCasingTypes[i]));
-                if (i != UEV) GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(plate, hullMaterialOld[i], 8), IntCircuitIngredient.getIntegratedCircuit(8));
+                //TODO CEu 2.5.0
+//                if (i != UEV) GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(plate, hullMaterialOld[i], 8), IntCircuitIngredient.getIntegratedCircuit(8));
                 //System.out.println("\nDebug- Attempting to remove recipe inputs:\n8x " + hullMaterialOld[i].getLocalizedName() + " plate 8\nIntCircuit Config: 8");
             }
 

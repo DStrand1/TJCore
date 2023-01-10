@@ -42,15 +42,16 @@ public class CircuitRecipes {
         GTRecipeHandler.removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Carbon, 4)}, new FluidStack[]{Epoxy.getFluid(9)});
         GTRecipeHandler.removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Carbon, 8)}, new FluidStack[]{Polybenzimidazole.getFluid(9)});
 
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{
-                        FLUID_CELL_LARGE_STAINLESS_STEEL.getStackForm(),
-                        OreDictUnifier.get(plate, Naquadah, 4),
-                        OreDictUnifier.get(plate, Ruridit, 2),
-                        OreDictUnifier.get(bolt, Trinium, 12),
-                        OreDictUnifier.get(stick, SamariumMagnetic),
-                        OreDictUnifier.get(rotor, Iridium),
-                        ELECTRIC_MOTOR_LuV.getStackForm()},
-                new FluidStack[]{SolderingAlloy.getFluid(144)});
+        //TODO GCYS
+//        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{
+//                        FLUID_CELL_LARGE_STAINLESS_STEEL.getStackForm(),
+//                        OreDictUnifier.get(plate, Naquadah, 4),
+//                        OreDictUnifier.get(plate, Ruridit, 2),
+//                        OreDictUnifier.get(bolt, Trinium, 12),
+//                        OreDictUnifier.get(stick, SamariumMagnetic),
+//                        OreDictUnifier.get(rotor, Iridium),
+//                        ELECTRIC_MOTOR_LuV.getStackForm()},
+//                new FluidStack[]{SolderingAlloy.getFluid(144)});
         GTRecipeHandler.removeRecipesByInputs(CHEMICAL_BATH_RECIPES, new ItemStack[]{CARBON_FIBERS.getStackForm(1)}, new FluidStack[]{Epoxy.getFluid(144)});
         GTRecipeHandler.removeRecipesByInputs(CHEMICAL_BATH_RECIPES, new ItemStack[]{OreDictUnifier.get(wireFine, BorosilicateGlass)}, new FluidStack[]{Epoxy.getFluid(144)});
     }

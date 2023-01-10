@@ -5,6 +5,10 @@ import TJCore.common.blocks.TJMetaBlocks;
 import TJCore.common.metaitem.TJMetaItems;
 import TJCore.common.metatileentities.TJMetaTileEntities;
 import codechicken.lib.CodeChickenLib;
+import gregicality.science.GregicalityScience;
+import gregicality.science.api.utils.GCYSLog;
+import gregicality.science.common.block.GCYSMetaBlocks;
+import gregicality.science.common.items.GCYSMetaItems;
 import gregtech.api.GTValues;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -24,8 +28,8 @@ public class TJCore {
     public static CommonProxy proxy;
 
     @Mod.EventHandler
-    public void onConstruction(FMLConstructionEvent event) {
-
+    public void onModConstruction(FMLConstructionEvent event) {
+        GTValues.HT = true;
     }
 
     @Mod.EventHandler
@@ -35,6 +39,14 @@ public class TJCore {
         TJSounds.registerSounds();
         TJMetaBlocks.init();
         proxy.preInit();
+
+        // TODO GCYS
+        GCYSLog.init(event.getModLog());
+
+        GCYSMetaItems.initMetaItems();
+        GCYSMetaBlocks.init();
+
+        GregicalityScience.proxy.preLoad();
     }
 
     @Mod.EventHandler

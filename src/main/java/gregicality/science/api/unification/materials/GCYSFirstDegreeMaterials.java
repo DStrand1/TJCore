@@ -4,6 +4,7 @@ import gregtech.api.GTValues;
 import gregtech.api.fluids.fluidType.FluidTypes;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.material.info.MaterialFlags;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.unification.material.properties.BlastProperty;
 
@@ -975,6 +976,13 @@ public class GCYSFirstDegreeMaterials {
                 .color(7914475)
                 .iconSet(MaterialIconSet.METALLIC)
                 .components(Materials.Aluminium, 2, Materials.Oxygen, 3)
+                .build();
+
+        // TODO Using CEu ID for the ore work
+        ChloroplatinicAcid = new Material.Builder(459, "chloroplatinic_acid")
+                .fluid(FluidTypes.ACID).color(16729670)
+                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .components(Materials.Hydrogen, 2, Materials.Platinum, 1, Materials.Chlorine, 6)
                 .build();
     }
 }

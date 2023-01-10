@@ -127,7 +127,9 @@ public class MaterialRecipes {
         removeSmeltingDecomp(NickelPlatedTin);
         removePlateDecomp(NickelPlatedTin, 18, 55, 73);
         removeFoilDecomp(NickelPlatedTin, 24);
-        removeDoublePlateDecomp(NickelPlatedTin, 98);
+
+        //TODO CEu 2.5.0
+//        removeDoublePlateDecomp(NickelPlatedTin, 98);
         removeBlockIngotNuggetChunkDecomp(NickelPlatedTin);
 
 
