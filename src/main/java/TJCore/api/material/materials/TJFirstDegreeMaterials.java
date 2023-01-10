@@ -1,16 +1,13 @@
 package TJCore.api.material.materials;
 
-import static TJCore.api.TJOreDictionaryLoader.GENERATE_NANOFOIL;
-import static TJCore.api.TJOreDictionaryLoader.GENERATE_NANOWIRE;
-import static gregicality.science.api.unification.materials.GCYSMaterials.*;
-
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.unification.material.properties.*;
 
+import static TJCore.api.TJOreDictionaryLoader.GENERATE_NANOFOIL;
+import static TJCore.api.TJOreDictionaryLoader.GENERATE_NANOWIRE;
 import static TJCore.api.material.TJMaterials.*;
-
-
+import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 
@@ -25,19 +22,17 @@ public class TJFirstDegreeMaterials {
                 .ingot().fluid()
                 .blastTemp(1100)
                 .color(1755371).iconSet(MaterialIconSet.DULL)
-                .flags(SetMaterialFlags(STANDARDPLATE, STANDARDROD, STANDARDROTOR, STANDARDGEAR, STANDARDSPRING, STANDARDCASING))
+                .flags(setMaterialFlags(STANDARDPLATE, STANDARDROD, STANDARDROTOR, STANDARDGEAR, STANDARDSPRING, STANDARDCASING))
                 .components(Aluminium, 5, Magnesium, 1, Manganese, 1)
                 .build();
 
         BT6 = new Material.Builder(25001, "bt_6")
                 .ingot().fluid()
                 .colorAverage().iconSet(MaterialIconSet.SHINY)
-                .flags(SetMaterialFlags(STANDARDPLATE, STANDARDROD, STANDARDROTOR, STANDARDGEAR, STANDARDSPRING))
+                .flags(setMaterialFlags(STANDARDPLATE, STANDARDROD, STANDARDROTOR, STANDARDGEAR, STANDARDSPRING))
                 .components(Iron, 3, Carbon, 1, Vanadium, 5, Titanium, 40, Aluminium, 6)
                 .blastTemp(3400)
                 .build();
-
-
 
         TriphenylPhosphine  = new Material.Builder(25002,"triphenylphosphine")
                 .dust()
@@ -71,14 +66,14 @@ public class TJFirstDegreeMaterials {
         Draconium = new Material.Builder(25007, "draconium")
                 .ingot().fluid()
                 .color(0x573d85).iconSet(MaterialIconSet.DULL)
-                .flags(SetMaterialFlags(STANDARDPLATE, STANDARDCASING))
+                .flags(setMaterialFlags(STANDARDPLATE, STANDARDCASING))
                 .build();
 
         SilicaCeramic = new Material.Builder(25008,"silicaceramic")
                 .ingot()
                 .blastTemp(1000)
                 .color(0x8c7a50).iconSet(MaterialIconSet.SHINY)
-                .flags(SetMaterialFlags(STANDARDPLATE,STANDARDROD,STANDARDFOIL,STANDARDROUND))
+                .flags(setMaterialFlags(STANDARDPLATE,STANDARDROD,STANDARDFOIL,STANDARDROUND))
                 .build();
 
         NickelPlatedTin = new Material.Builder(25009, "nickelplatedtin")
@@ -91,7 +86,7 @@ public class TJFirstDegreeMaterials {
                 .fluid()
                 .ingot()
                 .color(0xbfb393)
-                .flags(SetMaterialFlags(STANDARDWIREFINE,STANDARDFOIL))
+                .flags(setMaterialFlags(STANDARDWIREFINE,STANDARDFOIL))
                 .build();
 
         HydrogenSilsesquioxane = new Material.Builder(25012, "hydrogensilsesquioxane")
@@ -183,6 +178,7 @@ public class TJFirstDegreeMaterials {
                 .dust()
                 .iconSet(MaterialIconSet.SHINY)
                 .color(Cobalt.getMaterialRGB())
+                .element(Co60)
                 .build()
                 .setFormula("Co-60", false);
 

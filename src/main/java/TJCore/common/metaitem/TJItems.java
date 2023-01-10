@@ -22,9 +22,6 @@ public class TJItems {
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> r = event.getRegistry();
         ImmutableList.Builder<Item> simpleItems = ImmutableList.builder();
-
-        
-
     }
 
     public static <T extends Item> T register(IForgeRegistry<Item> r, String name, T item, CreativeTabs ct) {
@@ -34,6 +31,4 @@ public class TJItems {
         r.register(item);
         return item;
     }
-
-
 }

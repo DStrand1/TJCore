@@ -1,14 +1,26 @@
 package TJCore.common.recipes;
+
 import TJCore.common.blocks.BlockBearing;
 import TJCore.common.blocks.BlockTurbineBlades;
 import TJCore.common.blocks.TJMetaBlocks;
-import gregtech.api.GTValues;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.recipes.GTRecipeHandler;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
+import gregtech.api.unification.stack.ItemMaterialInfo;
+import gregtech.api.unification.stack.MaterialStack;
+import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.common.blocks.BlockMachineCasing;
+import gregtech.common.blocks.BlockSteamCasing;
+import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
+import gregtech.loaders.recipe.CraftingComponent;
+import gregtech.loaders.recipe.MetaTileEntityLoader;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 import static TJCore.api.TJComponents.*;
 import static TJCore.api.material.TJMaterials.*;
@@ -17,35 +29,17 @@ import static TJCore.common.metaitem.TJMetaItems.*;
 import static TJCore.common.metatileentities.TJMetaTileEntities.*;
 import static TJCore.common.recipes.GTComponents.tierCircuitNames;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
-
-import gregtech.api.unification.stack.ItemMaterialInfo;
-import gregtech.api.unification.stack.MaterialStack;
-import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.common.blocks.BlockMachineCasing;
-import gregtech.common.blocks.BlockSteamCasing;
-import gregtech.common.blocks.MetaBlocks;
-import gregtech.common.metatileentities.MetaTileEntities;
-import gregtech.loaders.OreDictionaryLoader;
-import gregtech.loaders.recipe.CraftingComponent;
-import gregtech.loaders.recipe.MetaTileEntityLoader;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.common.Mod;
-import scala.Char;
-import scala.tools.cmd.Meta;
-import scala.tools.cmd.gen.AnyValReps;
-
 import static gregtech.api.GTValues.*;
+import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
+import static gregtech.api.unification.material.Materials.*;
+import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.blocks.MetaBlocks.MACHINE_CASING;
-import static gregtech.common.items.MetaItems.*;
+import static gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LV;
 import static gregtech.common.metatileentities.MetaTileEntities.*;
 import static gregtech.loaders.recipe.CraftingComponent.*;
 
 public class MachineRecipes {
+
     static BlockMachineCasing.MachineCasingType[] machineCasingTypes = new BlockMachineCasing.MachineCasingType[] {BlockMachineCasing.MachineCasingType.ULV, BlockMachineCasing.MachineCasingType.LV, BlockMachineCasing.MachineCasingType.MV, BlockMachineCasing.MachineCasingType.HV, BlockMachineCasing.MachineCasingType.EV, BlockMachineCasing.MachineCasingType.IV, BlockMachineCasing.MachineCasingType.LuV, BlockMachineCasing.MachineCasingType.ZPM, BlockMachineCasing.MachineCasingType.UV, BlockMachineCasing.MachineCasingType.UHV, BlockMachineCasing.MachineCasingType.UEV, BlockMachineCasing.MachineCasingType.UIV, BlockMachineCasing.MachineCasingType.UXV, BlockMachineCasing.MachineCasingType.OpV, BlockMachineCasing.MachineCasingType.MAX};
     static Material[] cableGtSingleOld = new Material[]{RedAlloy, Tin, Copper, Gold, Aluminium, Platinum, NiobiumTitanium, VanadiumGallium, YttriumBariumCuprate, Europium};
     static Material[] hullPolymerOld = new Material[]{Polyethylene, Polyethylene, Polyethylene, Polyethylene, Polyethylene, Polytetrafluoroethylene, Polytetrafluoroethylene, Polybenzimidazole, Polybenzimidazole, Polybenzimidazole};
@@ -116,12 +110,10 @@ public class MachineRecipes {
             ));
 
             ModHandler.addShapedRecipe("machine_casing_" + VN[i].toLowerCase(), MACHINE_CASING.getItemVariant(machineCasingTypes[i]),
-                    "BHB","PFP","BSB",
+                    "BhB","PFP","BdB",
                     'B', new UnificationEntry(bolt, secondaryHullMaterial[i]),
                     'P', new UnificationEntry(plate, hullMaterialNew[i]),
-                    'F', new UnificationEntry(frameGt, hullMaterialNew[i]),
-                    'H', HARD_HAMMER,
-                    'S', SCREWDRIVER
+                    'F', new UnificationEntry(frameGt, hullMaterialNew[i])
             );
             ModHandler.addShapedRecipe(MetaTileEntities.HULL[i].getMetaName(), MetaTileEntities.HULL[i].getStackForm(),
                     "   ","PMP","CHC",
@@ -198,7 +190,7 @@ public class MachineRecipes {
         ModHandler.addShapedRecipe("primitive_tree_farmer", PRIMITIVE_TREE_FARMER.getStackForm(),
                 "GAG", "DBD", "PCP",
                 'G', OreDictUnifier.get(gearSmall, Bronze),
-                'A', OreDictUnifier.get(toolHeadAxe, Invar),
+                'A', OreDictUnifier.get(plate, Invar), //TODO find replacement for toolHeadAxe
                 'D', new ItemStack(Blocks.DIRT),
                 'B', new ItemStack(Blocks.BRICK_BLOCK),
                 'P', OreDictUnifier.get(pipeNormalFluid, Wood),

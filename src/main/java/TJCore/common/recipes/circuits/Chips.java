@@ -1,28 +1,22 @@
 package TJCore.common.recipes.circuits;
 
-import TJCore.common.metaitem.TJMetaItem;
 import TJCore.common.metaitem.TJMetaItems;
-import gregicality.science.api.recipes.GCYSRecipeMaps;
-import gregicality.science.loaders.recipe.chain.KaptonChain;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.stack.UnificationEntry;
 
-
-import static TJCore.api.TJOreDictionaryLoader.*;
 import static TJCore.api.material.TJMaterials.*;
 import static TJCore.common.metaitem.TJMetaItems.*;
-import static TJCore.common.recipes.recipemaps.TJRecipeMaps.*;
+import static TJCore.common.recipes.recipemaps.TJRecipeMaps.LAMINATOR_RECIPES;
+import static TJCore.common.recipes.recipemaps.TJRecipeMaps.PRINTER_RECIPES;
+import static gregicality.science.api.recipes.GCYSRecipeMaps.CVD_RECIPES;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
-import static gregicality.science.api.recipes.GCYSRecipeMaps.*;
-import static gregicality.science.common.items.GCYSMetaItems.*;
+import static gregicality.science.common.items.GCYSMetaItems.VACUUM_TUBE_COMPONENTS;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.api.unification.ore.OrePrefix.ingot;
 import static gregtech.common.items.MetaItems.*;
 
 
@@ -433,7 +427,7 @@ public class Chips {
                 .input(DIRTY_COATED_SAPPHIRE_WAFER)
                 .fluidInputs(Dysprosium.getFluid(144))
                 .output(CLEANED_COATED_SAPPHIRE_WAFER)
-                .output(chunk,Dysprosium, 4)
+                .output(ingot, Dysprosium) //TODO 4 Chunks
                 .buildAndRegister();
 
         AUTOCLAVE_RECIPES.recipeBuilder()

@@ -1,17 +1,12 @@
 package TJCore.common.recipes.polymers;
 
-import static gregicality.science.api.unification.materials.GCYSMaterials.*;
-
 import static TJCore.api.material.TJMaterials.*;
-import static gregicality.science.api.unification.materials.GCYSMaterials.Acetylene;
-import static gregicality.science.api.unification.materials.GCYSMaterials.PhosphorusTrichloride;
+import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregtech.api.GTValues.*;
-import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES;
+import static gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
-
-
-
+import static gregtech.api.unification.ore.OrePrefix.dust;
 
 public class LadderPPPChain {
     public static void register() {

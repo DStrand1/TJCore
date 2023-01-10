@@ -1,11 +1,8 @@
 package TJCore.common.metatileentities.multi.electric;
 
 import TJCore.common.recipes.recipemaps.TJRecipeMaps;
-import gregicality.multiblocks.api.render.GCYMTextures;
-import gregicality.multiblocks.api.unification.GCYMMaterials;
 import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
-import gregicality.multiblocks.common.block.blocks.BlockUniqueCasing;
 import gregicality.science.common.block.GCYSMetaBlocks;
 import gregicality.science.common.block.blocks.BlockGCYSMultiblockCasing;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -22,9 +19,7 @@ import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.BlockMetalCasing;
-import gregtech.common.blocks.BlockMultiblockCasing;
 import gregtech.common.blocks.MetaBlocks;
-import javafx.scene.paint.Material;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;

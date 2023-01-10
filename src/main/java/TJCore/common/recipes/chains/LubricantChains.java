@@ -1,20 +1,16 @@
 package TJCore.common.recipes.chains;
 
-//import crafttprweaker.api.item.IItemStack;
-//import gregtech.api.unification.OreDictUnifier;
-
-import static gregicality.science.api.unification.materials.GCYSMaterials.*;
+import static TJCore.api.material.TJMaterials.Difluoroethane;
+import static TJCore.api.material.TJMaterials.TriphenylPhosphine;
+import static gregicality.science.api.unification.materials.GCYSMaterials.Acetylene;
+import static gregicality.science.api.unification.materials.GCYSMaterials.PhosphorusTrichloride;
+import static gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
-
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
-import static TJCore.api.material.TJMaterials.*;
+import static gregtech.api.unification.ore.OrePrefix.dust;
 
 public class LubricantChains {
 
     public static void loadRecipes() {
-
-
         CHEMICAL_RECIPES.recipeBuilder()
                 .fluidInputs(Chlorine.getFluid(3000))
                 .input(dust, Phosphorus)

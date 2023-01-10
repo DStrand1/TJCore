@@ -1,43 +1,40 @@
 package TJCore.api.material;
+
 import gregtech.api.unification.Element;
 import gregtech.api.unification.Elements;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 
-import java.util.*;
 
+public final class TJMaterials {
 
-public class TJMaterials {
+    //Isotopes
+    public static final Element Co60 = Elements.add(27L, 33L, -1L, null, "Cobalt-60", "Co-60", true);
+
     public static Material[] doNotGenerate = new Material[]{Carbon};
     public static Material[] longDistanceWireMaterials = new Material[]{Manganese, Bismuth, Antimony, Gallium, Vanadium};
 
-    public static List<MaterialFlag> STANDARDPLATE = new ArrayList<MaterialFlag>(Arrays.asList(GENERATE_PLATE, GENERATE_DENSE, EXCLUDE_BLOCK_CRAFTING_BY_HAND_RECIPES));
-    public static List<MaterialFlag> STANDARDWIREFINE = new ArrayList<MaterialFlag>(Arrays.asList(GENERATE_FINE_WIRE));
-    public static List<MaterialFlag> STANDARDFOIL = new ArrayList<MaterialFlag>(Arrays.asList(GENERATE_FOIL));
-    public static List<MaterialFlag> STANDARDROD = new ArrayList<MaterialFlag>(Arrays.asList(GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_BOLT_SCREW));
-    public static List<MaterialFlag> STANDARDROTOR = new ArrayList<MaterialFlag>(Arrays.asList(GENERATE_ROTOR, GENERATE_RING));
-    public static List<MaterialFlag> STANDARDGEAR = new ArrayList<MaterialFlag>(Arrays.asList(GENERATE_GEAR, GENERATE_SMALL_GEAR));
-    public static List<MaterialFlag> STANDARDSPRING = new ArrayList<MaterialFlag>(Arrays.asList(GENERATE_SPRING, GENERATE_SPRING_SMALL));
-    public static List<MaterialFlag> STANDARDROUND = new ArrayList<MaterialFlag>(Arrays.asList(GENERATE_ROUND));
-    public static List<MaterialFlag> STANDARDLENS = new ArrayList<MaterialFlag>(Arrays.asList(GENERATE_LENS));
+    public static List<MaterialFlag> STANDARDPLATE = new ArrayList<>(Arrays.asList(GENERATE_PLATE, GENERATE_DENSE, EXCLUDE_BLOCK_CRAFTING_BY_HAND_RECIPES));
+    public static List<MaterialFlag> STANDARDWIREFINE = new ArrayList<>(Collections.singletonList(GENERATE_FINE_WIRE));
+    public static List<MaterialFlag> STANDARDFOIL = new ArrayList<>(Collections.singletonList(GENERATE_FOIL));
+    public static List<MaterialFlag> STANDARDROD = new ArrayList<>(Arrays.asList(GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_BOLT_SCREW));
+    public static List<MaterialFlag> STANDARDROTOR = new ArrayList<>(Arrays.asList(GENERATE_ROTOR, GENERATE_RING));
+    public static List<MaterialFlag> STANDARDGEAR = new ArrayList<>(Arrays.asList(GENERATE_GEAR, GENERATE_SMALL_GEAR));
+    public static List<MaterialFlag> STANDARDSPRING = new ArrayList<>(Arrays.asList(GENERATE_SPRING, GENERATE_SPRING_SMALL));
+    public static List<MaterialFlag> STANDARDROUND = new ArrayList<>(Collections.singletonList(GENERATE_ROUND));
+    public static List<MaterialFlag> STANDARDLENS = new ArrayList<>(Collections.singletonList(GENERATE_LENS));
 
-    public static List<MaterialFlag> STANDARDCASING = new ArrayList<MaterialFlag>(Arrays.asList(GENERATE_FRAME));
-    public static List<MaterialFlag> STANDARDGEM = new ArrayList<MaterialFlag>(Arrays.asList(GENERATE_LENS, HIGH_SIFTER_OUTPUT));
+    public static List<MaterialFlag> STANDARDCASING = new ArrayList<>(Collections.singletonList(GENERATE_FRAME));
+    public static List<MaterialFlag> STANDARDGEM = new ArrayList<>(Arrays.asList(GENERATE_LENS, HIGH_SIFTER_OUTPUT));
 
-    @SafeVarargs
-    public static List<MaterialFlag> SetMaterialFlags(List<MaterialFlag>... materials) {
-        List<MaterialFlag> result = new ArrayList<MaterialFlag>();
-        for(List<MaterialFlag> x : materials) {
-            result.addAll(x);
-        }
-        return result;
-    }
-
-    //Isotopes
-    public static final Element Co60 = Elements.add(27L, 33L, -1L, (String)null, "Cobalt-60", "Co-60", true);
     public static Material Cobalt60;
     public static Material SuperfluidHelium3;
 
@@ -86,7 +83,6 @@ public class TJMaterials {
     public static Material PilledFoilMix;
     public static Material IrradiatingMix;
     public static Material SolderVIPrep;
-
 
     //Chemicals
     public static Material Methyltrichlorosilane;
@@ -143,15 +139,13 @@ public class TJMaterials {
     public static Material SodiumThiocyanatePolymerizationSolution;
     public static Material Cellulose;
 
-    // Metals
-
     // Polymers
     public static Material Polyacrylonitrile;
     public static Material Polyetheretherketone;
+
+    // Metals
     public static Material CarbonNanotubePolymer;
     public static Material Ladder_Poly_P_Phenylene;
-
-
 
     // Mixtures
     public static Material SuspendedPGQD;
@@ -181,4 +175,15 @@ public class TJMaterials {
     public static Material LightQuarks;
     public static Material Leptons;
     public static Material HeavyQuarkDegenerate;
+
+    private TJMaterials() {/**/}
+
+    @SafeVarargs
+    public static List<MaterialFlag> setMaterialFlags(List<MaterialFlag>... materials) {
+        List<MaterialFlag> result = new ArrayList<MaterialFlag>();
+        for (List<MaterialFlag> x : materials) {
+            result.addAll(x);
+        }
+        return result;
+    }
 }

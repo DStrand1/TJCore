@@ -2,14 +2,12 @@ package TJCore.common.recipes.chains;
 
 import gregtech.api.recipes.GTRecipeHandler;
 import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.Element;
 import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
 
 import static TJCore.api.material.TJMaterials.*;
-import static TJCore.common.recipes.GTComponents.*;
+import static TJCore.common.recipes.GTComponents.tierCircuitNames;
 import static gregicality.science.api.recipes.GCYSRecipeMaps.*;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregtech.api.GTValues.*;
@@ -18,10 +16,12 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.blocks.BlockWireCoil.CoilType.CUPRONICKEL;
 import static gregtech.common.items.MetaItems.*;
-import static gregtech.common.metatileentities.MetaTileEntities.*;
+import static gregtech.common.metatileentities.MetaTileEntities.CRACKER;
+import static gregtech.common.metatileentities.MetaTileEntities.DISTILLATION_TOWER;
 
 public class PetrochemRecipes {
-    public static void init(){
+
+    public static void init() {
         machineRecipes();
         removeOvercostRecipes();
         addLowCostRecipes();

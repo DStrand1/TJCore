@@ -1,14 +1,10 @@
 package TJCore.common.recipes.chains;
 
-import TJCore.common.metaitem.TJMetaItems;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.common.items.MetaItems;
-import gregtech.loaders.recipe.CraftingComponent;
 
-import static TJCore.api.material.TJMaterials.*;
-import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
+import static gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 
@@ -36,8 +32,5 @@ public class MagicChains {
                 .EUt(2000)
                 .duration(1200)
                 .buildAndRegister();
-
-
-
     }
 }

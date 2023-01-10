@@ -2,15 +2,17 @@ package TJCore.common.recipes.polymers;
 
 import TJCore.common.metaitem.TJMetaItems;
 
+import static TJCore.api.material.TJMaterials.*;
 import static TJCore.common.metaitem.TJMetaItems.*;
 import static TJCore.common.recipes.recipemaps.TJRecipeMaps.*;
-import static gregicality.science.api.unification.materials.GCYSMaterials.*;
-import static TJCore.api.material.TJMaterials.*;
+import static gregicality.science.api.unification.materials.GCYSMaterials.SodiumCyanide;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.common.items.MetaItems.*;
+import static gregtech.api.unification.ore.OrePrefix.dust;
+import static gregtech.api.unification.ore.OrePrefix.stickLong;
+import static gregtech.common.items.MetaItems.CARBON_FIBERS;
+import static gregtech.common.items.MetaItems.CARBON_MESH;
 
 public class CarbonFiber {
     public static void register() {

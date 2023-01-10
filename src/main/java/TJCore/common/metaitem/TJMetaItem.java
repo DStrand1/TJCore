@@ -1,14 +1,13 @@
 package TJCore.common.metaitem;
 
-import gregtech.api.items.metaitem.*;
-import static gregtech.api.unification.material.MarkerMaterials.*;
-
-
+import gregtech.api.items.metaitem.StandardMetaItem;
 import gregtech.api.unification.ore.OrePrefix;
 
 import static TJCore.common.metaitem.TJMetaItems.*;
+import static gregtech.api.unification.material.MarkerMaterials.Component;
+import static gregtech.api.unification.material.MarkerMaterials.Tier;
 
-public class    TJMetaItem extends StandardMetaItem {
+public class TJMetaItem extends StandardMetaItem {
 
     public TJMetaItem() { super(); }
 

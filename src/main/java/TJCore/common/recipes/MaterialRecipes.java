@@ -1,9 +1,6 @@
 package TJCore.common.recipes;
 
 import TJCore.common.TJConfig;
-import TJCore.common.blocks.BlockBearing;
-import TJCore.common.metaitem.TJMetaItem;
-import TJCore.common.metaitem.TJMetaItems;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.GTRecipeHandler;
 import gregtech.api.recipes.ModHandler;
@@ -11,33 +8,24 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
-
-import static TJCore.api.material.TJMaterials.*;
-import static TJCore.common.metaitem.TJMetaItems.*;
-import static gregicality.science.api.recipes.GCYSRecipeMaps.*;
-import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.*;
-import static gregtech.api.unification.material.Materials.*;
-import static TJCore.common.recipes.recipemaps.TJRecipeMaps.*;
 import gregtech.api.unification.material.properties.DustProperty;
 import gregtech.api.unification.ore.OrePrefix;
-import static gregtech.api.unification.ore.OrePrefix.*;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
-import net.minecraft.client.Minecraft;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemSaddle;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
-import scala.tools.nsc.transform.patmat.Logic;
-import stanhebben.zenscript.type.casting.CastingRuleVirtualMethod;
 
-import static gregtech.api.recipes.RecipeMaps.*;
-
+import static TJCore.api.material.TJMaterials.*;
+import static TJCore.common.metaitem.TJMetaItems.*;
+import static gregicality.science.api.recipes.GCYSRecipeMaps.CVD_RECIPES;
+import static gregicality.science.api.recipes.GCYSRecipeMaps.SONICATION_RECIPES;
+import static gregicality.science.api.unification.materials.GCYSMaterials.Alumina;
 import static gregtech.api.GTValues.*;
-import static gregtech.api.unification.material.info.MaterialFlags.*;
+import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtech.api.unification.material.Materials.*;
+import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME;
+import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 
 public class MaterialRecipes {
@@ -63,6 +51,7 @@ public class MaterialRecipes {
                 .output(dust, SilverLeadOxide, 3)
                 .buildAndRegister();
     }
+
     public static void registerMetals() {
         registerNickelPlatedTin();
         registerGalvanizedSteel();
@@ -95,6 +84,7 @@ public class MaterialRecipes {
     private static void registerFarming() {
 
     }
+
     private static void registerSyntheticDiamond() {
         MIXER_RECIPES.recipeBuilder()
                 .EUt(VA[HV])
@@ -120,11 +110,12 @@ public class MaterialRecipes {
                 .output(gem, SynthDiamond)
                 .buildAndRegister();
     }
+
     private static void registerNickelPlatedTin() {
         OrePrefix[] nickelPlatedTinPrefix = new OrePrefix[]{ingot, plate, plateDouble, foil};
         int tinyQuantity;
         for (OrePrefix prefix : nickelPlatedTinPrefix) {
-            tinyQuantity = (int) ((prefix.getMaterialAmount(Steel))/ M) + 1;
+            tinyQuantity = (int) ((prefix.getMaterialAmount(Steel)) / M) + 1;
             ALLOY_SMELTER_RECIPES.recipeBuilder()
                     .duration(tinyQuantity * 15)
                     .EUt(8)
@@ -140,26 +131,27 @@ public class MaterialRecipes {
         removeBlockIngotNuggetChunkDecomp(NickelPlatedTin);
 
 
-        ((MetaItem) OreDictUnifier.get(dust, NickelPlatedTin).getItem()).getItem(OreDictUnifier.get(dust, NickelPlatedTin)).setInvisible();
-        ((MetaItem) OreDictUnifier.get(dustSmall, NickelPlatedTin).getItem()).getItem(OreDictUnifier.get(dust, NickelPlatedTin)).setInvisible();
-        ((MetaItem) OreDictUnifier.get(dustTiny, NickelPlatedTin).getItem()).getItem(OreDictUnifier.get(dust, NickelPlatedTin)).setInvisible();
-        ((MetaItem) OreDictUnifier.get(chunk, NickelPlatedTin).getItem()).getItem(OreDictUnifier.get(dust, NickelPlatedTin)).setInvisible();
-        ((MetaItem) OreDictUnifier.get(nugget, NickelPlatedTin).getItem()).getItem(OreDictUnifier.get(dust, NickelPlatedTin)).setInvisible();
-        //((MetaItem) OreDictUnifier.get(block, NickelPlatedTin).getItem()).getItem(OreDictUnifier.get(block, NickelPlatedTin)).setInvisible();
+        ((MetaItem<?>) OreDictUnifier.get(dust, NickelPlatedTin).getItem()).getItem(OreDictUnifier.get(dust, NickelPlatedTin)).setInvisible();
+        ((MetaItem<?>) OreDictUnifier.get(dustSmall, NickelPlatedTin).getItem()).getItem(OreDictUnifier.get(dust, NickelPlatedTin)).setInvisible();
+        ((MetaItem<?>) OreDictUnifier.get(dustTiny, NickelPlatedTin).getItem()).getItem(OreDictUnifier.get(dust, NickelPlatedTin)).setInvisible();
+//        ((MetaItem<?>) OreDictUnifier.get(chunk, NickelPlatedTin).getItem()).getItem(OreDictUnifier.get(dust, NickelPlatedTin)).setInvisible(); //TODO Chunks
+        ((MetaItem<?>) OreDictUnifier.get(nugget, NickelPlatedTin).getItem()).getItem(OreDictUnifier.get(dust, NickelPlatedTin)).setInvisible();
+        //((MetaItem<?>) OreDictUnifier.get(block, NickelPlatedTin).getItem()).getItem(OreDictUnifier.get(block, NickelPlatedTin)).setInvisible();
 
     }
+
     private static void registerGalvanizedSteel() {
         OrePrefix[] galvanizedSteelPrefix = new OrePrefix[]{ingot, plate, stick, stickLong, bolt, screw, ring, gear, gearSmall, rotor, round};
         int tinyQuantity;
         for (OrePrefix prefix : galvanizedSteelPrefix) {
-            tinyQuantity = (int) ((prefix.getMaterialAmount(Steel))/ M) + 1;
-             ALLOY_SMELTER_RECIPES.recipeBuilder()
-                     .duration(tinyQuantity * 15)
-                     .EUt(8)
-                     .input(prefix, Steel, 1)
-                     .input(dustTiny, Zinc, tinyQuantity)
-                     .output(prefix, GalvanizedSteel)
-                     .buildAndRegister();
+            tinyQuantity = (int) ((prefix.getMaterialAmount(Steel)) / M) + 1;
+            ALLOY_SMELTER_RECIPES.recipeBuilder()
+                    .duration(tinyQuantity * 15)
+                    .EUt(8)
+                    .input(prefix, Steel, 1)
+                    .input(dustTiny, Zinc, tinyQuantity)
+                    .output(prefix, GalvanizedSteel)
+                    .buildAndRegister();
         }
         removeExtruderBlockIngot(GalvanizedSteel);
         removeRotorDecomp(GalvanizedSteel);
@@ -175,16 +167,20 @@ public class MaterialRecipes {
         removeRoundDecomp(GalvanizedSteel);
         removeRingDecomp(GalvanizedSteel);
 
-        ((MetaItem) OreDictUnifier.get(dust, GalvanizedSteel).getItem()).getItem(OreDictUnifier.get(dust, GalvanizedSteel)).setInvisible();
-        ((MetaItem) OreDictUnifier.get(chunk, GalvanizedSteel).getItem()).getItem(OreDictUnifier.get(dust, GalvanizedSteel)).setInvisible();
-        ((MetaItem) OreDictUnifier.get(dustSmall, GalvanizedSteel).getItem()).getItem(OreDictUnifier.get(dust, GalvanizedSteel)).setInvisible();
-        ((MetaItem) OreDictUnifier.get(nugget, GalvanizedSteel).getItem()).getItem(OreDictUnifier.get(nugget, GalvanizedSteel)).setInvisible();
+        /**
+         * TODO: Use {@link OrePrefix#setIgnored(Material)}
+         */
+        ((MetaItem<?>) OreDictUnifier.get(dust, GalvanizedSteel).getItem()).getItem(OreDictUnifier.get(dust, GalvanizedSteel)).setInvisible();
+//        ((MetaItem<?>) OreDictUnifier.get(chunk, GalvanizedSteel).getItem()).getItem(OreDictUnifier.get(dust, GalvanizedSteel)).setInvisible(); //TODO Chunks
+        ((MetaItem<?>) OreDictUnifier.get(dustSmall, GalvanizedSteel).getItem()).getItem(OreDictUnifier.get(dust, GalvanizedSteel)).setInvisible();
+        ((MetaItem<?>) OreDictUnifier.get(nugget, GalvanizedSteel).getItem()).getItem(OreDictUnifier.get(nugget, GalvanizedSteel)).setInvisible();
         //TODO: remove this shit block with groovy, you cant cast
-        //((MetaItem) OreDictUnifier.get(block, GalvanizedSteel).getItem()).getItem(OreDictUnifier.get(dust, GalvanizedSteel)).setInvisible();
-        ((MetaItem) OreDictUnifier.get(dustTiny, GalvanizedSteel).getItem()).getItem(OreDictUnifier.get(dust, GalvanizedSteel)).setInvisible();
+        //((MetaItem<?>) OreDictUnifier.get(block, GalvanizedSteel).getItem()).getItem(OreDictUnifier.get(dust, GalvanizedSteel)).setInvisible();
+        ((MetaItem<?>) OreDictUnifier.get(dustTiny, GalvanizedSteel).getItem()).getItem(OreDictUnifier.get(dust, GalvanizedSteel)).setInvisible();
     }
+
     private static void registerAluminumChanges() {
-        ModHandler.addShapedRecipe("alumina_mold", ALUMINA_MOLD.getStackForm(), " B "," F ", " M ",  'F', OreDictUnifier.get(foil, Carbon), 'M', SHAPE_MOLD_INGOT, 'B', OreDictUnifier.get(wireFine, Carbon));
+        ModHandler.addShapedRecipe("alumina_mold", ALUMINA_MOLD.getStackForm(), " B ", " F ", " M ", 'F', OreDictUnifier.get(foil, Carbon), 'M', SHAPE_MOLD_INGOT, 'B', OreDictUnifier.get(wireFine, Carbon));
         ModHandler.addShapelessRecipe("full_alumina_mold", FULL_ALUMINA_MOLD.getStackForm(),
                 ALUMINA_MOLD.getStackForm(),
                 new UnificationEntry(dust, Alumina),
@@ -203,6 +199,7 @@ public class MaterialRecipes {
                 .output(ingot, Aluminium, 2)
                 .buildAndRegister();
     }
+
     private static void registerSteelChanges() {
         GTRecipeHandler.removeAllRecipes(PRIMITIVE_BLAST_FURNACE_RECIPES);
         Material[] fuels = new Material[]{Coal, Charcoal, Coke};
@@ -225,6 +222,7 @@ public class MaterialRecipes {
             }
         }
     }
+
     private static void registerCeramics() {
 
         FURNACE_RECIPES.recipeBuilder()
@@ -235,14 +233,14 @@ public class MaterialRecipes {
                 .buildAndRegister();
 
         BLAST_RECIPES.recipeBuilder()
-                .input(dust,SiliconDioxide,6)
+                .input(dust, SiliconDioxide, 6)
                 .output(ingot, SilicaCeramic, 6)
                 .EUt(30)
                 .duration(420)
                 .buildAndRegister();
 
         ALLOY_SMELTER_RECIPES.recipeBuilder()
-                .input(dust,SiliconDioxide,6)
+                .input(dust, SiliconDioxide, 6)
                 .input(dustTiny, Nickel)
                 .output(ingot, SilicaCeramic, 6)
                 .EUt(VA[0])
@@ -259,28 +257,19 @@ public class MaterialRecipes {
                 .buildAndRegister();
 
         ModHandler.addShapedRecipe("tiny_fluid_pipe_ceramic", OreDictUnifier.get(pipeTinyFluid, SilicaCeramic, 2),
-                "   "," S ","HPW",
-                'S', SAW,
-                'H', HARD_HAMMER,
-                'W', WRENCH,
+                "   ", " s ", "hPw",
                 'P', OreDictUnifier.get(plate, SilicaCeramic));
 
         ModHandler.addShapedRecipe("small_fluid_pipe_ceramic", OreDictUnifier.get(pipeSmallFluid, SilicaCeramic),
-                "   ","WPH","   ",
-                'W', WRENCH,
-                'H', HARD_HAMMER,
+                "   ", "wPh", "   ",
                 'P', OreDictUnifier.get(plate, SilicaCeramic));
 
         ModHandler.addShapedRecipe("normal_fluid_pipe_ceramic", OreDictUnifier.get(pipeNormalFluid, SilicaCeramic),
-                "   ","PPP","W H",
-                'W', WRENCH,
-                'H', HARD_HAMMER,
+                "   ", "PPP", "w h",
                 'P', OreDictUnifier.get(plate, SilicaCeramic));
 
         ModHandler.addShapedRecipe("large_fluid_pipe_ceramic", OreDictUnifier.get(pipeLargeFluid, SilicaCeramic),
-                "PPP","W H","PPP",
-                'W', WRENCH,
-                'H', HARD_HAMMER,
+                "PPP", "w h", "PPP",
                 'P', OreDictUnifier.get(plate, SilicaCeramic));
 
         CHEMICAL_BATH_RECIPES.recipeBuilder()
@@ -292,6 +281,7 @@ public class MaterialRecipes {
                 .buildAndRegister();
 
     }
+
     private static void registerModifiedDecomp() {
         ELECTROLYZER_RECIPES.recipeBuilder()
                 .duration(55)
@@ -301,8 +291,9 @@ public class MaterialRecipes {
                 .output(dust, Sulfur, 3)
                 .buildAndRegister();
     }
+
     public static void registerFrames(OrePrefix prefix, Material mat, DustProperty property) {
-        if(mat.hasFlag(GENERATE_FRAME)) {
+        if (mat.hasFlag(GENERATE_FRAME)) {
             ModHandler.removeRecipeByName(String.format("gregtech:frame_%s", mat));
             ModHandler.addShapedRecipe(String.format("frame1_%s", mat),
                     OreDictUnifier.get(prefix, mat, 1),
@@ -320,9 +311,10 @@ public class MaterialRecipes {
                     .buildAndRegister();
         }
     }
+
     public static void registerMetalCasings() {
 
-        if(TJConfig.recipes.harderMetalCasings) {
+        if (TJConfig.recipes.harderMetalCasings) {
             ModHandler.removeRecipeByName("gregtech:casing_coke_bricks");
             ModHandler.removeRecipeByName("gregtech:casing_bronze_bricks");
             ModHandler.removeRecipeByName("gregtech:casing_steel_solid");
@@ -351,9 +343,11 @@ public class MaterialRecipes {
         GTRecipeHandler.removeRecipesByInputs(BENDER_RECIPES, OreDictUnifier.get(plate, material), IntCircuitIngredient.getIntegratedCircuit(1));
         ModHandler.removeRecipes(OreDictUnifier.get(foil, material, 2));
     }
+
     private static void removeDoublePlateDecomp(Material material, int gasAmount) {
         GTRecipeHandler.removeRecipesByInputs(ARC_FURNACE_RECIPES, new ItemStack[]{OreDictUnifier.get(plateDouble, material)}, new FluidStack[]{Oxygen.getFluid(gasAmount)});
     }
+
     private static void removeRodLongDecomp(Material material) {
         GTRecipeHandler.removeRecipesByInputs(EXTRUDER_RECIPES, OreDictUnifier.get(dust, material), SHAPE_EXTRUDER_ROD_LONG.getStackForm());
         GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(stickLong, material));
@@ -365,6 +359,7 @@ public class MaterialRecipes {
         GTRecipeHandler.removeRecipesByInputs(CUTTER_RECIPES, new ItemStack[]{OreDictUnifier.get(stickLong, material)}, new FluidStack[]{DistilledWater.getFluid(3)});
         GTRecipeHandler.removeRecipesByInputs(CUTTER_RECIPES, new ItemStack[]{OreDictUnifier.get(stickLong, material)}, new FluidStack[]{Water.getFluid(4)});
     }
+
     private static void removeGearDecomp(Material material) {
         GTRecipeHandler.removeRecipesByInputs(EXTRUDER_RECIPES, OreDictUnifier.get(dust, material, 4), SHAPE_EXTRUDER_GEAR.getStackForm());
         GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(gear, material));
@@ -372,65 +367,75 @@ public class MaterialRecipes {
         GTRecipeHandler.removeRecipesByInputs(ALLOY_SMELTER_RECIPES, OreDictUnifier.get(ingot, material, 8), SHAPE_MOLD_GEAR.getStackForm());
         ModHandler.removeRecipes(OreDictUnifier.get(gear, material));
     }
+
     private static void removeSmallGearDecomp(Material material) {
         GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(gearSmall, material));
         GTRecipeHandler.removeRecipesByInputs(EXTRUDER_RECIPES, OreDictUnifier.get(ingot, material), SHAPE_EXTRUDER_GEAR_SMALL.getStackForm());
         GTRecipeHandler.removeRecipesByInputs(EXTRUDER_RECIPES, OreDictUnifier.get(dust, material), SHAPE_EXTRUDER_GEAR_SMALL.getStackForm());
-        GTRecipeHandler.removeRecipesByInputs(ALLOY_SMELTER_RECIPES, OreDictUnifier.get(ingot, material,2), SHAPE_MOLD_GEAR_SMALL.getStackForm());
+        GTRecipeHandler.removeRecipesByInputs(ALLOY_SMELTER_RECIPES, OreDictUnifier.get(ingot, material, 2), SHAPE_MOLD_GEAR_SMALL.getStackForm());
         ModHandler.removeRecipes(OreDictUnifier.get(gearSmall, material));
     }
+
     private static void removePlateDecomp(Material material, int lube, int distilled, int water) {
         GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(plate, material));
         GTRecipeHandler.removeRecipesByInputs(CUTTER_RECIPES, new ItemStack[]{OreDictUnifier.get(block, material)}, new FluidStack[]{Lubricant.getFluid(lube)});
         GTRecipeHandler.removeRecipesByInputs(CUTTER_RECIPES, new ItemStack[]{OreDictUnifier.get(block, material)}, new FluidStack[]{DistilledWater.getFluid(distilled)});
         GTRecipeHandler.removeRecipesByInputs(CUTTER_RECIPES, new ItemStack[]{OreDictUnifier.get(block, material)}, new FluidStack[]{Water.getFluid(water)});
     }
+
     private static void removeFrameDecomp(Material material) {
         GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(frameGt, material));
     }
+
     private static void removeBlockIngotNuggetChunkDecomp(Material material) {
         GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(nugget, material));
         GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(block, material));
-        GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(chunk, material));
+//        GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(chunk, material)); //TODO Chunks
         GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(ingot, material));
         GTRecipeHandler.removeRecipesByInputs(ALLOY_SMELTER_RECIPES, OreDictUnifier.get(block, material), SHAPE_MOLD_INGOT.getStackForm());
         GTRecipeHandler.removeRecipesByInputs(ALLOY_SMELTER_RECIPES, OreDictUnifier.get(nugget, material, 9), SHAPE_MOLD_INGOT.getStackForm());
-        GTRecipeHandler.removeRecipesByInputs(ALLOY_SMELTER_RECIPES, OreDictUnifier.get(chunk, material, 4), SHAPE_MOLD_INGOT.getStackForm());
+//        GTRecipeHandler.removeRecipesByInputs(ALLOY_SMELTER_RECIPES, OreDictUnifier.get(chunk, material, 4), SHAPE_MOLD_INGOT.getStackForm()); //TODO Chunks
         GTRecipeHandler.removeRecipesByInputs(ALLOY_SMELTER_RECIPES, OreDictUnifier.get(ingot, material, 9), SHAPE_MOLD_BLOCK.getStackForm());
-        GTRecipeHandler.removeRecipesByInputs(ALLOY_SMELTER_RECIPES, OreDictUnifier.get(ingot, material), SHAPE_MOLD_CHUNK.getStackForm());
+//        GTRecipeHandler.removeRecipesByInputs(ALLOY_SMELTER_RECIPES, OreDictUnifier.get(ingot, material), SHAPE_MOLD_CHUNK.getStackForm()); //TODO Chunks
         GTRecipeHandler.removeRecipesByInputs(ALLOY_SMELTER_RECIPES, OreDictUnifier.get(ingot, material), SHAPE_MOLD_NUGGET.getStackForm());
-        ModHandler.removeRecipes(OreDictUnifier.get(chunk, material, 4));
+//        ModHandler.removeRecipes(OreDictUnifier.get(chunk, material, 4)); //TODO Chunks
         ModHandler.removeRecipes(OreDictUnifier.get(nugget, material, 9));
         ModHandler.removeRecipes(OreDictUnifier.get(block, material));
         GTRecipeHandler.removeRecipesByInputs(COMPRESSOR_RECIPES, OreDictUnifier.get(ingot, material, 9));
         GTRecipeHandler.removeRecipesByInputs(COMPRESSOR_RECIPES, OreDictUnifier.get(nugget, material, 9));
-        GTRecipeHandler.removeRecipesByInputs(COMPRESSOR_RECIPES, OreDictUnifier.get(chunk, material, 4));
+//        GTRecipeHandler.removeRecipesByInputs(COMPRESSOR_RECIPES, OreDictUnifier.get(chunk, material, 4)); //TODO Chunks
         ModHandler.removeRecipes(OreDictUnifier.get(ingot, material, 9));
         ModHandler.removeRecipes(OreDictUnifier.get(ingot, material));
     }
-    private static void removeExtruderBlockIngot(Material material){
+
+    private static void removeExtruderBlockIngot(Material material) {
         GTRecipeHandler.removeRecipesByInputs(EXTRUDER_RECIPES, OreDictUnifier.get(dust, material), SHAPE_EXTRUDER_INGOT.getStackForm());
         GTRecipeHandler.removeRecipesByInputs(EXTRUDER_RECIPES, OreDictUnifier.get(ingot, material, 9), SHAPE_EXTRUDER_BLOCK.getStackForm());
     }
+
     private static void removeSmeltingDecomp(Material material) {
         ModHandler.removeFurnaceSmelting(OreDictUnifier.get(dustSmall, material));
         ModHandler.removeFurnaceSmelting(OreDictUnifier.get(dustTiny, material));
     }
+
     private static void removeRoundDecomp(Material material) {
         GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(round, material));
         GTRecipeHandler.removeRecipesByInputs(LATHE_RECIPES, OreDictUnifier.get(nugget, material));
     }
+
     private static void removeRingDecomp(Material material) {
         GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(ring, material));
         GTRecipeHandler.removeRecipesByInputs(EXTRUDER_RECIPES, OreDictUnifier.get(ingot, material), SHAPE_EXTRUDER_RING.getStackForm());
         GTRecipeHandler.removeRecipesByInputs(EXTRUDER_RECIPES, OreDictUnifier.get(dust, material), SHAPE_EXTRUDER_RING.getStackForm());
     }
+
     private static void removeRotorDecomp(Material material) {
         GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(rotor, material));
         ModHandler.removeRecipes(OreDictUnifier.get(rotor, material));
         GTRecipeHandler.removeRecipesByInputs(EXTRUDER_RECIPES, OreDictUnifier.get(ingot, material, 4), SHAPE_EXTRUDER_ROTOR.getStackForm());
         GTRecipeHandler.removeRecipesByInputs(EXTRUDER_RECIPES, OreDictUnifier.get(dust, material, 4), SHAPE_EXTRUDER_ROTOR.getStackForm());
     }
+
     private static void removeBoltScrewDecomp(Material material) {
         GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(bolt, material));
         GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(screw, material));
@@ -446,6 +451,7 @@ public class MaterialRecipes {
         GTRecipeHandler.removeRecipesByInputs(EXTRUDER_RECIPES, OreDictUnifier.get(ingot, material), SHAPE_EXTRUDER_BOLT.getStackForm());
         GTRecipeHandler.removeRecipesByInputs(EXTRUDER_RECIPES, OreDictUnifier.get(dust, material), SHAPE_EXTRUDER_BOLT.getStackForm());
     }
+
     private static void removeRodDecomp(Material material) {
         GTRecipeHandler.removeRecipesByInputs(MACERATOR_RECIPES, OreDictUnifier.get(stick, material));
         GTRecipeHandler.removeRecipesByInputs(LATHE_RECIPES, OreDictUnifier.get(ingot, material));

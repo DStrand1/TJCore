@@ -1,22 +1,18 @@
 package TJCore.api;
 
 import TJCore.common.metaitem.TJMetaItems;
-import TJCore.common.metatileentities.SteamDryer;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.items.MetaItems;
 import gregtech.loaders.recipe.CraftingComponent;
+import gregtech.loaders.recipe.CraftingComponent.Component;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static TJCore.api.material.TJMaterials.*;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
-import static gregicality.science.api.unification.materials.GCYSMaterials.Taranium;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
-import gregtech.loaders.recipe.CraftingComponent.*;
 
 public class TJComponents {
     public static Component SUBSTRATE;

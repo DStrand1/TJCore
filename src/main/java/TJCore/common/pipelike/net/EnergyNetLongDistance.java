@@ -4,7 +4,6 @@ import gregtech.api.pipenet.Node;
 import gregtech.api.pipenet.PipeNet;
 import gregtech.api.pipenet.WorldPipeNet;
 import gregtech.api.unification.material.properties.WireProperties;
-import gregtech.common.pipelike.cable.net.EnergyNetWalker;
 import gregtech.common.pipelike.cable.net.RoutePath;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +16,7 @@ public class EnergyNetLongDistance extends PipeNet<WireProperties> {
     private long lastEnergyFluxPerSec;
     private long energyFluxPerSec;
     private long lastTime;
-    private final Map<BlockPos, List<RoutePath>> NET_DATA = new HashMap();
+    private final Map<BlockPos, List<RoutePath>> NET_DATA = new HashMap<>();
 
     protected EnergyNetLongDistance(WorldPipeNet<WireProperties, EnergyNetLongDistance> world) {
         super(world);

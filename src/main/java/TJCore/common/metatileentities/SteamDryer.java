@@ -5,37 +5,25 @@
 
 package TJCore.common.metatileentities;
 
-import gregicality.science.client.render.GCYSGuiTextures;
 import gregicality.science.client.render.GCYSTextures;
-import gregtech.api.GTValues;
-import gregtech.api.capability.impl.FilteredFluidHandler;
-import static gregicality.science.api.recipes.GCYSRecipeMaps.*;
-import gregtech.api.capability.impl.FluidTankList;
 import gregtech.api.capability.impl.NotifiableItemStackHandler;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
-import gregtech.api.gui.widgets.TankWidget;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.SteamMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.client.renderer.texture.Textures;
-import gregtech.common.metatileentities.steam.SteamCompressor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-import static gregtech.api.recipes.ModHandler.getSteam;
+import static gregicality.science.api.recipes.GCYSRecipeMaps.DRYER_RECIPES;
 
 public class SteamDryer extends SteamMetaTileEntity {
+
     public SteamDryer(ResourceLocation metaTileEntityId, boolean isHighPressure) {
         super(metaTileEntityId, DRYER_RECIPES, GCYSTextures.DRYER_OVERLAY, isHighPressure);
     }

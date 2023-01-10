@@ -5,11 +5,8 @@ import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.GTUtility;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.function.Consumer;
+import javax.annotation.Nonnull;
 
 public class CarbonsShittyPredicateMultiRecipeBuilder  extends RecipeBuilder<CarbonsShittyPredicateMultiRecipeBuilder> {
 
@@ -25,7 +22,7 @@ public class CarbonsShittyPredicateMultiRecipeBuilder  extends RecipeBuilder<Car
     public CarbonsShittyPredicateMultiRecipeBuilder(RecipeBuilder<CarbonsShittyPredicateMultiRecipeBuilder> recipeBuilder) {super(recipeBuilder);}
 
     @Override
-    public boolean applyProperty(@NotNull String key, Object value) {
+    public boolean applyProperty(@Nonnull String key, Object value) {
         if(key.equals("pipe") && value instanceof Number) {
             pipeTier(((Number) value).intValue());
             return true;

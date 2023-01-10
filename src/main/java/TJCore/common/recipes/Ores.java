@@ -1,27 +1,8 @@
 package TJCore.common.recipes;
 
-import gregtech.api.recipes.GTRecipeHandler;
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeBuilder;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.properties.OreProperty;
-import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.MaterialStack;
-import gregtech.api.util.GTUtility;
-import gregtech.integration.jei.recipe.primitive.OreByProduct;
-import gregtech.integration.jei.recipe.primitive.OreByProductCategory;
-import net.minecraft.item.ItemStack;
-
-import java.util.Arrays;
-
-//import static gregtech.api.recipes.MatchingMode.IGNORE_FLUIDS;
-import static gregtech.api.unification.material.Materials.*;
-
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
 
 public class Ores {
 

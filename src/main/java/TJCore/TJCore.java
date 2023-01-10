@@ -5,7 +5,6 @@ import TJCore.common.blocks.TJMetaBlocks;
 import TJCore.common.metaitem.TJMetaItems;
 import TJCore.common.metatileentities.TJMetaTileEntities;
 import codechicken.lib.CodeChickenLib;
-import gregicality.science.api.GCYSValues;
 import gregtech.api.GTValues;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;

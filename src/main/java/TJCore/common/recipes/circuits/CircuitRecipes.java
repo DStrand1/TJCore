@@ -8,21 +8,22 @@ import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.common.items.ToolItems;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static TJCore.common.metaitem.TJMetaItems.*;
 import static TJCore.api.material.TJMaterials.*;
-import static TJCore.common.recipes.recipemaps.TJRecipeMaps.*;
-import static gregicality.science.api.recipes.GCYSRecipeMaps.*;
+import static TJCore.common.metaitem.TJMetaItems.*;
+import static TJCore.common.recipes.recipemaps.TJRecipeMaps.FSZM_RECIPES;
+import static TJCore.common.recipes.recipemaps.TJRecipeMaps.LAMINATOR_RECIPES;
+import static gregicality.science.api.recipes.GCYSRecipeMaps.DRYER_RECIPES;
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregtech.api.GTValues.*;
-import static gregtech.api.metatileentity.multiblock.CleanroomType.*;
+import static gregtech.api.metatileentity.multiblock.CleanroomType.CLEANROOM;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -193,9 +194,8 @@ public class CircuitRecipes {
 
         ModHandler.addShapelessRecipe("electronic_board", ELECTRONIC_BOARD.getStackForm(1),
                 new UnificationEntry(foil, SilicaCeramic),
-                KNIFE,
+                ToolItems.KNIFE.getOreDictName(),
                 ELECTRONIC_PREBOARD.getStackForm());
-
     }
 
     private static void integratedBoard() {
@@ -507,10 +507,7 @@ public class CircuitRecipes {
                 .buildAndRegister();
 
         ModHandler.addShapedRecipe("glass_lens_hand", OreDictUnifier.get(lens, Glass),
-                "   ", "FPH", "   ",
-                'P', OreDictUnifier.get(plate, Glass),
-                'F', FILE,
-                'H', HARD_HAMMER);
+                "   ", "fPh", "   ", 'P', OreDictUnifier.get(plate, Glass));
 
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
                 .duration(50)
