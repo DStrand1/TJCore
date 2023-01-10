@@ -1,10 +1,10 @@
 package gregicality.science.client.render;
 
-import TJCore.TJValues;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.relauncher.Side;
+import tjcore.TJValues;
 
 import static gregtech.client.renderer.texture.cube.OrientedOverlayRenderer.OverlayFace.*;
 

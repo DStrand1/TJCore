@@ -1,6 +1,5 @@
 package gregicality.science.common;
 
-import TJCore.TJValues;
 import gregicality.science.GregicalityScience;
 import gregicality.science.common.block.GCYSMetaBlocks;
 import gregicality.science.common.items.GCYSMetaItems;
@@ -23,6 +22,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
+import tjcore.TJValues;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;

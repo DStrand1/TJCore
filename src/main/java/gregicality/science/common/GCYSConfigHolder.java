@@ -1,7 +1,7 @@
 package gregicality.science.common;
 
-import TJCore.TJValues;
 import net.minecraftforge.common.config.Config;
+import tjcore.TJValues;
 
 @Config(modid = TJValues.MODID, name = "gcys_compat_config")
 public class GCYSConfigHolder {

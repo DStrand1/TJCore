@@ -1,9 +1,9 @@
 package gregicality.science.client.render;
 
-import TJCore.TJValues;
 import gregtech.api.gui.resources.TextureArea;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.relauncher.Side;
+import tjcore.TJValues;
 
 @Mod.EventBusSubscriber(modid = TJValues.MODID, value = Side.CLIENT)
 public class GCYSGuiTextures {
