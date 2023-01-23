@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "normal" : { "model" :  "tjcore:axle_pipe"},
+    "facing=up": { "model": "tjcore:axle_pipe" },
+    "facing=down": { "model": "tjcore:axle_pipe", "x": 180 },
+    "facing=east": { "model": "tjcore:axle_pipe", "y": 90, "x": 90 },
+    "facing=south": { "model": "tjcore:axle_pipe", "y": 180, "x": 90 },
+    "facing=west": { "model": "tjcore:axle_pipe", "y": 270, "x": 90 },
+    "facing=north": { "model": "tjcore:axle_pipe", "y": 0, "x": 90 }
+  }
+}
