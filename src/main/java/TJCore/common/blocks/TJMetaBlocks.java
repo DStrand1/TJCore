@@ -1,5 +1,7 @@
 package TJCore.common.blocks;
 
+import TJCore.TJCore;
+import TJCore.common.pipelike.rotation.BlockRotationAxle;
 import TJCore.common.pipelike.rotation.TileEntityRotationAxle;
 import TJCore.common.pipelike.rotation.TileEntityRotationAxleTESR;
 import TJCore.common.pipelike.longdist.BlockCableLongDistance;
@@ -36,6 +38,7 @@ public class TJMetaBlocks {
     public static BlockTurbineBlades TURBINE_BLADES;
 
     //public static BlockRotationPipe AXLE_PIPES;
+    public static BlockRotationAxle ROTATION_AXLE;
 
     public static final BlockCableLongDistance[] LONG_DIST_CABLES = new BlockCableLongDistance[10];
     
@@ -50,6 +53,8 @@ public class TJMetaBlocks {
             LONG_DIST_CABLES[ins.ordinal()] = new BlockCableLongDistance(ins);
             LONG_DIST_CABLES[ins.ordinal()].setRegistryName(ins.getName());
         }
+        ROTATION_AXLE = new BlockRotationAxle();
+        ROTATION_AXLE.setRegistryName("rotation_axle");
 
         //AXLE_PIPES = new BlockRotationPipe(RotationPipeType.NORMAL);
         //AXLE_PIPES.setRegistryName(String.format("rotation_pipe_normal"));
@@ -58,6 +63,7 @@ public class TJMetaBlocks {
     public static void registerTileEntity() {
         GameRegistry.registerTileEntity(TileEntityLongDistanceCable.class, new ResourceLocation(MODID, "cable_long_distance"));
         GameRegistry.registerTileEntity(TileEntityLongDistanceCableTickable.class, new ResourceLocation(MODID, "cable_long_distance_tickable"));
+        GameRegistry.registerTileEntity(TileEntityRotationAxle.class, new ResourceLocation(MODID, "rotation_axle"));
         //GameRegistry.registerTileEntity(TileEntityRotationPipe.class, new ResourceLocation(MODID, "rotation_pipe_normal"));
         //GameRegistry.registerTileEntity(TileEntityRotationPipeTickable.class, new ResourceLocation(MODID, "rotation_pipe_normal_tickable"));
     }
@@ -73,6 +79,7 @@ public class TJMetaBlocks {
         registerItemModel(DRACONIC_CASING);
         registerItemModel(TURBINE_BLADES);
         registerItemModel(BLOCK_BEARING);
+        registerItemModel(ROTATION_AXLE);
     }
 
     @SideOnly(Side.CLIENT)
@@ -80,7 +87,7 @@ public class TJMetaBlocks {
         ModelLoader.setCustomStateMapper(MACHINE, new SimpleStateMapper(MetaTileEntityRenderer.MODEL_LOCATION));
         IStateMapper normalStateMapper = new SimpleStateMapper(CableRenderer.INSTANCE.getModelLocation());
         for (BlockCableLongDistance cable : LONG_DIST_CABLES) ModelLoader.setCustomStateMapper(cable, normalStateMapper);
-
+        ModelLoader.setCustomStateMapper(ROTATION_AXLE, new SimpleStateMapper(new ModelResourceLocation(new ResourceLocation(MODID,"tile/rotation_axle"), null)));
         //normalStateMapper = new SimpleStateMapper(RotationPipeRenderer.INSTANCE.getModelLocation());
         //ModelLoader.setCustomStateMapper(AXLE_PIPES, normalStateMapper);
 

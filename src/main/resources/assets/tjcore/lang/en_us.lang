@@ -14,7 +14,6 @@ tile.turbine_blades.stainless_blades.name=Stainless Steel Turbine Blades
 tile.turbine_blades.titanium_blades.name=Titanium Turbine Blades
 tile.turbine_blades.tungstensteel_blades.name=Tungsteensteel Turbine Blades
 
-tile.pipe.name=Steel Axle
 
 //materials
 material.bt_6=BT6
@@ -532,6 +531,3 @@ metaitem.empty_arc_lamp.name=Empty Arc Lamp
 metaitem.empty_excimer_lamp.name=Empty Excimer Lamp
 metaitem.laser_tube.name=Empty Laser Tube
 
-
-
-behavior.tricorder.torque=Current Torque:

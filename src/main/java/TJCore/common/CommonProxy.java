@@ -7,6 +7,7 @@ import TJCore.api.material.materials.properties.TJPropertyKey;
 import TJCore.common.blocks.TJMetaBlocks;
 import TJCore.common.pipelike.longdist.BlockCableLongDistance;
 import TJCore.common.pipelike.longdist.ItemBlockLongDistanceCable;
+import TJCore.common.pipelike.rotation.ItemBlockRotationAxle;
 import TJCore.common.recipes.*;
 import TJCore.common.recipes.chains.PetrochemRecipes;
 import TJCore.common.recipes.circuits.CircuitRecipes;
@@ -47,6 +48,7 @@ public class CommonProxy {
         registry.register(DRACONIC_CASING);
         registry.register(TURBINE_BLADES);
         registry.register(BLOCK_BEARING);
+        registry.register(ROTATION_AXLE);
         for (int i = 0; i < longDistanceWireMaterials.length; i++) {
             for (BlockCableLongDistance cable : LONG_DIST_CABLES) {
                 cable.addCableMaterial(longDistanceWireMaterials[i], new WireProperties(Math.toIntExact(V[i + 1]), 4, 0));
@@ -63,6 +65,7 @@ public class CommonProxy {
         registry.register(createItemBlock(TURBINE_BLADES, VariantItemBlock::new));
         registry.register(createItemBlock(BLOCK_BEARING, VariantItemBlock::new));
         registry.register(createItemBlock(DRACONIC_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(ROTATION_AXLE, ItemBlockRotationAxle::new));
 
         //registry.register(createItemBlock(AXLE_PIPES, ItemBlockRotationPipe::new));
     }
