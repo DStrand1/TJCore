@@ -101,4 +101,5 @@ public class CommonProxy {
         MachineRecipes.registerMachines();
         MultiblockHatches.init();
     }
+
 }

@@ -87,9 +87,9 @@ public class TJMetaBlocks {
         ModelLoader.setCustomStateMapper(MACHINE, new SimpleStateMapper(MetaTileEntityRenderer.MODEL_LOCATION));
         IStateMapper normalStateMapper = new SimpleStateMapper(CableRenderer.INSTANCE.getModelLocation());
         for (BlockCableLongDistance cable : LONG_DIST_CABLES) ModelLoader.setCustomStateMapper(cable, normalStateMapper);
-        ModelLoader.setCustomStateMapper(ROTATION_AXLE, new SimpleStateMapper(new ModelResourceLocation(new ResourceLocation(MODID, "rotation_axle"), null)));
+        //ModelLoader.setCustomStateMapper(ROTATION_AXLE, new SimpleStateMapper(new ModelResourceLocation(new ResourceLocation(MODID, "rotation_axle"), null)));
 
-        //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRotationAxle.class, new TileEntityRotationAxleTESR());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRotationAxle.class, new TileEntityRotationAxleTESR());
     }
     
     @SideOnly(Side.CLIENT)

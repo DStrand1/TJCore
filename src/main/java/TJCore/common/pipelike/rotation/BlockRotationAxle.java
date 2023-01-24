@@ -1,50 +1,63 @@
 package TJCore.common.pipelike.rotation;
 
+import codechicken.lib.raytracer.CuboidRayTraceResult;
+import codechicken.lib.raytracer.RayTracer;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.tool.IScrewdriverItem;
+import gregtech.api.capability.tool.IWrenchItem;
+import gregtech.api.cover.CoverBehavior;
+import gregtech.api.cover.ICoverable;
+import gregtech.api.items.toolitem.IToolStats;
+import gregtech.api.pipenet.tile.IPipeTile;
+import gregtech.api.pipenet.tile.TileEntityPipeBase;
+import gregtech.common.blocks.BlockFrame;
+import gregtech.common.blocks.FrameItemBlock;
+import gregtech.common.tools.DamageValues;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.property.ExtendedBlockState;
+import net.minecraftforge.common.property.IUnlistedProperty;
+import net.minecraftforge.common.property.PropertyFloat;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BlockRotationAxle extends BlockDirectional implements ITileEntityProvider {
+import javax.annotation.Nonnull;
 
-    public BlockRotationAxle() {
-        super(Material.IRON);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+import static TJCore.TJValues.MODID;
+
+public class BlockRotationAxle extends BlockRotatedPillar implements ITileEntityProvider {
+    public static final PropertyFloat ROTATION = new PropertyFloat("rotation");
+    public BlockRotationAxle()
+    {
+        super(Material.GRASS, MapColor.YELLOW);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.Z));
+        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     }
 
-    @Override
-    protected @NotNull BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING);
-    }
-
-    @Override
-    public boolean hasTileEntity(IBlockState state) {
-        state.withProperty(FACING, EnumFacing.NORTH);
-        return true;
-    }
-
-    public IBlockState withRotation(IBlockState state, Rotation rot) {
-        return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
-    }
-
-    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-        return state.withProperty(FACING, mirrorIn.mirror((EnumFacing)state.getValue(FACING)));
+    protected BlockStateContainer createBlockState() {
+        return new ExtendedBlockState(this, new IProperty[]{AXIS}, new IUnlistedProperty[]{ROTATION});
     }
 
     public boolean isOpaqueCube(IBlockState state) {
@@ -55,39 +68,22 @@ public class BlockRotationAxle extends BlockDirectional implements ITileEntityPr
         return false;
     }
 
-
-    @Nullable
-    @Override
-    public TileEntityRotationAxle createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityRotationAxle();
-    }
-
-    public int getMetaFromState(IBlockState state)
-    {
-        return ((EnumFacing)state.getValue(FACING)).getIndex();
-    }
-
-    public IBlockState getStateFromMeta(int meta)
-    {
-        IBlockState iblockstate = this.getDefaultState();
-        iblockstate = iblockstate.withProperty(FACING, EnumFacing.byIndex(meta));
-        return iblockstate;
-    }
-
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 
-    public @NotNull IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        IBlockState iblockstate = worldIn.getBlockState(pos.offset(facing.getOpposite()));
-        if (iblockstate.getBlock() == Blocks.END_ROD) {
-            EnumFacing enumfacing = (EnumFacing)iblockstate.getValue(FACING);
-            if (enumfacing == facing) {
-                return this.getDefaultState().withProperty(FACING, facing.getOpposite());
-            }
-        }
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        state.withProperty(AXIS, state.getValue(AXIS));
+        return true;
+    }
 
-        return this.getDefaultState().withProperty(FACING, facing);
+    @Nullable
+    @Override
+    public TileEntityRotationAxle createNewTileEntity(World worldIn, int meta) {
+        TileEntityRotationAxle axle =  new TileEntityRotationAxle();
+        axle.updateAxleWhole();
+        return axle;
     }
 }
