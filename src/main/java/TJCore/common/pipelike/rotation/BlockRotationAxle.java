@@ -83,7 +83,7 @@ public class BlockRotationAxle extends BlockRotatedPillar implements ITileEntity
     @Override
     public TileEntityRotationAxle createNewTileEntity(World worldIn, int meta) {
         TileEntityRotationAxle axle =  new TileEntityRotationAxle();
-        axle.updateAxleWhole();
+        //axle.updateAxleWhole();
         return axle;
     }
 }

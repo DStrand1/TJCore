@@ -6,6 +6,7 @@ import gregtech.api.util.GTUtility;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
@@ -24,7 +25,7 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
 
     //private float rotationSpeed = 0.0f;
     public float prevAngle = 0.0f;
-    private float angle = 0;
+    public float angle = 0;
     private float torque = 0.0f;
 
     private RotationAxleFull axleWhole;
@@ -32,83 +33,51 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
         super();
     }
 
-    public void updateAxleWhole() {
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        if(!world.isRemote)
+            connectToNet();
+    }
+
+    public void connectToNet() {
         BlockPos pos = this.getPos();
         World world = this.getWorld();
-        boolean foundAxle = false;
-        switch (world.getBlockState(pos).getValue(AXIS)){
-            case X: {
-                RotationAxleFull toJoinA = getAdjacent(world, pos, 1, 0, 0);
-                RotationAxleFull toJoinB = getAdjacent(world, pos, -1, 0, 0);
-                if (toJoinA != null && toJoinB != null) {
-                    if (toJoinA.getSize() < toJoinB.getSize()) {
-                        toJoinB.incorperate(toJoinA);
-                        toJoinB.addAxle(this);
-                        foundAxle = true;
-                    } else {
-                        toJoinA.incorperate(toJoinB);
-                        toJoinA.addAxle(this);
-                        foundAxle = true;
-                    }
-                } else if (toJoinA != null) {
-                    toJoinA.addAxle(this);
-                    foundAxle = true;
-                } else if (toJoinB != null) {
-                    toJoinB.addAxle(this);
-                    foundAxle = true;
-                }
-                break;
-            }
-            case Y: {
-                RotationAxleFull toJoinA = getAdjacent(world, pos, 0, 1, 0);
-                RotationAxleFull toJoinB = getAdjacent(world, pos, 0, -1, 0);
-                if (toJoinA != null && toJoinB != null) {
-                    if (toJoinA.getSize() < toJoinB.getSize()) {
-                        toJoinB.incorperate(toJoinA);
-                        toJoinB.addAxle(this);
-                        foundAxle = true;
-                    } else {
-                        toJoinA.incorperate(toJoinB);
-                        toJoinA.addAxle(this);
-                        foundAxle = true;
-                    }
-                } else if (toJoinA != null) {
-                    toJoinA.addAxle(this);
-                    foundAxle = true;
-                } else if (toJoinB != null) {
-                    toJoinB.addAxle(this);
-                    foundAxle = true;
-                }
-                break;
-            }
-            case Z: {
-                RotationAxleFull toJoinA = getAdjacent(world, pos, 0, 0, 1);
-                RotationAxleFull toJoinB = getAdjacent(world, pos, 0, 0, -1);
-                if (toJoinA != null && toJoinB != null) {
-                    if (toJoinA.getSize() < toJoinB.getSize()) {
-                        toJoinB.incorperate(toJoinA);
-                        toJoinB.addAxle(this);
-                        foundAxle = true;
-                    } else {
-                        toJoinA.incorperate(toJoinB);
-                        toJoinA.addAxle(this);
-                        foundAxle = true;
-                    }
-                } else if (toJoinA != null) {
-                    toJoinA.addAxle(this);
-                    foundAxle = true;
-                } else if (toJoinB != null) {
-                    toJoinB.addAxle(this);
-                    foundAxle = true;
-                }
-                break;
-            }
-        }
-        if (!foundAxle) {
+
+        Axis a = world.getBlockState(pos).getValue(AXIS);
+        boolean foundNet = findNetToAttach(a);
+        if (!foundNet) {
             axleWhole = new RotationAxleFull();
             WorldAxleFull.addAxleWhole(axleWhole);
             axleWhole.addAxle(this);
         }
+    }
+
+    private boolean findNetToAttach(Axis axis) {
+        RotationAxleFull toJoinA = getAdjacent(world, pos, axis == Axis.X ?  1 : 0, axis == Axis.Y ?  1 : 0, axis == Axis.Z ?  1 : 0);
+        RotationAxleFull toJoinB = getAdjacent(world, pos, axis == Axis.X ? -1 : 0, axis == Axis.Y ? -1 : 0, axis == Axis.Z ? -1 : 0);
+        if (toJoinA != null && toJoinB != null) {
+            if (toJoinA.getSize() < toJoinB.getSize()) {
+                toJoinB.incorperate(toJoinA);
+                toJoinB.addAxle(this);
+                axleWhole = toJoinB;
+                return true;
+            } else {
+                toJoinA.incorperate(toJoinB);
+                toJoinA.addAxle(this);
+                axleWhole = toJoinA;
+                return true;
+            }
+        } else if (toJoinA != null) {
+            toJoinA.addAxle(this);
+            axleWhole = toJoinA;
+            return true;
+        } else if (toJoinB != null) {
+            toJoinB.addAxle(this);
+            axleWhole = toJoinB;
+            return true;
+        }
+        return false;
     }
 
     private @Nullable RotationAxleFull getAdjacent(World worldIn, BlockPos thisPos, int xChange, int yChange, int zChange) {
@@ -123,7 +92,6 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
     public float getTorque() { return torque; }
 
     public float getAngle() {
-        prevAngle = angle;
         return angle;
     }
 
@@ -152,8 +120,7 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
     }
 
     @Override
-    public boolean hasFastRenderer()
-    {
+    public boolean hasFastRenderer() {
         return true;
     }
 

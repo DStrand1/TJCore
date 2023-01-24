@@ -19,6 +19,9 @@ public class RotationAxleFull {
 
     //TODO: we get there when we get there
     public void updateAll() {
+        for (TileEntityRotationAxle axle: components) {
+            axle.prevAngle = axle.angle;
+        }
         angle += rotationSpeed;
         for (TileEntityRotationAxle axle: components) {
             //if (!axle.getWorld().isRemote) {
