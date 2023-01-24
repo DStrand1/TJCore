@@ -38,6 +38,7 @@ public class RotationAxleFull {
     public void incorperate(RotationAxleFull toAdd) {
         if (toAdd == this) {return;}
         components.addAll(toAdd.getComponents());
+
         toAdd = null;
     }
 

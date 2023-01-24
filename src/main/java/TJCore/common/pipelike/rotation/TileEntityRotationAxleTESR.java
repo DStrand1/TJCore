@@ -1,6 +1,7 @@
 package TJCore.common.pipelike.rotation;
 
 import TJCore.TJValues;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
@@ -18,6 +19,8 @@ public class TileEntityRotationAxleTESR extends FastTESR<TileEntityRotationAxle>
     @Override
     public void renderTileEntityFast(@NotNull TileEntityRotationAxle te, double x, double y, double z, float partialTicks, int destroyStage, float partial, BufferBuilder buffer) {
 
+        TileEntityRotationAxle axleRef = (TileEntityRotationAxle) te.getWorld().getTileEntity(te.getPos());
+        IBlockState state = te.getWorld().getBlockState(te.getPos());
         GlStateManager.enableDepth();
         GlStateManager.depthFunc(515);
         GlStateManager.depthMask(true);
@@ -42,21 +45,21 @@ public class TileEntityRotationAxleTESR extends FastTESR<TileEntityRotationAxle>
         model.axle.offsetX = 0.0f;
         model.axle.offsetY = 0.0f;
         model.axle.offsetZ = 0.0f;
-        switch(te.getWorld().getBlockState(te.getPos()).getValue(AXIS)){
+        switch(state.getValue(AXIS)){
             case X:
                 model.axle.rotateAngleZ = (float) Math.PI /2;
                 model.axle.offsetX = 0.5f;
-                model.axle.rotateAngleX = te.prevAngle + (te.angle - te.prevAngle) * partialTicks;
+                model.axle.rotateAngleX = axleRef.prevAngle + (axleRef.angle - axleRef.prevAngle) * partialTicks;
                 break;
             case Y:
                 //model.axle.rotateAngleZ = (float) Math.PI /2;
                 model.axle.offsetY = -0.5f;
-                model.axle.rotateAngleY = te.prevAngle + (te.angle - te.prevAngle) * partialTicks;
+                model.axle.rotateAngleY = axleRef.prevAngle + (axleRef.angle - axleRef.prevAngle) * partialTicks;
                 break;
             case Z:
                 model.axle.rotateAngleX = (float) Math.PI /2;
                 model.axle.offsetZ = -0.5f;
-                model.axle.rotateAngleZ = te.prevAngle + (te.angle - te.prevAngle) * partialTicks;
+                model.axle.rotateAngleZ = axleRef.prevAngle + (axleRef.angle - axleRef.prevAngle) * partialTicks;
                 break;
         }
         model.axle.render(0.0625f);

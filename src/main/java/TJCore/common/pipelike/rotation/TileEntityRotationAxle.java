@@ -38,6 +38,7 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
         super.onLoad();
         if(!world.isRemote)
             connectToNet();
+        markDirty();
     }
 
     public void connectToNet() {
@@ -60,20 +61,28 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
             if (toJoinA.getSize() < toJoinB.getSize()) {
                 toJoinB.incorperate(toJoinA);
                 toJoinB.addAxle(this);
+                for(TileEntityRotationAxle axle : toJoinA.getComponents())
+                    axle.axleWhole = toJoinB;
                 axleWhole = toJoinB;
                 return true;
             } else {
                 toJoinA.incorperate(toJoinB);
                 toJoinA.addAxle(this);
+                for(TileEntityRotationAxle axle : toJoinB.getComponents())
+                    axle.axleWhole = toJoinA;
                 axleWhole = toJoinA;
                 return true;
             }
         } else if (toJoinA != null) {
             toJoinA.addAxle(this);
+            for(TileEntityRotationAxle axle : toJoinA.getComponents())
+                axle.axleWhole = toJoinA;
             axleWhole = toJoinA;
             return true;
         } else if (toJoinB != null) {
             toJoinB.addAxle(this);
+            for(TileEntityRotationAxle axle : toJoinB.getComponents())
+                axle.axleWhole = toJoinB;
             axleWhole = toJoinB;
             return true;
         }
@@ -83,8 +92,12 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
     private @Nullable RotationAxleFull getAdjacent(World worldIn, BlockPos thisPos, int xChange, int yChange, int zChange) {
         BlockPos nextPos = new BlockPos(thisPos.getX() + xChange, thisPos.getY() + yChange, thisPos.getZ() + zChange);
         IBlockState nextState = worldIn.getBlockState(nextPos);
+
+        IBlockState currentState = worldIn.getBlockState(thisPos);
+
         if (nextState.getBlock() instanceof BlockRotationAxle) {
-            return ((TileEntityRotationAxle) worldIn.getTileEntity(nextPos)).getAxleWhole();
+            if(nextState.getValue(AXIS) == currentState.getValue(AXIS))
+                return ((TileEntityRotationAxle) worldIn.getTileEntity(nextPos)).getAxleWhole();
         }
         return null;
     }
