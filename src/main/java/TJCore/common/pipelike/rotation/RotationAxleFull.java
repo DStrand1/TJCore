@@ -1,33 +1,42 @@
 package TJCore.common.pipelike.rotation;
 
+import TJCore.api.axle.ISpinnable;
+import TJCore.common.pipelike.rotation.world.WorldAxleFull;
+import net.minecraft.util.EnumFacing;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class RotationAxleFull {
+public class RotationAxleFull implements ISpinnable {
     private List<TileEntityRotationAxle> components = new ArrayList<>();
-    private float rotationSpeed = 0.1f;
+    private final float speedDecrement = 0.01f;
+    public float rotationSpeed = 0.0f;
     private float torque;
-    private float angle = 0.0f;
-    public RotationAxleFull() {
-
+    EnumFacing.Axis axis;
+    public RotationAxleFull(EnumFacing.Axis axis) {
+        this.axis = axis;
+        WorldAxleFull.addAxleWhole(this);
     }
 
     public void addAxle(TileEntityRotationAxle axle){
         components.add(axle);
-        axle.setAngle(angle);
     }
 
     //TODO: we get there when we get there
     public void updateAll() {
+        syncAngle(components.get(0).angle);
         for (TileEntityRotationAxle axle: components) {
-            axle.prevAngle = axle.angle;
+             axle.update(rotationSpeed);
         }
-        angle += rotationSpeed;
+        if (rotationSpeed > speedDecrement) rotationSpeed -= speedDecrement;
+        else if (rotationSpeed < 0-speedDecrement) rotationSpeed += speedDecrement;
+        else rotationSpeed = 0;
+    }
+
+    public void syncAngle(float angle) {
         for (TileEntityRotationAxle axle: components) {
-            //if (!axle.getWorld().isRemote) {
-                axle.setTorque(torque);
-                axle.setAngle(angle);
-            //}
+            axle.prevAngle = angle;
+            axle.update(angle);
         }
     }
 
@@ -38,7 +47,6 @@ public class RotationAxleFull {
     public void incorperate(RotationAxleFull toAdd) {
         if (toAdd == this) {return;}
         components.addAll(toAdd.getComponents());
-
         toAdd = null;
     }
 
@@ -48,5 +56,23 @@ public class RotationAxleFull {
 
     public void destroyAll() {
 
+    }
+
+    @Override
+    public void pushRotation(float speed, float torque) {
+        rotationSpeed = Math.max(rotationSpeed, speed);
+        this.torque += torque;
+    }
+
+    @Override
+    public float pullTorque() {
+        float torq = torque;
+        torque = 0;
+        return torq;
+    }
+
+    @Override
+    public float getRotationSpeed() {
+        return rotationSpeed;
     }
 }

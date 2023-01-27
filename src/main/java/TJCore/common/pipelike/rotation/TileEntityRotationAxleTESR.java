@@ -14,7 +14,7 @@ import static org.lwjgl.opengl.GL11.*;
 public class TileEntityRotationAxleTESR extends FastTESR<TileEntityRotationAxle> {
 
     private final ModelRotationAxle model = new ModelRotationAxle();
-    private static final ResourceLocation texture = new ResourceLocation(TJValues.MODID, "textures/blocks/rotation_pipe/axle");
+    private static final ResourceLocation texture = new ResourceLocation(TJValues.MODID, "textures/entity/axle.png");
 
     @Override
     public void renderTileEntityFast(@NotNull TileEntityRotationAxle te, double x, double y, double z, float partialTicks, int destroyStage, float partial, BufferBuilder buffer) {
@@ -38,18 +38,19 @@ public class TileEntityRotationAxleTESR extends FastTESR<TileEntityRotationAxle>
         GlStateManager.enableRescaleNormal();
         GlStateManager.translate((float)x, (float)y, (float)z);
         GlStateManager.scale(1.0F, 1.0F, 1.0F);
-        //GlStateManager.translate(-0.5F, -0.5F, -0.5F);
         model.axle.rotateAngleX = 0;
         model.axle.rotateAngleY = 0;
         model.axle.rotateAngleZ = 0;
         model.axle.offsetX = 0.0f;
         model.axle.offsetY = 0.0f;
         model.axle.offsetZ = 0.0f;
+        axleRef.updateAngle();
         switch(state.getValue(AXIS)){
             case X:
                 model.axle.rotateAngleZ = (float) Math.PI /2;
+                //model.axle.rotateAngleY = (float) Math.PI /2;
                 model.axle.offsetX = 0.5f;
-                model.axle.rotateAngleX = axleRef.prevAngle + (axleRef.angle - axleRef.prevAngle) * partialTicks;
+                model.axle.rotateAngleY = axleRef.prevAngle + (axleRef.angle - axleRef.prevAngle) * partialTicks;
                 break;
             case Y:
                 //model.axle.rotateAngleZ = (float) Math.PI /2;
