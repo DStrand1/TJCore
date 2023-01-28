@@ -1,6 +1,7 @@
 package TJCore.common.pipelike.rotation;
 
 import gregtech.api.metatileentity.IDataInfoProvider;
+import gregtech.api.metatileentity.MetaTileEntityHolder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -20,11 +21,13 @@ import static net.minecraft.block.BlockRotatedPillar.AXIS;
 public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvider {
 
     private boolean foundNet;
-    public float prevAngle = 0.0f;
+    public float prevAngle = 0f;
     public float angle = 0f;
     public float rotationSpeed = 0f;
 
+    public int[] posRef = new int[3];
 
+    boolean sync = false;
     private RotationAxleFull axleWhole;
     TileEntityRotationAxle() {
         super();
@@ -32,34 +35,25 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
 
     @Override
     public NBTTagCompound getUpdateTag() {
-        // getUpdateTag() is called whenever the chunkdata is sent to the
-        // client. In contrast getUpdatePacket() is called when the tile entity
-        // itself wants to sync to the client. In many cases you want to send
-        // over the same information in getUpdateTag() as in getUpdatePacket().
         return writeToNBT(new NBTTagCompound());
     }
 
     @Override
     public SPacketUpdateTileEntity getUpdatePacket() {
-        // Prepare a packet for syncing our TE to the client. Since we only have to sync the stack
-        // and that's all we have we just write our entire NBT here. If you have a complex
-        // tile entity that doesn't need to have all information on the client you can write
-        // a more optimal NBT here.
         NBTTagCompound nbtTag = new NBTTagCompound();
-        nbtTag.setFloat("speed", rotationSpeed);
         this.writeToNBT(nbtTag);
         return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
     }
 
     @Override
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
-        // Here we get the packet from the server and read it into our client side tile entity
         this.readFromNBT(packet.getNbtCompound());
     }
 
     public void update(float newSpeed) {
         if (rotationSpeed != newSpeed) {
             rotationSpeed = newSpeed;
+            syncAngle();
             markDirty();
             if (world != null) {
                 IBlockState state = world.getBlockState(getPos());
@@ -71,13 +65,33 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
+        sync = compound.getBoolean("sync");
+        if (sync) {
+            posRef = compound.getIntArray("posarray");
+            if(world.isRemote) {
+                TileEntityRotationAxle axle = (TileEntityRotationAxle) world.getTileEntity(new BlockPos(posRef[0], posRef[1], posRef[2]));
+                angle = axle.angle;
+            }
+            sync = false;
+        }
         rotationSpeed = compound.getFloat("speed");
         markDirty();
+    }
+
+    public void setPosRef(BlockPos posIn) {
+        posRef[0] = posIn.getX();
+        posRef[1] = posIn.getY();
+        posRef[2] = posIn.getZ();
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
+        compound.setBoolean("sync", sync);
+        if (sync) {
+            compound.setIntArray("posarray", posRef);
+            sync = false;
+        }
         compound.setFloat("speed", rotationSpeed);
         return compound;
     }
@@ -85,15 +99,20 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
     @Override
     public void onLoad() {
         super.onLoad();
-        if(!world.isRemote)
-            connectToNet();
+        if(!world.isRemote) connectToNet();
         markDirty();
+    }
+
+    private void syncAngle() {
+        if (world.isRemote) {
+            TileEntityRotationAxle axle = (TileEntityRotationAxle) world.getTileEntity(axleWhole.getComponents().get(0).getPos());
+            angle = axle.angle;
+        }
     }
 
     public void connectToNet() {
         BlockPos pos = this.getPos();
         World world = this.getWorld();
-
         Axis a = world.getBlockState(pos).getValue(AXIS);
         foundNet = findNetToAttach(a);
         if (!foundNet) {
@@ -144,14 +163,12 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
         IBlockState currentState = worldIn.getBlockState(thisPos);
 
         if (nextState.getBlock() instanceof BlockRotationAxle) {
-            if(nextState.getValue(AXIS) == currentState.getValue(AXIS))
-                return ((TileEntityRotationAxle) worldIn.getTileEntity(nextPos)).getAxleWhole();
+            if(nextState.getValue(AXIS) == currentState.getValue(AXIS)) {
+                TileEntityRotationAxle axle = ((TileEntityRotationAxle) worldIn.getTileEntity(nextPos));
+                return axle.getAxleWhole();
+            }
         }
         return null;
-    }
-
-    public void setAngle(float angle) {
-        this.angle = angle;
     }
 
     //@NotNull

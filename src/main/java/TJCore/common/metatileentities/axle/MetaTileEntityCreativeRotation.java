@@ -51,6 +51,11 @@ public class MetaTileEntityCreativeRotation extends MetaTileEntity implements IR
         }
     }
 
+    @Override
+    public void onNeighborChanged() {
+        joinNet();
+    }
+
     public void pushRotation(float rotationSpeed, float torque) {
         axle.pushRotation(rotationSpeed, torque);
     }

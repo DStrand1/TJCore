@@ -4,12 +4,11 @@ import TJCore.api.axle.ISpinnable;
 import TJCore.common.pipelike.rotation.world.WorldAxleFull;
 import net.minecraft.util.EnumFacing;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class RotationAxleFull implements ISpinnable {
     private List<TileEntityRotationAxle> components = new ArrayList<>();
-    private final float speedDecrement = 0.01f;
+    private final float speedDecrement = 0.1f;
     public float rotationSpeed = 0.0f;
     private float torque;
     EnumFacing.Axis axis;
@@ -19,25 +18,22 @@ public class RotationAxleFull implements ISpinnable {
     }
 
     public void addAxle(TileEntityRotationAxle axle){
+        axle.update(rotationSpeed / 100);
+        if (!components.isEmpty()) {
+            axle.setPosRef(components.get(0).getPos());
+            axle.sync = true;
+        }
         components.add(axle);
     }
 
     //TODO: we get there when we get there
     public void updateAll() {
-        syncAngle(components.get(0).angle);
         for (TileEntityRotationAxle axle: components) {
-             axle.update(rotationSpeed);
+             axle.update(rotationSpeed/100);
         }
         if (rotationSpeed > speedDecrement) rotationSpeed -= speedDecrement;
         else if (rotationSpeed < 0-speedDecrement) rotationSpeed += speedDecrement;
         else rotationSpeed = 0;
-    }
-
-    public void syncAngle(float angle) {
-        for (TileEntityRotationAxle axle: components) {
-            axle.prevAngle = angle;
-            axle.update(angle);
-        }
     }
 
     public int getSize() {
@@ -59,9 +55,10 @@ public class RotationAxleFull implements ISpinnable {
     }
 
     @Override
-    public void pushRotation(float speed, float torque) {
-        rotationSpeed = Math.max(rotationSpeed, speed);
-        this.torque += torque;
+    public void pushRotation(float newSpeed, float newTorque) {
+        float maxSpeed = Math.max(rotationSpeed, newSpeed);
+        torque = (newTorque * (newSpeed / maxSpeed)) + (torque * (rotationSpeed / maxSpeed));
+        rotationSpeed = maxSpeed;
     }
 
     @Override
