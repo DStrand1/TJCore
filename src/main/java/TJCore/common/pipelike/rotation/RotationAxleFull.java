@@ -29,7 +29,9 @@ public class RotationAxleFull implements ISpinnable {
     //TODO: we get there when we get there
     public void updateAll() {
         for (TileEntityRotationAxle axle: components) {
-             axle.update(rotationSpeed/100);
+            axle.update(rotationSpeed/100);
+            axle.setPosRef(components.get(0).getPos());
+            axle.sync = true;
         }
         if (rotationSpeed > speedDecrement) rotationSpeed -= speedDecrement;
         else if (rotationSpeed < 0-speedDecrement) rotationSpeed += speedDecrement;
