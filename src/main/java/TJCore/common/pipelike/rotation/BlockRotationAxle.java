@@ -56,6 +56,11 @@ public class BlockRotationAxle extends BlockRotatedPillar implements ITileEntity
         this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     }
 
+    @Override
+    public boolean canCollideCheck(IBlockState state, boolean hitIfLiquid) {
+        return super.canCollideCheck(state, hitIfLiquid);
+    }
+
     protected BlockStateContainer createBlockState() {
         return new ExtendedBlockState(this, new IProperty[]{AXIS}, new IUnlistedProperty[]{ROTATION});
     }

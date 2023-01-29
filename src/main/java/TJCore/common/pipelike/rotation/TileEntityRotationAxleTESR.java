@@ -44,23 +44,22 @@ public class TileEntityRotationAxleTESR extends FastTESR<TileEntityRotationAxle>
         model.axle.offsetX = 0.0f;
         model.axle.offsetY = 0.0f;
         model.axle.offsetZ = 0.0f;
-        axleRef.updateAngle();
         switch(state.getValue(AXIS)){
             case X:
                 model.axle.rotateAngleZ = (float) Math.PI /2;
                 //model.axle.rotateAngleY = (float) Math.PI /2;
                 model.axle.offsetX = 0.5f;
-                model.axle.rotateAngleY = axleRef.prevAngle + (axleRef.angle - axleRef.prevAngle) * partialTicks;
+                model.axle.rotateAngleY = axleRef.startAngle + axleRef.anglePerTick * partialTicks;
                 break;
             case Y:
                 //model.axle.rotateAngleZ = (float) Math.PI /2;
                 model.axle.offsetY = -0.5f;
-                model.axle.rotateAngleY = axleRef.prevAngle + (axleRef.angle - axleRef.prevAngle) * partialTicks;
+                model.axle.rotateAngleY = axleRef.startAngle + axleRef.anglePerTick * partialTicks;
                 break;
             case Z:
                 model.axle.rotateAngleX = (float) Math.PI /2;
                 model.axle.offsetZ = -0.5f;
-                model.axle.rotateAngleZ = axleRef.prevAngle + (axleRef.angle - axleRef.prevAngle) * partialTicks;
+                model.axle.rotateAngleZ = axleRef.startAngle + axleRef.anglePerTick * partialTicks;
                 break;
         }
         model.axle.render(0.0625f);

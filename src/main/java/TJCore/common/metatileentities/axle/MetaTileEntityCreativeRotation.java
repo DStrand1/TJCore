@@ -3,7 +3,6 @@ package TJCore.common.metatileentities.axle;
 import TJCore.TJValues;
 import TJCore.api.axle.IRotationConsumer;
 import TJCore.api.axle.IRotationProvider;
-import TJCore.api.axle.ISpinnable;
 import TJCore.common.TJTextures;
 import TJCore.common.pipelike.rotation.RotationAxleFull;
 import TJCore.common.pipelike.rotation.TileEntityRotationAxle;
@@ -12,10 +11,8 @@ import codechicken.lib.render.pipeline.ColourMultiplier;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Matrix4;
-import gregtech.api.GTValues;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.widgets.ClickButtonWidget;
 import gregtech.api.gui.widgets.CycleButtonWidget;
 import gregtech.api.gui.widgets.ImageWidget;
 import gregtech.api.gui.widgets.TextFieldWidget2;
@@ -62,7 +59,7 @@ public class MetaTileEntityCreativeRotation extends MetaTileEntity implements IR
 
     public void consume() {
         torque = axle.pullTorque();
-        rotationSpeed = axle.rotationSpeed;
+        rotationSpeed = axle.revolutionsPerSecond;
     }
 
     public void joinNet() {

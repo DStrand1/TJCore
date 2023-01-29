@@ -1,8 +1,8 @@
 package TJCore.api.axle;
 
 public interface ISpinnable {
-    void pushRotation(float rotationSpeed, float torque);
+    void pushRotation(float rps, float torque);
     float pullTorque();
-    float getRotationSpeed();
+    float getRevolutionsPerSecond();
 }
 

@@ -20,15 +20,10 @@ import static net.minecraft.block.BlockRotatedPillar.AXIS;
 
 public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvider {
 
-    private boolean foundNet;
-    public float prevAngle = 0f;
-    public float angle = 0f;
-    public float rotationSpeed = 0f;
-
-    public int[] posRef = new int[3];
-
-    boolean sync = false;
-    private RotationAxleFull axleWhole;
+    private boolean foundNet = false;
+    public float anglePerTick = 0f;
+    public float startAngle = 0f;
+    public RotationAxleFull axleWhole;
     TileEntityRotationAxle() {
         super();
     }
@@ -50,49 +45,30 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
         this.readFromNBT(packet.getNbtCompound());
     }
 
-    public void update(float newSpeed) {
-        if (rotationSpeed != newSpeed) {
-            rotationSpeed = newSpeed;
-            syncAngle();
-            markDirty();
-            if (world != null) {
-                IBlockState state = world.getBlockState(getPos());
-                world.notifyBlockUpdate(getPos(), state, state, 2);
-            }
+    public void update(float newSpeed, float newAngle) {
+        startAngle = newAngle;
+        anglePerTick = newSpeed;
+        if (world != null) {
+            IBlockState state = world.getBlockState(getPos());
+            world.notifyBlockUpdate(getPos(), state, state, 2);
         }
+        markDirty();
     }
 
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
-        sync = compound.getBoolean("sync");
-        if (sync) {
-            posRef = compound.getIntArray("posarray");
-            if(world.isRemote) {
-                TileEntityRotationAxle axle = (TileEntityRotationAxle) world.getTileEntity(new BlockPos(posRef[0], posRef[1], posRef[2]));
-                angle = axle.angle;
-            }
-            sync = false;
-        }
-        rotationSpeed = compound.getFloat("speed");
+        anglePerTick = compound.getFloat("deltaanglepertick");
+        startAngle = compound.getFloat("angleStart");
         markDirty();
     }
 
-    public void setPosRef(BlockPos posIn) {
-        posRef[0] = posIn.getX();
-        posRef[1] = posIn.getY();
-        posRef[2] = posIn.getZ();
-    }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
-        compound.setBoolean("sync", sync);
-        if (sync) {
-            compound.setIntArray("posarray", posRef);
-            sync = false;
-        }
-        compound.setFloat("speed", rotationSpeed);
+        compound.setFloat("deltaanglepertick", anglePerTick);
+        compound.setFloat("angleStart", startAngle);
         return compound;
     }
 
@@ -103,13 +79,6 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
         markDirty();
     }
 
-    private void syncAngle() {
-        if (world.isRemote) {
-            TileEntityRotationAxle axle = (TileEntityRotationAxle) world.getTileEntity(axleWhole.getComponents().get(0).getPos());
-            angle = axle.angle;
-        }
-    }
-
     public void connectToNet() {
         BlockPos pos = this.getPos();
         World world = this.getWorld();
@@ -118,6 +87,7 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
         if (!foundNet) {
             axleWhole = new RotationAxleFull(a);
             axleWhole.addAxle(this);
+            foundNet = true;
         }
     }
 
@@ -126,31 +96,19 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
         RotationAxleFull toJoinB = getAdjacent(world, pos, axis == Axis.X ? -1 : 0, axis == Axis.Y ? -1 : 0, axis == Axis.Z ? -1 : 0);
         if (toJoinA != null && toJoinB != null) {
             if (toJoinA.getSize() < toJoinB.getSize()) {
-                toJoinB.incorperate(toJoinA);
                 toJoinB.addAxle(this);
-                for(TileEntityRotationAxle axle : toJoinA.getComponents())
-                    axle.axleWhole = toJoinB;
-                axleWhole = toJoinB;
+                toJoinB.incorperate(toJoinA);
                 return true;
             } else {
-                toJoinA.incorperate(toJoinB);
                 toJoinA.addAxle(this);
-                for(TileEntityRotationAxle axle : toJoinB.getComponents())
-                    axle.axleWhole = toJoinA;
-                axleWhole = toJoinA;
+                toJoinA.incorperate(toJoinB);
                 return true;
             }
         } else if (toJoinA != null) {
             toJoinA.addAxle(this);
-            for(TileEntityRotationAxle axle : toJoinA.getComponents())
-                axle.axleWhole = toJoinA;
-            axleWhole = toJoinA;
             return true;
         } else if (toJoinB != null) {
             toJoinB.addAxle(this);
-            for(TileEntityRotationAxle axle : toJoinB.getComponents())
-                axle.axleWhole = toJoinB;
-            axleWhole = toJoinB;
             return true;
         }
         return false;
@@ -179,12 +137,6 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
                 //new TextComponentTranslation(GTUtility.formatNumbers(this.getTorque())).setStyle(new Style().setColor(TextFormatting.DARK_PURPLE))
         //));
         return list;
-    }
-
-    public void updateAngle() {
-        markDirty();
-        prevAngle = angle;
-        angle += rotationSpeed;
     }
 
     @Override
