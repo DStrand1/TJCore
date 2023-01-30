@@ -45,6 +45,7 @@ import org.jetbrains.annotations.Nullable;
 import scala.Int;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import static TJCore.common.recipes.recipemaps.TJRecipeMaps.*;
@@ -56,6 +57,7 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
     private int turbineTier;
     private int bearingTier;
     private int steamToConsume;
+    private int maxSteamToConsume;
     private float rps;
     private float torque;
     private float speedDecrement = 0.025f;
@@ -80,6 +82,7 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
             textList.add(new TextComponentString("Bearing Type: " + bearingTier));
             textList.add(new TextComponentString("Rotations Per Second: " + rps));
             textList.add(new TextComponentString("Steam (mb) / tick: " + steamToConsume));
+            textList.add(new TextComponentString("Maximum Steam (mb) / tick: " + maxSteamToConsume));
             textList.add(new TextComponentString("Torque: " + torque));
             textList.add(new TextComponentString(axleWhole != null ? "Connected to Axle" : "Not Connected to Axle"));
         }
@@ -222,15 +225,16 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
                     int steamQuantity = tankIn.getFluidAmount();
                     float maxRPS = (float) Math.min(Math.pow(4, bearingTier), Math.pow(4, turbineTier + 1));
                     steamToConsume = (int) Math.pow(4, turbineTier + 2) * 16;
+                    maxSteamToConsume = steamToConsume;
                     steamToConsume = Math.min(steamToConsume, steamQuantity);
                     tankIn.drain(steamToConsume, true);
-                    this.rps = maxRPS;
-                    this.torque = (float) (steamToConsume ) / 8 * turbineTier + 1;
+                    this.rps = this.torque > 0.025 ? maxRPS : 0;
+                    this.torque = (float) Math.min(Math.pow(4, bearingTier) * 2, Math.pow(4, turbineTier)) * steamToConsume / maxSteamToConsume;
                 }
             }
         }
-        if (rps > speedDecrement) rps -= speedDecrement;
-        else if (rps < 0-speedDecrement) rps += speedDecrement;
+        if (rps > speedDecrement) rps -= speedDecrement * 4 * (5-bearingTier);
+        else if (rps < 0-speedDecrement) rps += speedDecrement * 4 * (5-bearingTier);
         else rps = 0;
     }
 }
