@@ -122,6 +122,14 @@ public class MetaTileEntityCreativeRotation extends MetaTileEntity implements IR
         }
     }
 
+    public float getRotation() {
+        return rotationSpeed;
+    }
+
+    public void setAxleWhole(RotationAxleFull axleNew) {
+        this.axle = axleNew;
+    }
+
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         data.setFloat("Speed", rotationSpeed);

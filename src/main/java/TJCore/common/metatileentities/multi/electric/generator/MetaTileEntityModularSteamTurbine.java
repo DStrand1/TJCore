@@ -4,6 +4,7 @@ import TJCore.TJValues;
 import TJCore.api.axle.IRotationProvider;
 import TJCore.api.axle.ISpinnable;
 import TJCore.api.block.ITurbineBladeStats;
+import TJCore.common.pipelike.rotation.BlockRotationAxle;
 import TJCore.common.pipelike.rotation.RotationAxleFull;
 import TJCore.common.pipelike.rotation.TileEntityRotationAxle;
 import gregtech.api.GTValues;
@@ -194,17 +195,31 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
         }
     }
 
+    public float getRotation() {
+        return rps;
+    }
+
+    public void setAxleWhole(RotationAxleFull axleNew) {
+        axleWhole = axleNew;
+        if (axleNew != null && !getWorld().isRemote) {
+            axleWhole.addProvider(this);
+        }
+    }
+
 
     @Override
     public void joinNet() {
         if (bearingPos != null) {
             BlockPos[] posArr = new BlockPos[]{bearingPos.north(), bearingPos.south(), bearingPos.east(), bearingPos.west()};
             for (BlockPos pos : posArr) {
-                if (getWorld().getTileEntity(pos) instanceof TileEntityRotationAxle) {
-                    if (this.axleWhole == null) {
-                        this.axleWhole = ((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole();
+                if (getWorld().getBlockState(pos).getBlock() instanceof BlockRotationAxle) {
+                    if (axleWhole == null) {
+                        axleWhole = ((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole();
                     } else {
-                        this.axleWhole.incorperate(((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole());
+                        axleWhole.incorperate(((TileEntityRotationAxle) getWorld().getTileEntity(pos)).getAxleWhole());
+                    }
+                    if(axleWhole != null) {
+                        setAxleWhole(axleWhole);
                     }
                 }
             }
@@ -216,7 +231,9 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
         super.update();
         if (!getWorld().isRemote && isStructureFormed()) {
             super.update();
-            if (axleWhole == null) joinNet();
+            if (axleWhole == null) {
+                joinNet();
+            }
             else {
                 pushRotation(rps, torque);
             }

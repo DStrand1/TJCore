@@ -1,14 +1,19 @@
 package TJCore.common.pipelike.rotation;
 
+import TJCore.api.axle.IRotationConsumer;
+import TJCore.api.axle.IRotationProvider;
 import TJCore.api.axle.ISpinnable;
 import TJCore.common.pipelike.rotation.world.WorldAxleFull;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.*;
 
 public class RotationAxleFull implements ISpinnable {
     private List<TileEntityRotationAxle> components = new ArrayList<>();
+    private List<IRotationProvider> providers = new ArrayList<>();
+    private List<IRotationConsumer> consumers = new ArrayList<>();
     private final float speedDecrement = 0.025f;
     public float revolutionsPerSecond = 0.0f;
     private float torque;
@@ -31,9 +36,17 @@ public class RotationAxleFull implements ISpinnable {
             axle.update(revolutionsPerSecond * (float) Math.PI * 2 / 20, angle);
         }
         angle += revolutionsPerSecond * (float) Math.PI * 2 / 20;
-        if (revolutionsPerSecond > speedDecrement) revolutionsPerSecond -= speedDecrement;
-        else if (revolutionsPerSecond < 0-speedDecrement) revolutionsPerSecond += speedDecrement;
-        else revolutionsPerSecond = 0;
+        boolean shouldDecrement = true;
+        for (IRotationProvider provider : providers) {
+            if ((Math.abs(provider.getRotation()) >= Math.abs(revolutionsPerSecond))) {
+                shouldDecrement = false;
+            }
+        }
+        if (shouldDecrement) {
+            if (revolutionsPerSecond > speedDecrement) revolutionsPerSecond -= speedDecrement;
+            else if (revolutionsPerSecond < 0 - speedDecrement) revolutionsPerSecond += speedDecrement;
+            else revolutionsPerSecond = 0;
+        }
     }
 
     public int getSize() {
@@ -48,6 +61,7 @@ public class RotationAxleFull implements ISpinnable {
         for(TileEntityRotationAxle axle : toAdd.getComponents()) {
             addAxle(axle);
         }
+        providers.addAll(toAdd.providers);
         toAdd.components.clear();
     }
 
@@ -73,9 +87,9 @@ public class RotationAxleFull implements ISpinnable {
         return torq;
     }
 
-    @Override
-    public float getRevolutionsPerSecond() {
-        return revolutionsPerSecond;
+
+    public void addProvider(IRotationProvider provider) {
+        providers.add(provider);
     }
 
     public void removeNet(BlockPos posIn) {
@@ -84,6 +98,11 @@ public class RotationAxleFull implements ISpinnable {
                 te.axleWhole = null;
                 te.connectToNet();
             }
+        }
+        for (IRotationProvider provider : providers) {
+            //Problem is this is getting called on the wrong provider. Providers looks to be full at the time of the error though.
+            //This also ISNT hit when you break the axle connected after it is incorperated into another net. What the fuck
+            provider.setAxleWhole(null);
         }
     }
 }

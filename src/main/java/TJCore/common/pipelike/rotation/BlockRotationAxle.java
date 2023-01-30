@@ -100,10 +100,11 @@ public class BlockRotationAxle extends BlockRotatedPillar implements ITileEntity
     }
 
     @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         if (worldIn.getTileEntity(pos) instanceof TileEntityRotationAxle) {
             ((TileEntityRotationAxle) worldIn.getTileEntity(pos)).deleteAndUpdateNet();
         }
+        super.breakBlock(worldIn, pos, state);
     }
 
     @Override

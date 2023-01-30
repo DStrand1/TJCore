@@ -140,8 +140,9 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
     }
 
     public void deleteAndUpdateNet() {
-        axleWhole.removeNet(pos);
-        axleWhole = null;
+        if (axleWhole != null) {
+            axleWhole.removeNet(pos);
+        }
     }
 
     @Override
