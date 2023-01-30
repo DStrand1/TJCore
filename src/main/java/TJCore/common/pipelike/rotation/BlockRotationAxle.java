@@ -25,6 +25,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -32,7 +33,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.property.ExtendedBlockState;
@@ -48,12 +51,17 @@ import javax.annotation.Nonnull;
 import static TJCore.TJValues.MODID;
 
 public class BlockRotationAxle extends BlockRotatedPillar implements ITileEntityProvider {
+    private static final AxisAlignedBB AABB_X = new AxisAlignedBB(0.0D, 0.375D, 0.375D, 1.0D, 0.625D, 0.625D);
+    private static final AxisAlignedBB AABB_Y = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
+    private static final AxisAlignedBB AABB_Z = new AxisAlignedBB(0.375D, 0.375D, 0.0D, 0.625D, 0.625D, 1.0D);
+
     public static final PropertyFloat ROTATION = new PropertyFloat("rotation");
     public BlockRotationAxle()
     {
         super(Material.GRASS, MapColor.YELLOW);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.Z));
         this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+
     }
 
     @Override
@@ -73,9 +81,33 @@ public class BlockRotationAxle extends BlockRotatedPillar implements ITileEntity
         return false;
     }
 
+    @Override
+    public @NotNull AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        switch(state.getValue(AXIS)) {
+            case X:
+                return AABB_X;
+            case Y:
+            default:
+                return AABB_Y;
+            case Z:
+                return AABB_Z;
+        }
+    }
+
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
+    }
+
+    @Override
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+        super.onEntityCollision(worldIn, pos, state, entityIn);
+
+        TileEntity te = worldIn.getTileEntity(pos);
+        if(te instanceof TileEntityRotationAxle) {
+            float angle = ((TileEntityRotationAxle)te).anglePerTick;
+            entityIn.addVelocity(0, 1.0D, 0);
+        }
     }
 
     @Override
