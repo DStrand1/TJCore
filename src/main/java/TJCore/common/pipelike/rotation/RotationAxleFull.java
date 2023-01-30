@@ -3,6 +3,7 @@ package TJCore.common.pipelike.rotation;
 import TJCore.api.axle.ISpinnable;
 import TJCore.common.pipelike.rotation.world.WorldAxleFull;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 
 import java.util.*;
 
@@ -75,5 +76,14 @@ public class RotationAxleFull implements ISpinnable {
     @Override
     public float getRevolutionsPerSecond() {
         return revolutionsPerSecond;
+    }
+
+    public void removeNet(BlockPos posIn) {
+        for (TileEntityRotationAxle te : components) {
+            if (!te.getPos().equals(posIn))  {
+                te.axleWhole = null;
+                te.connectToNet();
+            }
+        }
     }
 }

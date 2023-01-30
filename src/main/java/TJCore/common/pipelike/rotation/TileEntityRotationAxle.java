@@ -139,6 +139,11 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
         return list;
     }
 
+    public void deleteAndUpdateNet() {
+        axleWhole.removeNet(pos);
+        axleWhole = null;
+    }
+
     @Override
     public boolean hasFastRenderer() {
         return true;
