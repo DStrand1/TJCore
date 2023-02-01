@@ -141,6 +141,9 @@ tjcore.machine.modular_steam_turbine.name=Modular Steam Turbine
 tjcore.modular_steam_turbine.description=The Modular Steam Turbine is your first means of generating power. Supports up to LuV generation through upgrades.
 tjcore.machine.armor_infuser.description=The armor infuser is an advanced machine capable of upgrading Draconic Evolution tools and armor.
 
+tjcore.machine.creative_rotation=Creative Rotation Source
+tjcore.machine.gearbox=Rotation Gearbox
+
 // Recipe Maps
 recipemap.component_assembler.name=Component Assembler
 recipemap.spinning_machine.name=Spooling Recipes

@@ -7,6 +7,7 @@ import TJCore.common.metatileentities.multi.electric.generator.MetaTileEntityMod
 import TJCore.common.metatileentities.multi.fusion.MegaFusion;
 import TJCore.common.metatileentities.multi.steam.PrimitiveTreeFarmer;
 import TJCore.common.metatileentities.multi.steam.SteamAssembler;
+import TJCore.common.pipelike.rotation.TileEntityGearbox;
 import TJCore.common.recipes.recipemaps.TJRecipeMaps;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
@@ -42,7 +43,9 @@ public class TJMetaTileEntities {
     public static MetaTileEntityModularSteamTurbine MODULAR_TURBINE;
     public static PrimitiveTreeFarmer PRIMITIVE_TREE_FARMER;
     public static LargeAlloySmelter LARGE_ALLOY_SMELTER;
+
     public static MetaTileEntityCreativeRotation CREATIVE_ROTATION;
+    public static TileEntityGearbox GEARBOX;
 
     public static Loom LOOM;
 
@@ -66,6 +69,7 @@ public class TJMetaTileEntities {
         registerSimpleMetaTileEntity(PRINTER, 12090, "printer", TJRecipeMaps.PRINTER_RECIPES, Textures.LASER_ENGRAVER_OVERLAY, true);
         registerSimpleMetaTileEntity(SPINNING_MACHINE, 12100, "spinning_machine", TJRecipeMaps.SPINNING_RECIPES, Textures.CENTRIFUGE_OVERLAY, true, GTUtility.hvCappedTankSizeFunction);
         CREATIVE_ROTATION = registerMetaTileEntity(12110, new MetaTileEntityCreativeRotation());
+        GEARBOX = registerMetaTileEntity(12111, new TileEntityGearbox(tjcoreID("gearbox")));
     }
 
     private static void registerSimpleMetaTileEntity(SimpleMachineMetaTileEntity[] machines, int startID, String name, RecipeMap<?> map, ICubeRenderer texture, boolean frontfacing, Function<Integer, Integer> tankScalingFunction) {

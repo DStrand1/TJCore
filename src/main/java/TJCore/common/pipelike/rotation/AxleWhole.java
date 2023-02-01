@@ -6,11 +6,10 @@ import TJCore.api.axle.ISpinnable;
 import TJCore.common.pipelike.rotation.world.WorldAxleFull;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 import java.util.*;
 
-public class RotationAxleFull implements ISpinnable {
+public class AxleWhole implements ISpinnable {
     private List<TileEntityRotationAxle> components = new ArrayList<>();
     private List<IRotationProvider> providers = new ArrayList<>();
     private List<IRotationConsumer> consumers = new ArrayList<>();
@@ -19,7 +18,7 @@ public class RotationAxleFull implements ISpinnable {
     private float torque;
     public float angle;
     EnumFacing.Axis axis;
-    public RotationAxleFull(EnumFacing.Axis axis) {
+    public AxleWhole(EnumFacing.Axis axis) {
         this.axis = axis;
         WorldAxleFull.addAxleWhole(this);
     }
@@ -53,7 +52,7 @@ public class RotationAxleFull implements ISpinnable {
         return components.size();
     }
 
-    public void incorperate(RotationAxleFull toAdd) {
+    public void incorperate(AxleWhole toAdd) {
         if (toAdd == this) {return;}
         float maxSpeed = Math.max(revolutionsPerSecond, toAdd.revolutionsPerSecond);
         torque = (toAdd.torque * (toAdd.revolutionsPerSecond / maxSpeed)) + (torque * (revolutionsPerSecond / maxSpeed));
@@ -92,13 +91,23 @@ public class RotationAxleFull implements ISpinnable {
         providers.add(provider);
     }
 
-    public void removeNet(BlockPos posIn) {
+    public float getRPS() {
+        return revolutionsPerSecond;
+    }
+
+    public void deleteNetAndCreateNew(BlockPos posIn) {
+        for (TileEntityRotationAxle te : components) {
+            te.axleWhole = null;
+        }
+
+
         for (TileEntityRotationAxle te : components) {
             if (!te.getPos().equals(posIn))  {
-                te.axleWhole = null;
                 te.connectToNet();
             }
         }
+        components.clear();
+
         for (IRotationProvider provider : providers) {
             //Problem is this is getting called on the wrong provider. Providers looks to be full at the time of the error though.
             //This also ISNT hit when you break the axle connected after it is incorperated into another net. What the fuck

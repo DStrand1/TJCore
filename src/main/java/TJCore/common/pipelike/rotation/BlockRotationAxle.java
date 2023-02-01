@@ -1,43 +1,20 @@
 package TJCore.common.pipelike.rotation;
 
-import codechicken.lib.raytracer.CuboidRayTraceResult;
-import codechicken.lib.raytracer.RayTracer;
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.capability.tool.IScrewdriverItem;
-import gregtech.api.capability.tool.IWrenchItem;
-import gregtech.api.cover.CoverBehavior;
-import gregtech.api.cover.ICoverable;
-import gregtech.api.items.toolitem.IToolStats;
-import gregtech.api.pipenet.tile.IPipeTile;
-import gregtech.api.pipenet.tile.TileEntityPipeBase;
-import gregtech.common.blocks.BlockFrame;
-import gregtech.common.blocks.FrameItemBlock;
-import gregtech.common.tools.DamageValues;
-import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.common.property.PropertyFloat;
@@ -45,10 +22,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import javax.annotation.Nonnull;
-
-import static TJCore.TJValues.MODID;
 
 public class BlockRotationAxle extends BlockRotatedPillar implements ITileEntityProvider {
     private static final AxisAlignedBB AABB_X = new AxisAlignedBB(0.0D, 0.375D, 0.375D, 1.0D, 0.625D, 0.625D);
@@ -102,9 +75,12 @@ public class BlockRotationAxle extends BlockRotatedPillar implements ITileEntity
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         if (worldIn.getTileEntity(pos) instanceof TileEntityRotationAxle) {
-            ((TileEntityRotationAxle) worldIn.getTileEntity(pos)).deleteAndUpdateNet();
+            AxleWhole axleFull =  ((TileEntityRotationAxle) worldIn.getTileEntity(pos)).getAxleWhole();
+            super.breakBlock(worldIn, pos, state);
+            if(axleFull != null)
+                axleFull.deleteNetAndCreateNew(pos);
+            //((TileEntityRotationAxle) worldIn.getTileEntity(pos)).deleteAndUpdateNet();
         }
-        super.breakBlock(worldIn, pos, state);
     }
 
     @Override

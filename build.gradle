@@ -100,3 +100,7 @@ processResources {
     }
     rename '(.+_at.cfg)', 'META-INF/$1' // Access Transformers
 }
+
+runClient {
+    args "--username=YoungOnion"
+}

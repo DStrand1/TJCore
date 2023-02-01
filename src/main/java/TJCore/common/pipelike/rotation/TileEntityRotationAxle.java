@@ -1,7 +1,6 @@
 package TJCore.common.pipelike.rotation;
 
 import gregtech.api.metatileentity.IDataInfoProvider;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -23,7 +22,7 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
     private boolean foundNet = false;
     public float anglePerTick = 0f;
     public float startAngle = 0f;
-    public RotationAxleFull axleWhole;
+    public AxleWhole axleWhole;
     TileEntityRotationAxle() {
         super();
     }
@@ -80,20 +79,21 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
     }
 
     public void connectToNet() {
+        axleWhole = null;
         BlockPos pos = this.getPos();
         World world = this.getWorld();
         Axis a = world.getBlockState(pos).getValue(AXIS);
         foundNet = findNetToAttach(a);
         if (!foundNet) {
-            axleWhole = new RotationAxleFull(a);
+            axleWhole = new AxleWhole(a);
             axleWhole.addAxle(this);
             foundNet = true;
         }
     }
 
     private boolean findNetToAttach(Axis axis) {
-        RotationAxleFull toJoinA = getAdjacent(world, pos, axis == Axis.X ?  1 : 0, axis == Axis.Y ?  1 : 0, axis == Axis.Z ?  1 : 0);
-        RotationAxleFull toJoinB = getAdjacent(world, pos, axis == Axis.X ? -1 : 0, axis == Axis.Y ? -1 : 0, axis == Axis.Z ? -1 : 0);
+        AxleWhole toJoinA = getAdjacent(world, pos, axis == Axis.X ?  1 : 0, axis == Axis.Y ?  1 : 0, axis == Axis.Z ?  1 : 0);
+        AxleWhole toJoinB = getAdjacent(world, pos, axis == Axis.X ? -1 : 0, axis == Axis.Y ? -1 : 0, axis == Axis.Z ? -1 : 0);
         if (toJoinA != null && toJoinB != null) {
             if (toJoinA.getSize() < toJoinB.getSize()) {
                 toJoinB.addAxle(this);
@@ -114,7 +114,7 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
         return false;
     }
 
-    private @Nullable RotationAxleFull getAdjacent(World worldIn, BlockPos thisPos, int xChange, int yChange, int zChange) {
+    private @Nullable AxleWhole getAdjacent(World worldIn, BlockPos thisPos, int xChange, int yChange, int zChange) {
         BlockPos nextPos = new BlockPos(thisPos.getX() + xChange, thisPos.getY() + yChange, thisPos.getZ() + zChange);
         IBlockState nextState = worldIn.getBlockState(nextPos);
 
@@ -139,18 +139,12 @@ public class TileEntityRotationAxle extends TileEntity implements IDataInfoProvi
         return list;
     }
 
-    public void deleteAndUpdateNet() {
-        if (axleWhole != null) {
-            axleWhole.removeNet(pos);
-        }
-    }
-
     @Override
     public boolean hasFastRenderer() {
         return true;
     }
 
-    public RotationAxleFull getAxleWhole() {
+    public AxleWhole getAxleWhole() {
         return axleWhole;
     }
 }

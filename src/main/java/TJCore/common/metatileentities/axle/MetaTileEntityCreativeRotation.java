@@ -4,7 +4,7 @@ import TJCore.TJValues;
 import TJCore.api.axle.IRotationConsumer;
 import TJCore.api.axle.IRotationProvider;
 import TJCore.common.TJTextures;
-import TJCore.common.pipelike.rotation.RotationAxleFull;
+import TJCore.common.pipelike.rotation.AxleWhole;
 import TJCore.common.pipelike.rotation.TileEntityRotationAxle;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.ColourMultiplier;
@@ -29,7 +29,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 public class MetaTileEntityCreativeRotation extends MetaTileEntity implements IRotationProvider, IRotationConsumer {
 
-    private RotationAxleFull axle;
+    private AxleWhole axle;
 
     private boolean source = false;
     private float rotationSpeed;
@@ -126,7 +126,7 @@ public class MetaTileEntityCreativeRotation extends MetaTileEntity implements IR
         return rotationSpeed;
     }
 
-    public void setAxleWhole(RotationAxleFull axleNew) {
+    public void setAxleWhole(AxleWhole axleNew) {
         this.axle = axleNew;
     }
 

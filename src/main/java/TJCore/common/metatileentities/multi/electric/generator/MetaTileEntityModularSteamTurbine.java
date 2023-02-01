@@ -1,21 +1,15 @@
 package TJCore.common.metatileentities.multi.electric.generator;
 
-import TJCore.TJValues;
 import TJCore.api.axle.IRotationProvider;
-import TJCore.api.axle.ISpinnable;
 import TJCore.api.block.ITurbineBladeStats;
+import TJCore.common.pipelike.rotation.AxleWhole;
 import TJCore.common.pipelike.rotation.BlockRotationAxle;
-import TJCore.common.pipelike.rotation.RotationAxleFull;
 import TJCore.common.pipelike.rotation.TileEntityRotationAxle;
-import gregtech.api.GTValues;
 import TJCore.common.blocks.BlockBearing;
 import TJCore.common.blocks.BlockTurbineBlades;
 import TJCore.common.blocks.TJMetaBlocks;
 import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
-import gregtech.api.GTValues;
-import gregtech.api.capability.impl.MultiblockFuelRecipeLogic;
-import gregtech.api.gui.ModularUI;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.*;
@@ -23,7 +17,6 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
-import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.util.BlockInfo;
 import gregtech.api.util.RelativeDirection;
 import gregtech.client.renderer.ICubeRenderer;
@@ -31,26 +24,15 @@ import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.*;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
 import org.apache.commons.lang3.ArrayUtils;
-import org.jetbrains.annotations.Nullable;
-import scala.Int;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
-import static TJCore.common.recipes.recipemaps.TJRecipeMaps.*;
-import static gregtech.api.GTValues.V;
 import static gregtech.api.unification.material.Materials.Steam;
 
 public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase implements IRotationProvider {
@@ -62,7 +44,7 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
     private float rps;
     private float torque;
     private float speedDecrement = 0.025f;
-    private RotationAxleFull axleWhole;
+    private AxleWhole axleWhole;
     private IFluidTank tankIn;
     private BlockPos bearingPos;
 
@@ -199,7 +181,7 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
         return rps;
     }
 
-    public void setAxleWhole(RotationAxleFull axleNew) {
+    public void setAxleWhole(AxleWhole axleNew) {
         axleWhole = axleNew;
         if (axleNew != null && !getWorld().isRemote) {
             axleWhole.addProvider(this);
@@ -230,7 +212,6 @@ public class MetaTileEntityModularSteamTurbine extends MultiblockWithDisplayBase
     public void update() {
         super.update();
         if (!getWorld().isRemote && isStructureFormed()) {
-            super.update();
             if (axleWhole == null) {
                 joinNet();
             }

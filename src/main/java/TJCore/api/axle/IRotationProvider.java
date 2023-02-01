@@ -1,10 +1,10 @@
 package TJCore.api.axle;
 
-import TJCore.common.pipelike.rotation.RotationAxleFull;
+import TJCore.common.pipelike.rotation.AxleWhole;
 
 public interface IRotationProvider {
     void pushRotation(float rotationSpeed, float torque);
     void joinNet();
     float getRotation();
-    void setAxleWhole(RotationAxleFull axle);
+    void setAxleWhole(AxleWhole axle);
 }
