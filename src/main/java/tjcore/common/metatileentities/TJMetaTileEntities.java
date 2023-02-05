@@ -10,7 +10,7 @@ import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.util.ResourceLocation;
 import tjcore.TJValues;
 import tjcore.common.metatileentities.multi.electric.*;
-import tjcore.common.metatileentities.multi.electric.generator.MetaTileEntityModularSteamTurbine;
+import tjcore.common.metatileentities.multi.primitive.MetaTileEntityModularSteamTurbine;
 import tjcore.common.metatileentities.multi.fusion.MegaFusion;
 import tjcore.common.metatileentities.multi.fusion.MetaTileEntityFusionStellarator;
 import tjcore.common.metatileentities.multi.steam.PrimitiveTreeFarmer;

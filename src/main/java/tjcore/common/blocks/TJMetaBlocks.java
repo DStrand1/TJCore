@@ -19,6 +19,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import tjcore.common.blocks.stellarator.BlockStellaratorCoil;
 import tjcore.common.pipelike.BlockCableLongDistance;
 import tjcore.common.pipelike.tile.TileEntityLongDistanceCable;
 import tjcore.common.pipelike.tile.TileEntityLongDistanceCableTickable;
@@ -31,7 +32,7 @@ public class TJMetaBlocks {
     public static DraconicCasings DRACONIC_CASING;
     public static BlockBearing BLOCK_BEARING;
     public static BlockTurbineBlades TURBINE_BLADES;
-
+    public static BlockStellaratorCoil STELLARATOR_COIL;
     public static final BlockCableLongDistance[] LONG_DIST_CABLES = new BlockCableLongDistance[10];
     
     public static void init() {
@@ -41,6 +42,8 @@ public class TJMetaBlocks {
         TURBINE_BLADES.setRegistryName("turbine_blades");
         BLOCK_BEARING = new BlockBearing();
         BLOCK_BEARING.setRegistryName("block_bearing");
+        STELLARATOR_COIL = new BlockStellaratorCoil();
+        STELLARATOR_COIL.setRegistryName("stellarator_coil");
         for (Insulation ins : Insulation.values()) {
             LONG_DIST_CABLES[ins.ordinal()] = new BlockCableLongDistance(ins);
             LONG_DIST_CABLES[ins.ordinal()].setRegistryName(ins.getName());
@@ -60,6 +63,7 @@ public class TJMetaBlocks {
         registerItemModel(DRACONIC_CASING);
         registerItemModel(TURBINE_BLADES);
         registerItemModel(BLOCK_BEARING);
+        registerItemModel(STELLARATOR_COIL);
     }
 
     @SideOnly(Side.CLIENT)

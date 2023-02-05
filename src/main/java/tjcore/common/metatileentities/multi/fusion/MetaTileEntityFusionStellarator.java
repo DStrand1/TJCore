@@ -8,16 +8,26 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.TraceabilityPredicate;
+import gregtech.api.util.BlockInfo;
 import gregtech.api.util.RelativeDirection;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
+import org.apache.commons.lang3.ArrayUtils;
 import tjcore.api.metatileentity.multiblock.FusionMultiBlockController;
+import tjcore.common.blocks.BlockTurbineBlades;
+import tjcore.common.blocks.TJMetaBlocks;
+import tjcore.common.blocks.stellarator.BlockStellaratorCoil;
 import tjcore.common.metatileentities.multi.electric.ExposureChamber;
 
 import javax.annotation.Nonnull;
+
+import java.util.Arrays;
 
 import static gregtech.api.recipes.RecipeMaps.FUSION_RECIPES;
 
@@ -153,11 +163,27 @@ public class MetaTileEntityFusionStellarator extends RecipeMapMultiblockControll
                 .where('#', any())
                 .where(' ', air())
                 .where('G', states(MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID)))
-                .where('R', states(MetaBlocks.WIRE_COIL.getState(BlockWireCoil.CoilType.TRITANIUM)))
+                .where('R', coils())
                 .where('Y', states(MetaBlocks.WIRE_COIL.getState(BlockWireCoil.CoilType.HSS_G)))
                 .where('I', states(MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_CASING)))
                 .where('B', states(MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.GRATE_CASING)))
                 .build();
+    }
+
+    public TraceabilityPredicate coils() {
+        return new TraceabilityPredicate(blockWorldState -> {
+            IBlockState blockState = blockWorldState.getBlockState();
+            Block block = blockState.getBlock();
+            if (block instanceof BlockStellaratorCoil) {
+                BlockStellaratorCoil.CoilType coilType = ((BlockStellaratorCoil) block).getState(blockState);
+                Object currentCoil = blockWorldState.getMatchContext().getOrPut("CoilType", coilType);
+                return currentCoil.equals(coilType);
+            }
+            return false;
+        }, () -> ArrayUtils.addAll(
+                Arrays.stream(BlockStellaratorCoil.CoilType.values())
+                        .map(type -> new BlockInfo(TJMetaBlocks.STELLARATOR_COIL.getState(type), null))
+                        .toArray(BlockInfo[]::new)));
     }
 
     @Override

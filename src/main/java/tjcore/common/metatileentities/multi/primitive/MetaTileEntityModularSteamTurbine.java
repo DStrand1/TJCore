@@ -1,4 +1,4 @@
-package tjcore.common.metatileentities.multi.electric.generator;
+package tjcore.common.metatileentities.multi.primitive;
 
 import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;

@@ -44,6 +44,7 @@ public class CommonProxy {
         registry.register(DRACONIC_CASING);
         registry.register(TURBINE_BLADES);
         registry.register(BLOCK_BEARING);
+        registry.register(STELLARATOR_COIL);
         for (int i = 0; i < longDistanceWireMaterials.length; i++) {
             for (BlockCableLongDistance cable : LONG_DIST_CABLES) {
                 cable.addCableMaterial(longDistanceWireMaterials[i], new WireProperties(Math.toIntExact(V[i + 1]), 4, 0));
