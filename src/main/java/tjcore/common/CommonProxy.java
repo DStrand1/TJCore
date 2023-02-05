@@ -59,6 +59,7 @@ public class CommonProxy {
         registry.register(createItemBlock(TURBINE_BLADES, VariantItemBlock::new));
         registry.register(createItemBlock(BLOCK_BEARING, VariantItemBlock::new));
         registry.register(createItemBlock(DRACONIC_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(STELLARATOR_COIL, VariantItemBlock::new));
     }
 
     
