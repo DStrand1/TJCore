@@ -1,8 +1,10 @@
 package tjcore.api.material.materials;
 
+import gregtech.api.GregTechAPI;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.unification.material.properties.*;
+import org.lwjgl.Sys;
 
 import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -928,5 +930,16 @@ public class TJFirstDegreeMaterials {
         Tennessine.setProperty(PropertyKey.INGOT, new IngotProperty());
         Terbium.setProperty(PropertyKey.INGOT, new IngotProperty());
         Thulium.setProperty(PropertyKey.INGOT, new IngotProperty());
+
+        addPlasmaFlags();
+    }
+
+    private static void addPlasmaFlags(){
+        for (Material mat : GregTechAPI.MATERIAL_REGISTRY) {
+            if (mat.getMaterialComponents().size() == 1) {
+                System.out.println(mat.getLocalizedName());
+                // mat.setProperty(PropertyKey.PLASMA, new PlasmaProperty());
+            }
+        }
     }
 }

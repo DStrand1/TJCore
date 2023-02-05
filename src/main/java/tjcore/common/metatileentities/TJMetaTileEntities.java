@@ -12,6 +12,7 @@ import tjcore.TJValues;
 import tjcore.common.metatileentities.multi.electric.*;
 import tjcore.common.metatileentities.multi.electric.generator.MetaTileEntityModularSteamTurbine;
 import tjcore.common.metatileentities.multi.fusion.MegaFusion;
+import tjcore.common.metatileentities.multi.fusion.MetaTileEntityFusionStellarator;
 import tjcore.common.metatileentities.multi.steam.PrimitiveTreeFarmer;
 import tjcore.common.metatileentities.multi.steam.SteamAssembler;
 import tjcore.common.recipes.recipemaps.TJRecipeMaps;
@@ -40,6 +41,7 @@ public class TJMetaTileEntities {
     public static ExposureChamber EXPOSURE_CHAMBER;
     public static MetaTileEntityModularSteamTurbine MODULAR_TURBINE;
     public static PrimitiveTreeFarmer PRIMITIVE_TREE_FARMER;
+    public static MetaTileEntityFusionStellarator STELLARATOR;
 
     public static Loom LOOM;
 
@@ -58,9 +60,11 @@ public class TJMetaTileEntities {
         STEAM_DRYER_STEEL = registerMetaTileEntity(12042, new SteamDryer(tjcoreID("steam_dryer_steel"), true));
         MODULAR_TURBINE = registerMetaTileEntity(12043, new MetaTileEntityModularSteamTurbine(tjcoreID("modular_steam_turbine")));
         PRIMITIVE_TREE_FARMER = registerMetaTileEntity(12044, new PrimitiveTreeFarmer(tjcoreID("primitive_tree_farmer")));
+        STELLARATOR = registerMetaTileEntity(12045, new MetaTileEntityFusionStellarator(tjcoreID("stellarator")));
         registerSimpleMetaTileEntity(LAMINATOR, 12070, "laminator", TJRecipeMaps.LAMINATOR_RECIPES, Textures.BENDER_OVERLAY, true);
         registerSimpleMetaTileEntity(PRINTER, 12090, "printer", TJRecipeMaps.PRINTER_RECIPES, Textures.LASER_ENGRAVER_OVERLAY, true);
         registerSimpleMetaTileEntity(SPINNING_MACHINE, 12100, "spinning_machine", TJRecipeMaps.SPINNING_RECIPES, Textures.CENTRIFUGE_OVERLAY, true, GTUtility.hvCappedTankSizeFunction);
+
     }
 
     private static void registerSimpleMetaTileEntity(SimpleMachineMetaTileEntity[] machines, int startID, String name, RecipeMap<?> map, ICubeRenderer texture, boolean frontfacing, Function<Integer, Integer> tankScalingFunction) {
