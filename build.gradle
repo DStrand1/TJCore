@@ -69,13 +69,13 @@ dependencies {
 
     // CEu dev environment dependencies
     deobfCompile 'curse.maven:mixin-booter-419286:4090558'
-    deobfCompile 'curse.maven:groovyscript-687577:4286298'
+    deobfCompile 'curse.maven:groovyscript-687577:4445604'
     deobfCompile 'CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.680'
     deobfCompile "team.chisel.ctm:CTM:MC1.12.2-1.0.2.31"
 
     // CEu and GCY
-    deobfCompile 'curse.maven:gregtech-ce-unofficial-557242:4325257'
-    deobfCompile 'curse.maven:gregicality-multiblocks-564858:4325275'
+    deobfCompile 'curse.maven:gregtech-ce-unofficial-557242:4429261'
+    deobfCompile 'curse.maven:gregicality-multiblocks-564858:4422413'
 
     // Useful mods
     compile 'mezz.jei:jei_1.12.2:4.16.1.302'

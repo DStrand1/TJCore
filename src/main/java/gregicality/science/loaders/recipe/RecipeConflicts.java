@@ -22,7 +22,7 @@ public class RecipeConflicts {
         CHEMICAL_RECIPES.recipeBuilder()
                 .fluidInputs(Ethylene.getFluid(1000))
                 .fluidInputs(Chlorine.getFluid(2000))
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .fluidOutputs(VinylChloride.getFluid(1000))
                 .fluidOutputs(HydrochloricAcid.getFluid(1000))
                 .duration(160).EUt(VA[LV]).buildAndRegister();
@@ -40,7 +40,7 @@ public class RecipeConflicts {
         // Conflict between Potassium Hydroxide and Rock Salt Electrolysis
         ELECTROLYZER_RECIPES.recipeBuilder()
                 .input(dust, RockSalt, 2)
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .output(dust, Potassium)
                 .fluidOutputs(Chlorine.getFluid(1000))
                 .duration(72).EUt(VA[LV]).buildAndRegister();
@@ -48,7 +48,7 @@ public class RecipeConflicts {
         // Conflict between Salt Electrolysis and Sodium Chlorate
         ELECTROLYZER_RECIPES.recipeBuilder()
                 .input(dust, Salt, 2)
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .output(dust, Sodium)
                 .fluidOutputs(Chlorine.getFluid(1000))
                 .duration(56).EUt(VA[LV]).buildAndRegister();

@@ -24,7 +24,7 @@ public class SimpleMaterials {
         MIXER_RECIPES.recipeBuilder()
                 .input(dust, Graphite)
                 .input(dust, Silicon)
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .output(dust, SiliconCarbide, 2)
                 .duration(300).EUt(VA[EV]).buildAndRegister();
     }

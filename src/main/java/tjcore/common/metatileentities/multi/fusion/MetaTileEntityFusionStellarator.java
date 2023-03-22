@@ -31,9 +31,19 @@ import java.util.Arrays;
 
 import static gregtech.api.recipes.RecipeMaps.FUSION_RECIPES;
 
-public class MetaTileEntityFusionStellarator extends RecipeMapMultiblockController {
+public class MetaTileEntityFusionStellarator extends AbstractMaterialFusion {
     public MetaTileEntityFusionStellarator(ResourceLocation metaTileEntityId) {
-        super(metaTileEntityId, FUSION_RECIPES);
+        super(metaTileEntityId);
+    }
+
+    @Override
+    public TraceabilityPredicate dumpValve() {
+        return null;
+    }
+
+    @Override
+    protected void updateFormedValid() {
+
     }
 
     @Override
@@ -194,11 +204,6 @@ public class MetaTileEntityFusionStellarator extends RecipeMapMultiblockControll
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntityID) {
         return new MetaTileEntityFusionStellarator(this.metaTileEntityId);
-    }
-
-    @Override
-    public boolean canBeDistinct() {
-        return true;
     }
 
     @Nonnull

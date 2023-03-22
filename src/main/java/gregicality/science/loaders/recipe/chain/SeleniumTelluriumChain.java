@@ -23,7 +23,7 @@ public class SeleniumTelluriumChain {
         ELECTROLYZER_RECIPES.recipeBuilder()
                 .fluidInputs(SulfuricCopperSolution.getFluid(1000)) //TODO BlueVitriol
 //                .fluidInputs(Water.getFluid(1000)) //TODO Ore Work
-                .notConsumable(new IntCircuitIngredient(3))
+                .circuitMeta((3))
                 .output(dust, Copper)
                 .chancedOutput(dust, ChalcogenAnodeMud, 500, 0)
                 .fluidOutputs(SulfuricAcid.getFluid(1000))
@@ -62,7 +62,7 @@ public class SeleniumTelluriumChain {
         ELECTROLYZER_RECIPES.recipeBuilder()
                 .input(dust, SodiumTellurite, 6)
                 .fluidInputs(Water.getFluid(1000))
-                .notConsumable(new IntCircuitIngredient(2))
+                .circuitMeta((2))
                 .output(dust, TelluriumDioxide, 3)
                 .output(dust, SodiumHydroxide, 6)
                 .duration(400)

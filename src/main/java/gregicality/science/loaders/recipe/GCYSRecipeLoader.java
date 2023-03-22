@@ -9,17 +9,17 @@ import gregicality.science.loaders.recipe.oreprocessing.*;
 public class GCYSRecipeLoader {
 
     public static void init() {
-        initChains();
-        initOreProcessing();
-        initCircuits();
-        MiscRecipes.init();
-        RecipeConflicts.init();
-        GCYSComponentRecipes.init();
-        GCYSBlockRecipeLoader.init();
+        //initChains();
+        //initOreProcessing();
+        //initCircuits();
+        //MiscRecipes.init();
+        //RecipeConflicts.init();
+        //GCYSComponentRecipes.init();
+        //GCYSBlockRecipeLoader.init();
     }
 
     public static void initHandlers() {
-        BouleRecipeHandler.register();
+        //BouleRecipeHandler.register();
     }
 
     private static void initChains() {

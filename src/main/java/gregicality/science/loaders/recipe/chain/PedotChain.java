@@ -36,21 +36,21 @@ public class PedotChain {
 
     private static void pss() {
         CHEMICAL_RECIPES.recipeBuilder()
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .fluidInputs(Styrene.getFluid(L))
                 .fluidInputs(Air.getFluid(1000))
                 .fluidOutputs(Polystyrene.getFluid(L))
                 .duration(160).EUt(VA[LV]).buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder()
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .fluidInputs(Styrene.getFluid(L))
                 .fluidInputs(Oxygen.getFluid(1000))
                 .fluidOutputs(Polystyrene.getFluid(216))
                 .duration(160).EUt(VA[LV]).buildAndRegister();
 
         LARGE_CHEMICAL_RECIPES.recipeBuilder()
-                .notConsumable(new IntCircuitIngredient(2))
+                .circuitMeta((2))
                 .fluidInputs(Styrene.getFluid(2160))
                 .fluidInputs(Air.getFluid(7500))
                 .fluidInputs(TitaniumTetrachloride.getFluid(100))
@@ -58,7 +58,7 @@ public class PedotChain {
                 .duration(800).EUt(VA[LV]).buildAndRegister();
 
         LARGE_CHEMICAL_RECIPES.recipeBuilder()
-                .notConsumable(new IntCircuitIngredient(2))
+                .circuitMeta((2))
                 .fluidInputs(Styrene.getFluid(2160))
                 .fluidInputs(Oxygen.getFluid(7500))
                 .fluidInputs(TitaniumTetrachloride.getFluid(100))

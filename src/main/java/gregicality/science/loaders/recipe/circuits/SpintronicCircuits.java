@@ -51,7 +51,7 @@ public class SpintronicCircuits {
                 .input(dust, Tellurium, 2)
                 .fluidInputs(Mercury.getFluid(2000))
                 .output(dust, MercuryCadmiumTelluride, 5)
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .duration(400).EUt(VA[UHV]).buildAndRegister();
 
         CANNER_RECIPES.recipeBuilder()

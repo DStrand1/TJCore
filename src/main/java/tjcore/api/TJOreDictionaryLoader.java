@@ -3,6 +3,7 @@ package tjcore.api;
 import com.brandon3055.draconicevolution.DEFeatures;
 import gregtech.api.GTValues;
 import gregtech.api.items.materialitem.MetaPrefixItem;
+import gregtech.api.unification.Elements;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
 import gregtech.api.unification.material.properties.IngotProperty;
@@ -49,17 +50,16 @@ public class TJOreDictionaryLoader {
         }
     }
 
-    public static void registerOrePrefixes() {
+    private static void registerOrePrefixes() {
         createMaterialItem(nanowire);
         createMaterialItem(nanofoil);
 
     }
-
     public static void registerRecipes() {
         nanowire.addProcessingHandler(PropertyKey.INGOT, TJOreDictionaryLoader::processNanoWire);
         nanofoil.addProcessingHandler(PropertyKey.INGOT, TJOreDictionaryLoader::processNanoFoil);
     }
-    public static void processNanoFoil(OrePrefix nanoFoilPrefix, Material material, IngotProperty property) {
+    private static void processNanoFoil(OrePrefix nanoFoilPrefix, Material material, IngotProperty property) {
         if (material.hasProperty(PropertyKey.FLUID)) {
             NANOSCALE_GROWTH_RECIPES.recipeBuilder()
                     .circuitMeta(1)
@@ -70,8 +70,7 @@ public class TJOreDictionaryLoader {
                     .buildAndRegister();
         }
     }
-
-    public static void processNanoWire(OrePrefix nanoFoilPrefix, Material material, IngotProperty property) {
+    private static void processNanoWire(OrePrefix nanoFoilPrefix, Material material, IngotProperty property) {
         if (material.hasProperty(PropertyKey.FLUID)) {
             NANOSCALE_GROWTH_RECIPES.recipeBuilder()
                     .circuitMeta(0)
@@ -82,8 +81,7 @@ public class TJOreDictionaryLoader {
                     .buildAndRegister();
         }
     }
-
-    public static void createMaterialItem(OrePrefix orePrefix) {
+    private static void createMaterialItem(OrePrefix orePrefix) {
         MetaPrefixItem item = new MetaPrefixItem(orePrefix);
         item.setRegistryName(TJValues.MODID, orePrefix.name());
     }

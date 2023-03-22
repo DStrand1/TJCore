@@ -71,7 +71,7 @@ public class OpticalCircuits {
                 .input(dust, Aluminium)
                 .input(dust, Sodium, 2)
                 .fluidInputs(Fluorine.getFluid(6200))
-                .notConsumable(new IntCircuitIngredient(5))
+                .circuitMeta((5))
                 .fluidOutputs(ZBLANGlass.getFluid(L * 11))
                 .blastFurnaceTemp(1073)
                 .duration(1800).EUt(VA[HV]).buildAndRegister();

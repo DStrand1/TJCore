@@ -42,7 +42,7 @@ public class KaptonChain {
         CHEMICAL_RECIPES.recipeBuilder()
                 .fluidInputs(Nitrobenzene.getFluid(1000))
                 .fluidInputs(Hydrogen.getFluid(4000))
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .fluidOutputs(Aminophenol.getFluid(1000))
                 .fluidOutputs(Water.getFluid(1000))
                 .duration(300).EUt(VA[LV]).buildAndRegister();

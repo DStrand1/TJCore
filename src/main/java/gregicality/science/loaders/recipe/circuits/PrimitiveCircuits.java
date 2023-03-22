@@ -36,7 +36,7 @@ public class PrimitiveCircuits {
                 .input(OrePrefix.dust, Iron, 4)
                 .input(OrePrefix.dust, Nickel, 2)
                 .input(OrePrefix.dust, Cobalt)
-                .notConsumable(new IntCircuitIngredient(4))
+                .circuitMeta((4))
                 .output(OrePrefix.dust, Kovar, 7)
                 .duration(160).EUt(VA[ULV]).buildAndRegister();
 

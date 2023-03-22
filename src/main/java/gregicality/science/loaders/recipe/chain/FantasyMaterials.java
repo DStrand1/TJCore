@@ -89,14 +89,14 @@ public class FantasyMaterials {
 
         BLAST_RECIPES.recipeBuilder()
                 .input(dust, OrichalcumEnergized)
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .output(ingotHot, Orichalcum)
                 .blastFurnaceTemp(9000)
                 .duration(2000).EUt(VA[UV]).buildAndRegister();
 
         BLAST_RECIPES.recipeBuilder()
                 .input(dust, OrichalcumEnergized)
-                .notConsumable(new IntCircuitIngredient(2))
+                .circuitMeta((2))
                 .fluidInputs(Argon.getFluid(50))
                 .output(ingotHot, Orichalcum)
                 .blastFurnaceTemp(9000)

@@ -41,7 +41,7 @@ public class BZChain {
         // KCl + H2O -> KOH + Cl + H
         ELECTROLYZER_RECIPES.recipeBuilder()
                 .input(dust, RockSalt, 2)
-                .notConsumable(new IntCircuitIngredient(2))
+                .circuitMeta((2))
                 .fluidInputs(Water.getFluid(1000))
                 .output(dust, PotassiumHydroxide, 3)
                 .fluidOutputs(Chlorine.getFluid(1000))

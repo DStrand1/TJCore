@@ -5,11 +5,12 @@ import gregtech.api.recipes.GTRecipeHandler;
 import static gregtech.api.recipes.RecipeMaps.*;
 
 public class MaterialSynthesisFusionRecipes {
-    public void init() {
+    public static void init() {
         removePreexistingRecipes();
     }
 
-    private void removePreexistingRecipes() {
-        GTRecipeHandler.removeAllRecipes(FUSION_RECIPES);
+    private static void removePreexistingRecipes() {
+        //GTRecipeHandler.removeAllRecipes(FUSION_RECIPES);
     }
+
 }

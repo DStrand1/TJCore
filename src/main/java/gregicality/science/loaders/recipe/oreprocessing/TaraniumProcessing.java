@@ -118,21 +118,21 @@ public class TaraniumProcessing {
 
     private static void regularFractionCracking() {
         CRACKING_RECIPES.recipeBuilder()
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .fluidInputs(Fluorine.getFluid(6000))
                 .fluidInputs(HeavyTaraniumGas.getFluid(1000))
                 .fluidOutputs(CrackedHeavyTaranium.getFluid(2000))
                 .duration(300).EUt(9216).buildAndRegister();
 
         CRACKING_RECIPES.recipeBuilder()
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .fluidInputs(Fluorine.getFluid(4000))
                 .fluidInputs(MediumTaraniumGas.getFluid(1000))
                 .fluidOutputs(CrackedMediumTaranium.getFluid(1600))
                 .duration(250).EUt(9216).buildAndRegister();
 
         CRACKING_RECIPES.recipeBuilder()
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .fluidInputs(Fluorine.getFluid(2000))
                 .fluidInputs(LightTaraniumGas.getFluid(1000))
                 .fluidOutputs(CrackedLightTaranium.getFluid(1200))
@@ -228,21 +228,21 @@ public class TaraniumProcessing {
 
     private static void enrichedFractionCracking() {
         CRACKING_RECIPES.recipeBuilder()
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .fluidInputs(Radon.getFluid(6000))
                 .fluidInputs(HeavyEnrichedTaraniumGas.getFluid(1000))
                 .fluidOutputs(CrackedHeavyEnrichedTaranium.getFluid(2000))
                 .duration(300).EUt(49152).buildAndRegister();
 
         CRACKING_RECIPES.recipeBuilder()
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .fluidInputs(Radon.getFluid(4000))
                 .fluidInputs(MediumEnrichedTaraniumGas.getFluid(1000))
                 .fluidOutputs(CrackedMediumEnrichedTaranium.getFluid(1600))
                 .duration(250).EUt(49152).buildAndRegister();
 
         CRACKING_RECIPES.recipeBuilder()
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .fluidInputs(Radon.getFluid(2000))
                 .fluidInputs(LightEnrichedTaraniumGas.getFluid(1000))
                 .fluidOutputs(CrackedLightEnrichedTaranium.getFluid(1200))

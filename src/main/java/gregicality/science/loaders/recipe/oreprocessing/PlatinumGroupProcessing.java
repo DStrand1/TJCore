@@ -198,7 +198,7 @@ public class PlatinumGroupProcessing {
         CHEMICAL_RECIPES.recipeBuilder()
                 .fluidInputs(Methane.getFluid(1000))
                 .fluidInputs(Chlorine.getFluid(8000))
-                .notConsumable(new IntCircuitIngredient(2))
+                .circuitMeta((2))
                 .fluidOutputs(CarbonTetrachloride.getFluid(1000))
                 .fluidOutputs(HydrochloricAcid.getFluid(4000))
                 .duration(80).EUt(VA[LV]).buildAndRegister();
@@ -251,7 +251,7 @@ public class PlatinumGroupProcessing {
         ELECTROLYZER_RECIPES.recipeBuilder()
                 .input(dust, Salt, 2)
                 .fluidInputs(Water.getFluid(3000))
-                .notConsumable(new IntCircuitIngredient(2))
+                .circuitMeta((2))
                 .output(dust, SodiumChlorate, 5)
                 .fluidOutputs(Hydrogen.getFluid(6000))
                 .duration(100).EUt(VA[MV]).buildAndRegister();

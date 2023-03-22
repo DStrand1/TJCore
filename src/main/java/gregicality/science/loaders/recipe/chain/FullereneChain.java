@@ -29,7 +29,7 @@ public class FullereneChain {
         CRACKING_RECIPES.recipeBuilder()
                 .fluidInputs(SodioIndene.getFluid(1000))
                 .fluidInputs(Steam.getFluid(1000)) //TODO Superheated steam?
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .fluidOutputs(SteamCrackedSodioIndene.getFluid(1000))
                 .duration(160).EUt(VA[IV]).buildAndRegister();
 

@@ -33,7 +33,7 @@ public class EDTAChain {
         // C2H4Cl2 -> C2H3Cl + HCl
         BURNER_REACTOR_RECIPES.recipeBuilder()
                 .fluidInputs(Dichloroethane.getFluid(1000))
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .fluidOutputs(VinylChloride.getFluid(1000))
                 .fluidOutputs(HydrochloricAcid.getFluid(1000))
                 .temperature(773)

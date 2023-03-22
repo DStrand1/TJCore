@@ -58,7 +58,7 @@ public class RareEarthProcessing {
         MIXER_RECIPES.recipeBuilder()
                 .input(dust, RareEarth)
                 .input(dust, SodiumHydroxide, 3)
-                .notConsumable(new IntCircuitIngredient(2))
+                .circuitMeta((2))
                 .fluidInputs(DiethylhexylPhosphoricAcid.getFluid(100))
                 .fluidInputs(Water.getFluid(900))
                 .fluidOutputs(RareEarthHydroxidesSolution.getFluid(1000))
@@ -75,7 +75,7 @@ public class RareEarthProcessing {
         // This is optional for EV Tier (Motors)
         DISTILLERY_RECIPES.recipeBuilder()
                 .fluidInputs(RareEarthChloridesSolution.getFluid(1000))
-                .notConsumable(new IntCircuitIngredient(1))
+                .circuitMeta((1))
                 .output(dust, NeodymiumOxide)
                 .fluidOutputs(HydrochloricAcid.getFluid(900))
                 .duration(200).EUt(VA[LV]).buildAndRegister();
@@ -84,7 +84,7 @@ public class RareEarthProcessing {
         // This is optional for ZPM Tier (Pu-241 Fusion)
         DISTILLERY_RECIPES.recipeBuilder()
                 .fluidInputs(RareEarthChloridesSolution.getFluid(1000))
-                .notConsumable(new IntCircuitIngredient(2))
+                .circuitMeta((2))
                 .output(dust, CeriumOxide)
                 .fluidOutputs(HydrochloricAcid.getFluid(850))
                 .duration(200).EUt(3840).buildAndRegister();
@@ -93,7 +93,7 @@ public class RareEarthProcessing {
         // This is required for LuV Tier (Magnetic Samarium -> Motors)
         DISTILLERY_RECIPES.recipeBuilder()
                 .fluidInputs(RareEarthChloridesSolution.getFluid(1000))
-                .notConsumable(new IntCircuitIngredient(3))
+                .circuitMeta((3))
                 .output(dust, SamariumOxide)
                 .fluidOutputs(HydrochloricAcid.getFluid(800))
                 .duration(200).EUt(3840).buildAndRegister();
@@ -102,7 +102,7 @@ public class RareEarthProcessing {
         // This is optional for IV Tier (Incoloy-MA956)
         DISTILLERY_RECIPES.recipeBuilder()
                 .fluidInputs(RareEarthChloridesSolution.getFluid(1000))
-                .notConsumable(new IntCircuitIngredient(4))
+                .circuitMeta((4))
                 .output(dust, YttriumOxide)
                 .fluidOutputs(HydrochloricAcid.getFluid(750))
                 .duration(200).EUt(3840).buildAndRegister();
@@ -111,7 +111,7 @@ public class RareEarthProcessing {
         // This is required for UV Tier (Americium -> Motors)
         DISTILLERY_RECIPES.recipeBuilder()
                 .fluidInputs(RareEarthChloridesSolution.getFluid(1000))
-                .notConsumable(new IntCircuitIngredient(5))
+                .circuitMeta((5))
                 .output(dust, LanthanumOxide)
                 .fluidOutputs(HydrochloricAcid.getFluid(500))
                 .duration(200).EUt(15360).buildAndRegister();
