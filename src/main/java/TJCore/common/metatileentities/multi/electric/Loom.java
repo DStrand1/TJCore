@@ -24,7 +24,6 @@ import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockMultiblockCasing;
 import gregtech.common.blocks.MetaBlocks;
-import javafx.scene.paint.Material;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
